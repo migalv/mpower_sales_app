@@ -15,10 +15,13 @@ class _$OrderItemTearOff {
 
 // ignore: unused_element
   _OrderItem call(
-      {@required Product product, @required List<StockUnit> linkedStockUnits}) {
+      {@required Product product,
+      @required List<StockUnit> linkedStockUnits,
+      @required int units}) {
     return _OrderItem(
       product: product,
       linkedStockUnits: linkedStockUnits,
+      units: units,
     );
   }
 }
@@ -29,8 +32,14 @@ const $OrderItem = _$OrderItemTearOff();
 
 /// @nodoc
 mixin _$OrderItem {
+  /// The product that was added to the order
   Product get product;
+
+  /// The stock units that were "linked" to the order
   List<StockUnit> get linkedStockUnits;
+
+  /// The number of units of that product that were requested in the order
+  int get units;
 
   $OrderItemCopyWith<OrderItem> get copyWith;
 }
@@ -39,7 +48,7 @@ mixin _$OrderItem {
 abstract class $OrderItemCopyWith<$Res> {
   factory $OrderItemCopyWith(OrderItem value, $Res Function(OrderItem) then) =
       _$OrderItemCopyWithImpl<$Res>;
-  $Res call({Product product, List<StockUnit> linkedStockUnits});
+  $Res call({Product product, List<StockUnit> linkedStockUnits, int units});
 
   $ProductCopyWith<$Res> get product;
 }
@@ -56,12 +65,14 @@ class _$OrderItemCopyWithImpl<$Res> implements $OrderItemCopyWith<$Res> {
   $Res call({
     Object product = freezed,
     Object linkedStockUnits = freezed,
+    Object units = freezed,
   }) {
     return _then(_value.copyWith(
       product: product == freezed ? _value.product : product as Product,
       linkedStockUnits: linkedStockUnits == freezed
           ? _value.linkedStockUnits
           : linkedStockUnits as List<StockUnit>,
+      units: units == freezed ? _value.units : units as int,
     ));
   }
 
@@ -82,7 +93,7 @@ abstract class _$OrderItemCopyWith<$Res> implements $OrderItemCopyWith<$Res> {
           _OrderItem value, $Res Function(_OrderItem) then) =
       __$OrderItemCopyWithImpl<$Res>;
   @override
-  $Res call({Product product, List<StockUnit> linkedStockUnits});
+  $Res call({Product product, List<StockUnit> linkedStockUnits, int units});
 
   @override
   $ProductCopyWith<$Res> get product;
@@ -101,30 +112,44 @@ class __$OrderItemCopyWithImpl<$Res> extends _$OrderItemCopyWithImpl<$Res>
   $Res call({
     Object product = freezed,
     Object linkedStockUnits = freezed,
+    Object units = freezed,
   }) {
     return _then(_OrderItem(
       product: product == freezed ? _value.product : product as Product,
       linkedStockUnits: linkedStockUnits == freezed
           ? _value.linkedStockUnits
           : linkedStockUnits as List<StockUnit>,
+      units: units == freezed ? _value.units : units as int,
     ));
   }
 }
 
 /// @nodoc
 class _$_OrderItem implements _OrderItem {
-  const _$_OrderItem({@required this.product, @required this.linkedStockUnits})
+  const _$_OrderItem(
+      {@required this.product,
+      @required this.linkedStockUnits,
+      @required this.units})
       : assert(product != null),
-        assert(linkedStockUnits != null);
+        assert(linkedStockUnits != null),
+        assert(units != null);
 
   @override
+
+  /// The product that was added to the order
   final Product product;
   @override
+
+  /// The stock units that were "linked" to the order
   final List<StockUnit> linkedStockUnits;
+  @override
+
+  /// The number of units of that product that were requested in the order
+  final int units;
 
   @override
   String toString() {
-    return 'OrderItem(product: $product, linkedStockUnits: $linkedStockUnits)';
+    return 'OrderItem(product: $product, linkedStockUnits: $linkedStockUnits, units: $units)';
   }
 
   @override
@@ -136,14 +161,17 @@ class _$_OrderItem implements _OrderItem {
                     .equals(other.product, product)) &&
             (identical(other.linkedStockUnits, linkedStockUnits) ||
                 const DeepCollectionEquality()
-                    .equals(other.linkedStockUnits, linkedStockUnits)));
+                    .equals(other.linkedStockUnits, linkedStockUnits)) &&
+            (identical(other.units, units) ||
+                const DeepCollectionEquality().equals(other.units, units)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(product) ^
-      const DeepCollectionEquality().hash(linkedStockUnits);
+      const DeepCollectionEquality().hash(linkedStockUnits) ^
+      const DeepCollectionEquality().hash(units);
 
   @override
   _$OrderItemCopyWith<_OrderItem> get copyWith =>
@@ -153,12 +181,21 @@ class _$_OrderItem implements _OrderItem {
 abstract class _OrderItem implements OrderItem {
   const factory _OrderItem(
       {@required Product product,
-      @required List<StockUnit> linkedStockUnits}) = _$_OrderItem;
+      @required List<StockUnit> linkedStockUnits,
+      @required int units}) = _$_OrderItem;
 
   @override
+
+  /// The product that was added to the order
   Product get product;
   @override
+
+  /// The stock units that were "linked" to the order
   List<StockUnit> get linkedStockUnits;
+  @override
+
+  /// The number of units of that product that were requested in the order
+  int get units;
   @override
   _$OrderItemCopyWith<_OrderItem> get copyWith;
 }

@@ -39,10 +39,20 @@ const $Order = _$OrderTearOff();
 /// @nodoc
 mixin _$Order {
   UniqueId get uid;
+
+  /// The customer that has made the order
   Customer get customer;
+
+  /// The payment method used for the order
   PaymentMethod get paymentMethod;
+
+  /// The attachments related to the order (Contract, Loan application, etc.)
   List<Attachment> get attachments;
+
+  /// The current status of the order (WAITING, DELIVERING, DELIVERED, CANCELED)
   OrderStatus get status;
+
+  /// The list of items (products) the customer has requested for the order
   List<OrderItem> get orderItems;
 
   $OrderCopyWith<Order> get copyWith;
@@ -61,6 +71,7 @@ abstract class $OrderCopyWith<$Res> {
       List<OrderItem> orderItems});
 
   $CustomerCopyWith<$Res> get customer;
+  $PaymentMethodCopyWith<$Res> get paymentMethod;
 }
 
 /// @nodoc
@@ -105,6 +116,16 @@ class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
       return _then(_value.copyWith(customer: value));
     });
   }
+
+  @override
+  $PaymentMethodCopyWith<$Res> get paymentMethod {
+    if (_value.paymentMethod == null) {
+      return null;
+    }
+    return $PaymentMethodCopyWith<$Res>(_value.paymentMethod, (value) {
+      return _then(_value.copyWith(paymentMethod: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -122,6 +143,8 @@ abstract class _$OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
 
   @override
   $CustomerCopyWith<$Res> get customer;
+  @override
+  $PaymentMethodCopyWith<$Res> get paymentMethod;
 }
 
 /// @nodoc
@@ -178,14 +201,24 @@ class _$_Order implements _Order {
   @override
   final UniqueId uid;
   @override
+
+  /// The customer that has made the order
   final Customer customer;
   @override
+
+  /// The payment method used for the order
   final PaymentMethod paymentMethod;
   @override
+
+  /// The attachments related to the order (Contract, Loan application, etc.)
   final List<Attachment> attachments;
   @override
+
+  /// The current status of the order (WAITING, DELIVERING, DELIVERED, CANCELED)
   final OrderStatus status;
   @override
+
+  /// The list of items (products) the customer has requested for the order
   final List<OrderItem> orderItems;
 
   @override
@@ -242,14 +275,24 @@ abstract class _Order implements Order {
   @override
   UniqueId get uid;
   @override
+
+  /// The customer that has made the order
   Customer get customer;
   @override
+
+  /// The payment method used for the order
   PaymentMethod get paymentMethod;
   @override
+
+  /// The attachments related to the order (Contract, Loan application, etc.)
   List<Attachment> get attachments;
   @override
+
+  /// The current status of the order (WAITING, DELIVERING, DELIVERED, CANCELED)
   OrderStatus get status;
   @override
+
+  /// The list of items (products) the customer has requested for the order
   List<OrderItem> get orderItems;
   @override
   _$OrderCopyWith<_Order> get copyWith;

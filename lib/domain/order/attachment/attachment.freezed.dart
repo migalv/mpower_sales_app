@@ -30,8 +30,13 @@ const $Attachment = _$AttachmentTearOff();
 
 /// @nodoc
 mixin _$Attachment {
+  /// The label that represents the attachment
   String get label;
+
+  /// The key/name of the attachment (for database purposes)
   String get name;
+
+  /// The url of the file were the attachment has been saved
   String get url;
 
   $AttachmentCopyWith<Attachment> get copyWith;
@@ -109,10 +114,16 @@ class _$_Attachment implements _Attachment {
         assert(url != null);
 
   @override
+
+  /// The label that represents the attachment
   final String label;
   @override
+
+  /// The key/name of the attachment (for database purposes)
   final String name;
   @override
+
+  /// The url of the file were the attachment has been saved
   final String url;
 
   @override
@@ -151,10 +162,16 @@ abstract class _Attachment implements Attachment {
       @required String url}) = _$_Attachment;
 
   @override
+
+  /// The label that represents the attachment
   String get label;
   @override
+
+  /// The key/name of the attachment (for database purposes)
   String get name;
   @override
+
+  /// The url of the file were the attachment has been saved
   String get url;
   @override
   _$AttachmentCopyWith<_Attachment> get copyWith;

@@ -5,7 +5,7 @@ class UniqueId {
   const UniqueId._(this.uid);
 
   /// Used with strings we trust are unique, such as database IDs.
-  factory UniqueId.fromUniqueString(String uniqueIdStr) {
+  factory UniqueId.fromString(String uniqueIdStr) {
     assert(uniqueIdStr != null);
     return UniqueId._(uniqueIdStr);
   }

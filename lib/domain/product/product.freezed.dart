@@ -77,8 +77,14 @@ const $Product = _$ProductTearOff();
 /// @nodoc
 mixin _$Product {
   UniqueId get uid;
+
+  /// The name of the product
   String get name;
+
+  /// A 3 digit & 3 letters unique identifier of the product. ex: ABC-123
   String get sku;
+
+  /// The description of the product
   String get description;
 
   @optionalTypeArgs
@@ -203,10 +209,16 @@ class _$Battery implements Battery {
   @override
   final UniqueId uid;
   @override
+
+  /// The name of the product
   final String name;
   @override
+
+  /// A 3 digit & 3 letters unique identifier of the product. ex: ABC-123
   final String sku;
   @override
+
+  /// The description of the product
   final String description;
 
   @override
@@ -321,10 +333,16 @@ abstract class Battery implements Product {
   @override
   UniqueId get uid;
   @override
+
+  /// The name of the product
   String get name;
   @override
+
+  /// A 3 digit & 3 letters unique identifier of the product. ex: ABC-123
   String get sku;
   @override
+
+  /// The description of the product
   String get description;
   @override
   $BatteryCopyWith<Battery> get copyWith;
