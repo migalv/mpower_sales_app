@@ -4,10 +4,20 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:sales_app/domain/auth/app_user.dart';
 import 'package:sales_app/domain/auth/auth_failure.dart';
 import 'package:sales_app/infrastructure/auth/firebase_auth_repository.dart';
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
+
+class MockUser extends Mock implements User {
+  @override
+  final String uid;
+  @override
+  final String displayName;
+
+  MockUser({this.uid, this.displayName});
+}
 
 void main() {
   FirebaseAuthRepository authRepository;
@@ -272,6 +282,103 @@ void main() {
         ).called(1);
 
         expect(result, left(const AuthFailure.noServerResponse()));
+      },
+    );
+  });
+
+  group('getSignedInUser', () {
+    const tUid = "abc";
+    const tDisplayName = "Name";
+    test(
+      'should return the current signed in user',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.currentUser).thenReturn(MockUser(
+          uid: tUid,
+          displayName: tDisplayName,
+        ));
+
+        // act
+        final result = authRepository.getSignedInUser();
+
+        // assert
+        verify(mockFirebaseAuth.currentUser).called(1);
+        expect(
+          result,
+          right(some(const AppUser(
+            id: tUid,
+            name: tDisplayName,
+          ))),
+        );
+      },
+    );
+
+    test(
+      'should return none when no user is signed in',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.currentUser).thenReturn(null);
+
+        // act
+        final result = authRepository.getSignedInUser();
+
+        // assert
+        verify(mockFirebaseAuth.currentUser).called(1);
+        expect(result, right(none()));
+      },
+    );
+
+    test(
+      'should return Unknown Error Failure when an exception is thrown',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.currentUser).thenThrow(Exception());
+
+        // act
+        final result = authRepository.getSignedInUser();
+
+        // assert
+        verify(mockFirebaseAuth.currentUser).called(1);
+        expect(
+          result.fold(id, id),
+          isA<UnknownError>(),
+        );
+      },
+    );
+  });
+
+  group('signOut', () {
+    test(
+      'should sign out the current signed in user',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.signOut())
+            .thenAnswer((_) => Future<void>.value());
+
+        // act
+        final result = await authRepository.signOut();
+
+        // assert
+        verify(mockFirebaseAuth.signOut()).called(1);
+        expect(result, right(unit));
+      },
+    );
+
+    test(
+      'should return Unknown Error Failure when an exception is thrown',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.signOut()).thenThrow(Exception());
+
+        // act
+        final result = await authRepository.signOut();
+
+        // assert
+        verify(mockFirebaseAuth.signOut()).called(1);
+        expect(
+          result.fold(id, id),
+          isA<UnknownError>(),
+        );
       },
     );
   });

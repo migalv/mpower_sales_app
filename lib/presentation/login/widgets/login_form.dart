@@ -86,7 +86,10 @@ class LoginForm extends StatelessWidget {
                 obscureText: true,
               ),
               if (signInInProgress)
-                const LinearProgressIndicator()
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: LinearProgressIndicator(),
+                )
               else
                 Container(),
               Center(

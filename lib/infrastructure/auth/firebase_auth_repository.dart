@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sales_app/core/errors/error_codes.dart';
+import 'package:sales_app/domain/auth/app_user.dart';
 import 'package:sales_app/domain/auth/auth_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:sales_app/domain/auth/i_auth_repository.dart';
@@ -88,6 +89,50 @@ class FirebaseAuthRepository implements IAuthRepository {
     }
 
     // No errors ocurred
+    return right(unit);
+  }
+
+  @override
+  Either<AuthFailure, Option<AppUser>> getSignedInUser() {
+    User firebaseUser;
+    try {
+      firebaseUser = firebaseAuth.currentUser;
+    } on Exception catch (e, s) {
+      return left(AuthFailure.unknownError(
+        exception: e,
+        stackTrace: s,
+        message: "An unknown error ocurred when trying to get the signed in "
+            "Firebase user.",
+        errorCode: ErrorCodes.unexpectedException,
+      ));
+    }
+
+    AppUser appUser;
+
+    if (firebaseUser != null) {
+      appUser = AppUser(
+        id: firebaseUser.uid,
+        name: firebaseUser.displayName,
+      );
+    }
+
+    return right(optionOf(appUser));
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> signOut() async {
+    try {
+      await firebaseAuth.signOut();
+    } on Exception catch (e, s) {
+      return left(AuthFailure.unknownError(
+        exception: e,
+        stackTrace: s,
+        message: "An unknown error ocurred when trying to sign out the current "
+            "Firebase user.",
+        errorCode: ErrorCodes.unexpectedException,
+      ));
+    }
+
     return right(unit);
   }
 }
