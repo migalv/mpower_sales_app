@@ -15,14 +15,16 @@ class _$CustomerTearOff {
 
 // ignore: unused_element
   Particular particular(
-      {@required UniqueId uid,
-      String name,
-      String lastName,
-      PhoneNumber phoneNumber,
+      {@required String id,
+      @required Team team,
+      @required String name,
+      @required String lastName,
+      @required PhoneNumber phoneNumber,
       DateTime birthDate,
-      String particularId}) {
+      ParticularId particularId}) {
     return Particular(
-      uid: uid,
+      id: id,
+      team: team,
       name: name,
       lastName: lastName,
       phoneNumber: phoneNumber,
@@ -33,15 +35,15 @@ class _$CustomerTearOff {
 
 // ignore: unused_element
   Company company(
-      {@required UniqueId uid,
+      {@required String id,
       @required String name,
       @required PhoneNumber phoneNumber,
-      @required String companyUid}) {
+      @required Team team}) {
     return Company(
-      uid: uid,
+      id: id,
       name: name,
       phoneNumber: phoneNumber,
-      companyUid: companyUid,
+      team: team,
     );
   }
 }
@@ -52,7 +54,10 @@ const $Customer = _$CustomerTearOff();
 
 /// @nodoc
 mixin _$Customer {
-  UniqueId get uid;
+  String get id;
+
+  /// The team this customer belongs to
+  Team get team;
 
   /// The name of the customer
   String get name;
@@ -63,18 +68,23 @@ mixin _$Customer {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result particular(UniqueId uid, String name, String lastName,
-            PhoneNumber phoneNumber, DateTime birthDate, String particularId),
+        Result particular(
+            String id,
+            Team team,
+            String name,
+            String lastName,
+            PhoneNumber phoneNumber,
+            DateTime birthDate,
+            ParticularId particularId),
     @required
-        Result company(UniqueId uid, String name, PhoneNumber phoneNumber,
-            String companyUid),
+        Result company(
+            String id, String name, PhoneNumber phoneNumber, Team team),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result particular(UniqueId uid, String name, String lastName,
-        PhoneNumber phoneNumber, DateTime birthDate, String particularId),
-    Result company(
-        UniqueId uid, String name, PhoneNumber phoneNumber, String companyUid),
+    Result particular(String id, Team team, String name, String lastName,
+        PhoneNumber phoneNumber, DateTime birthDate, ParticularId particularId),
+    Result company(String id, String name, PhoneNumber phoneNumber, Team team),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -96,8 +106,9 @@ mixin _$Customer {
 abstract class $CustomerCopyWith<$Res> {
   factory $CustomerCopyWith(Customer value, $Res Function(Customer) then) =
       _$CustomerCopyWithImpl<$Res>;
-  $Res call({UniqueId uid, String name, PhoneNumber phoneNumber});
+  $Res call({String id, Team team, String name, PhoneNumber phoneNumber});
 
+  $TeamCopyWith<$Res> get team;
   $PhoneNumberCopyWith<$Res> get phoneNumber;
 }
 
@@ -111,17 +122,29 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
 
   @override
   $Res call({
-    Object uid = freezed,
+    Object id = freezed,
+    Object team = freezed,
     Object name = freezed,
     Object phoneNumber = freezed,
   }) {
     return _then(_value.copyWith(
-      uid: uid == freezed ? _value.uid : uid as UniqueId,
+      id: id == freezed ? _value.id : id as String,
+      team: team == freezed ? _value.team : team as Team,
       name: name == freezed ? _value.name : name as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber as PhoneNumber,
     ));
+  }
+
+  @override
+  $TeamCopyWith<$Res> get team {
+    if (_value.team == null) {
+      return null;
+    }
+    return $TeamCopyWith<$Res>(_value.team, (value) {
+      return _then(_value.copyWith(team: value));
+    });
   }
 
   @override
@@ -142,15 +165,19 @@ abstract class $ParticularCopyWith<$Res> implements $CustomerCopyWith<$Res> {
       _$ParticularCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId uid,
+      {String id,
+      Team team,
       String name,
       String lastName,
       PhoneNumber phoneNumber,
       DateTime birthDate,
-      String particularId});
+      ParticularId particularId});
 
   @override
+  $TeamCopyWith<$Res> get team;
+  @override
   $PhoneNumberCopyWith<$Res> get phoneNumber;
+  $ParticularIdCopyWith<$Res> get particularId;
 }
 
 /// @nodoc
@@ -164,7 +191,8 @@ class _$ParticularCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object uid = freezed,
+    Object id = freezed,
+    Object team = freezed,
     Object name = freezed,
     Object lastName = freezed,
     Object phoneNumber = freezed,
@@ -172,7 +200,8 @@ class _$ParticularCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
     Object particularId = freezed,
   }) {
     return _then(Particular(
-      uid: uid == freezed ? _value.uid : uid as UniqueId,
+      id: id == freezed ? _value.id : id as String,
+      team: team == freezed ? _value.team : team as Team,
       name: name == freezed ? _value.name : name as String,
       lastName: lastName == freezed ? _value.lastName : lastName as String,
       phoneNumber: phoneNumber == freezed
@@ -182,24 +211,44 @@ class _$ParticularCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
           birthDate == freezed ? _value.birthDate : birthDate as DateTime,
       particularId: particularId == freezed
           ? _value.particularId
-          : particularId as String,
+          : particularId as ParticularId,
     ));
+  }
+
+  @override
+  $ParticularIdCopyWith<$Res> get particularId {
+    if (_value.particularId == null) {
+      return null;
+    }
+    return $ParticularIdCopyWith<$Res>(_value.particularId, (value) {
+      return _then(_value.copyWith(particularId: value));
+    });
   }
 }
 
 /// @nodoc
-class _$Particular implements Particular {
+class _$Particular extends Particular {
   _$Particular(
-      {@required this.uid,
-      this.name,
-      this.lastName,
-      this.phoneNumber,
+      {@required this.id,
+      @required this.team,
+      @required this.name,
+      @required this.lastName,
+      @required this.phoneNumber,
       this.birthDate,
       this.particularId})
-      : assert(uid != null);
+      : assert(id != null),
+        assert(team != null),
+        assert(name != null),
+        assert(lastName != null),
+        assert(phoneNumber != null),
+        super._();
 
   @override
-  final UniqueId uid;
+  final String id;
+  @override
+
+  /// The team this customer belongs to
+  final Team team;
   @override
 
   /// The name of the customer
@@ -219,19 +268,21 @@ class _$Particular implements Particular {
   @override
 
   /// An unique identifier of the persona. Commonly: DNI, NRC, NIF, etc.
-  final String particularId;
+  final ParticularId particularId;
 
   @override
   String toString() {
-    return 'Customer.particular(uid: $uid, name: $name, lastName: $lastName, phoneNumber: $phoneNumber, birthDate: $birthDate, particularId: $particularId)';
+    return 'Customer.particular(id: $id, team: $team, name: $name, lastName: $lastName, phoneNumber: $phoneNumber, birthDate: $birthDate, particularId: $particularId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Particular &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.team, team) ||
+                const DeepCollectionEquality().equals(other.team, team)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.lastName, lastName) ||
@@ -251,7 +302,8 @@ class _$Particular implements Particular {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(uid) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(team) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(lastName) ^
       const DeepCollectionEquality().hash(phoneNumber) ^
@@ -266,31 +318,36 @@ class _$Particular implements Particular {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result particular(UniqueId uid, String name, String lastName,
-            PhoneNumber phoneNumber, DateTime birthDate, String particularId),
+        Result particular(
+            String id,
+            Team team,
+            String name,
+            String lastName,
+            PhoneNumber phoneNumber,
+            DateTime birthDate,
+            ParticularId particularId),
     @required
-        Result company(UniqueId uid, String name, PhoneNumber phoneNumber,
-            String companyUid),
+        Result company(
+            String id, String name, PhoneNumber phoneNumber, Team team),
   }) {
     assert(particular != null);
     assert(company != null);
     return particular(
-        uid, name, lastName, phoneNumber, birthDate, particularId);
+        id, team, name, lastName, phoneNumber, birthDate, particularId);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result particular(UniqueId uid, String name, String lastName,
-        PhoneNumber phoneNumber, DateTime birthDate, String particularId),
-    Result company(
-        UniqueId uid, String name, PhoneNumber phoneNumber, String companyUid),
+    Result particular(String id, Team team, String name, String lastName,
+        PhoneNumber phoneNumber, DateTime birthDate, ParticularId particularId),
+    Result company(String id, String name, PhoneNumber phoneNumber, Team team),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (particular != null) {
       return particular(
-          uid, name, lastName, phoneNumber, birthDate, particularId);
+          id, team, name, lastName, phoneNumber, birthDate, particularId);
     }
     return orElse();
   }
@@ -321,17 +378,23 @@ class _$Particular implements Particular {
   }
 }
 
-abstract class Particular implements Customer {
+abstract class Particular extends Customer {
+  Particular._() : super._();
   factory Particular(
-      {@required UniqueId uid,
-      String name,
-      String lastName,
-      PhoneNumber phoneNumber,
+      {@required String id,
+      @required Team team,
+      @required String name,
+      @required String lastName,
+      @required PhoneNumber phoneNumber,
       DateTime birthDate,
-      String particularId}) = _$Particular;
+      ParticularId particularId}) = _$Particular;
 
   @override
-  UniqueId get uid;
+  String get id;
+  @override
+
+  /// The team this customer belongs to
+  Team get team;
   @override
 
   /// The name of the customer
@@ -348,7 +411,7 @@ abstract class Particular implements Customer {
   DateTime get birthDate;
 
   /// An unique identifier of the persona. Commonly: DNI, NRC, NIF, etc.
-  String get particularId;
+  ParticularId get particularId;
   @override
   $ParticularCopyWith<Particular> get copyWith;
 }
@@ -358,11 +421,12 @@ abstract class $CompanyCopyWith<$Res> implements $CustomerCopyWith<$Res> {
   factory $CompanyCopyWith(Company value, $Res Function(Company) then) =
       _$CompanyCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {UniqueId uid, String name, PhoneNumber phoneNumber, String companyUid});
+  $Res call({String id, String name, PhoneNumber phoneNumber, Team team});
 
   @override
   $PhoneNumberCopyWith<$Res> get phoneNumber;
+  @override
+  $TeamCopyWith<$Res> get team;
 }
 
 /// @nodoc
@@ -376,74 +440,71 @@ class _$CompanyCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object uid = freezed,
+    Object id = freezed,
     Object name = freezed,
     Object phoneNumber = freezed,
-    Object companyUid = freezed,
+    Object team = freezed,
   }) {
     return _then(Company(
-      uid: uid == freezed ? _value.uid : uid as UniqueId,
+      id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber as PhoneNumber,
-      companyUid:
-          companyUid == freezed ? _value.companyUid : companyUid as String,
+      team: team == freezed ? _value.team : team as Team,
     ));
   }
 }
 
 /// @nodoc
-class _$Company implements Company {
+class _$Company extends Company {
   _$Company(
-      {@required this.uid,
+      {@required this.id,
       @required this.name,
       @required this.phoneNumber,
-      @required this.companyUid})
-      : assert(uid != null),
+      @required this.team})
+      : assert(id != null),
         assert(name != null),
         assert(phoneNumber != null),
-        assert(companyUid != null);
+        assert(team != null),
+        super._();
 
   @override
-  final UniqueId uid;
+  final String id;
   @override
   final String name;
   @override
   final PhoneNumber phoneNumber;
   @override
-
-  /// An unique identifier for the company.
-  final String companyUid;
+  final Team team;
 
   @override
   String toString() {
-    return 'Customer.company(uid: $uid, name: $name, phoneNumber: $phoneNumber, companyUid: $companyUid)';
+    return 'Customer.company(id: $id, name: $name, phoneNumber: $phoneNumber, team: $team)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Company &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 const DeepCollectionEquality()
                     .equals(other.phoneNumber, phoneNumber)) &&
-            (identical(other.companyUid, companyUid) ||
-                const DeepCollectionEquality()
-                    .equals(other.companyUid, companyUid)));
+            (identical(other.team, team) ||
+                const DeepCollectionEquality().equals(other.team, team)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(uid) ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(phoneNumber) ^
-      const DeepCollectionEquality().hash(companyUid);
+      const DeepCollectionEquality().hash(team);
 
   @override
   $CompanyCopyWith<Company> get copyWith =>
@@ -453,29 +514,34 @@ class _$Company implements Company {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result particular(UniqueId uid, String name, String lastName,
-            PhoneNumber phoneNumber, DateTime birthDate, String particularId),
+        Result particular(
+            String id,
+            Team team,
+            String name,
+            String lastName,
+            PhoneNumber phoneNumber,
+            DateTime birthDate,
+            ParticularId particularId),
     @required
-        Result company(UniqueId uid, String name, PhoneNumber phoneNumber,
-            String companyUid),
+        Result company(
+            String id, String name, PhoneNumber phoneNumber, Team team),
   }) {
     assert(particular != null);
     assert(company != null);
-    return company(uid, name, phoneNumber, companyUid);
+    return company(id, name, phoneNumber, team);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result particular(UniqueId uid, String name, String lastName,
-        PhoneNumber phoneNumber, DateTime birthDate, String particularId),
-    Result company(
-        UniqueId uid, String name, PhoneNumber phoneNumber, String companyUid),
+    Result particular(String id, Team team, String name, String lastName,
+        PhoneNumber phoneNumber, DateTime birthDate, ParticularId particularId),
+    Result company(String id, String name, PhoneNumber phoneNumber, Team team),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (company != null) {
-      return company(uid, name, phoneNumber, companyUid);
+      return company(id, name, phoneNumber, team);
     }
     return orElse();
   }
@@ -506,22 +572,22 @@ class _$Company implements Company {
   }
 }
 
-abstract class Company implements Customer {
+abstract class Company extends Customer {
+  Company._() : super._();
   factory Company(
-      {@required UniqueId uid,
+      {@required String id,
       @required String name,
       @required PhoneNumber phoneNumber,
-      @required String companyUid}) = _$Company;
+      @required Team team}) = _$Company;
 
   @override
-  UniqueId get uid;
+  String get id;
   @override
   String get name;
   @override
   PhoneNumber get phoneNumber;
-
-  /// An unique identifier for the company.
-  String get companyUid;
+  @override
+  Team get team;
   @override
   $CompanyCopyWith<Company> get copyWith;
 }

@@ -5,9 +5,9 @@ part 'auth_failure.freezed.dart';
 @freezed
 abstract class AuthFailure with _$AuthFailure {
   const factory AuthFailure.unknownError({
-    exception,
-    stackTrace,
-    String message,
+    @required exception,
+    @required stackTrace,
+    @required String message,
     int errorCode,
   }) = UnknownError;
   const factory AuthFailure.emailNotExists() = EmailNotExists;

@@ -15,11 +15,9 @@ class _$StockUnitTearOff {
 
 // ignore: unused_element
   _StockUnit call(
-      {@required UniqueId uid,
-      @required String upc,
-      @required Product product}) {
+      {@required String id, @required String upc, @required Product product}) {
     return _StockUnit(
-      uid: uid,
+      id: id,
       upc: upc,
       product: product,
     );
@@ -32,7 +30,7 @@ const $StockUnit = _$StockUnitTearOff();
 
 /// @nodoc
 mixin _$StockUnit {
-  UniqueId get uid;
+  String get id;
 
   /// A unique 9 digit number to represent each stock unit
   String get upc;
@@ -47,7 +45,7 @@ mixin _$StockUnit {
 abstract class $StockUnitCopyWith<$Res> {
   factory $StockUnitCopyWith(StockUnit value, $Res Function(StockUnit) then) =
       _$StockUnitCopyWithImpl<$Res>;
-  $Res call({UniqueId uid, String upc, Product product});
+  $Res call({String id, String upc, Product product});
 
   $ProductCopyWith<$Res> get product;
 }
@@ -62,12 +60,12 @@ class _$StockUnitCopyWithImpl<$Res> implements $StockUnitCopyWith<$Res> {
 
   @override
   $Res call({
-    Object uid = freezed,
+    Object id = freezed,
     Object upc = freezed,
     Object product = freezed,
   }) {
     return _then(_value.copyWith(
-      uid: uid == freezed ? _value.uid : uid as UniqueId,
+      id: id == freezed ? _value.id : id as String,
       upc: upc == freezed ? _value.upc : upc as String,
       product: product == freezed ? _value.product : product as Product,
     ));
@@ -90,7 +88,7 @@ abstract class _$StockUnitCopyWith<$Res> implements $StockUnitCopyWith<$Res> {
           _StockUnit value, $Res Function(_StockUnit) then) =
       __$StockUnitCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId uid, String upc, Product product});
+  $Res call({String id, String upc, Product product});
 
   @override
   $ProductCopyWith<$Res> get product;
@@ -107,12 +105,12 @@ class __$StockUnitCopyWithImpl<$Res> extends _$StockUnitCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object uid = freezed,
+    Object id = freezed,
     Object upc = freezed,
     Object product = freezed,
   }) {
     return _then(_StockUnit(
-      uid: uid == freezed ? _value.uid : uid as UniqueId,
+      id: id == freezed ? _value.id : id as String,
       upc: upc == freezed ? _value.upc : upc as String,
       product: product == freezed ? _value.product : product as Product,
     ));
@@ -122,13 +120,13 @@ class __$StockUnitCopyWithImpl<$Res> extends _$StockUnitCopyWithImpl<$Res>
 /// @nodoc
 class _$_StockUnit implements _StockUnit {
   const _$_StockUnit(
-      {@required this.uid, @required this.upc, @required this.product})
-      : assert(uid != null),
+      {@required this.id, @required this.upc, @required this.product})
+      : assert(id != null),
         assert(upc != null),
         assert(product != null);
 
   @override
-  final UniqueId uid;
+  final String id;
   @override
 
   /// A unique 9 digit number to represent each stock unit
@@ -140,15 +138,15 @@ class _$_StockUnit implements _StockUnit {
 
   @override
   String toString() {
-    return 'StockUnit(uid: $uid, upc: $upc, product: $product)';
+    return 'StockUnit(id: $id, upc: $upc, product: $product)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _StockUnit &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.upc, upc) ||
                 const DeepCollectionEquality().equals(other.upc, upc)) &&
             (identical(other.product, product) ||
@@ -158,7 +156,7 @@ class _$_StockUnit implements _StockUnit {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(uid) ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(upc) ^
       const DeepCollectionEquality().hash(product);
 
@@ -169,12 +167,12 @@ class _$_StockUnit implements _StockUnit {
 
 abstract class _StockUnit implements StockUnit {
   const factory _StockUnit(
-      {@required UniqueId uid,
+      {@required String id,
       @required String upc,
       @required Product product}) = _$_StockUnit;
 
   @override
-  UniqueId get uid;
+  String get id;
   @override
 
   /// A unique 9 digit number to represent each stock unit

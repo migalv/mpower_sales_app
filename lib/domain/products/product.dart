@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sales_app/domain/core/i_db_entity.dart';
-import 'package:sales_app/domain/core/unique_id.dart';
 
 part 'product.freezed.dart';
 
@@ -10,7 +9,7 @@ part 'product.freezed.dart';
 abstract class Product with _$Product implements IDBEntity {
   /// Represents a battery
   const factory Product.battery({
-    @required UniqueId uid,
+    @required String id,
 
     /// The name of the product
     @required String name,
@@ -24,7 +23,7 @@ abstract class Product with _$Product implements IDBEntity {
 
   /// Represents a panel
   const factory Product.panel({
-    @required UniqueId uid,
+    @required String id,
     @required String name,
     @required String sku,
     @required String description,
@@ -32,7 +31,7 @@ abstract class Product with _$Product implements IDBEntity {
 
   /// Represents a domestic appliance (TV, Fridge, Fan, Light bulb, etc...)
   const factory Product.load({
-    @required UniqueId uid,
+    @required String id,
     @required String name,
     @required String sku,
     @required String description,
@@ -40,7 +39,7 @@ abstract class Product with _$Product implements IDBEntity {
 
   /// MPower products for testing and other cases
   const factory Product.mPowerUnit({
-    @required UniqueId uid,
+    @required String id,
     @required String name,
     @required String sku,
     @required String description,

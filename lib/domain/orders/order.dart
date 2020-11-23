@@ -1,11 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sales_app/domain/core/i_db_entity.dart';
-import 'package:sales_app/domain/core/unique_id.dart';
-import 'package:sales_app/domain/customer/customer.dart';
-import 'package:sales_app/domain/order/attachment/attachment.dart';
-import 'package:sales_app/domain/order/order_item/order_item.dart';
-import 'package:sales_app/domain/order/order_status.dart';
-import 'package:sales_app/domain/order/payment_method.dart';
+import 'package:sales_app/domain/customers/customer.dart';
+import 'package:sales_app/domain/orders/attachment/attachment.dart';
+import 'package:sales_app/domain/orders/order_item/order_item.dart';
+import 'package:sales_app/domain/orders/order_status.dart';
+import 'package:sales_app/domain/orders/payment_method/payment_method.dart';
 
 part 'order.freezed.dart';
 
@@ -14,7 +13,7 @@ part 'order.freezed.dart';
 /// Represents an order accorded by a seller and a customer
 abstract class Order with _$Order implements IDBEntity {
   const factory Order({
-    @required UniqueId uid,
+    @required String id,
 
     /// The customer that has made the order
     @required Customer customer,
@@ -31,4 +30,9 @@ abstract class Order with _$Order implements IDBEntity {
     /// The list of items (products) the customer has requested for the order
     @required List<OrderItem> orderItems,
   }) = _Order;
+
+  /// Empty constructor for testing
+  ///
+  /// !Only use for testing purposes
+  const factory Order.empty() = _Order;
 }

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sales_app/domain/product/product.dart';
-import 'package:sales_app/domain/stock_unit/stock_unit.dart';
+import 'package:sales_app/domain/products/product.dart';
+import 'package:sales_app/domain/stock_units/stock_unit.dart';
 
 part 'order_item.freezed.dart';
 

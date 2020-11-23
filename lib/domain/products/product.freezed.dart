@@ -15,12 +15,12 @@ class _$ProductTearOff {
 
 // ignore: unused_element
   Battery battery(
-      {@required UniqueId uid,
+      {@required String id,
       @required String name,
       @required String sku,
       @required String description}) {
     return Battery(
-      uid: uid,
+      id: id,
       name: name,
       sku: sku,
       description: description,
@@ -29,12 +29,12 @@ class _$ProductTearOff {
 
 // ignore: unused_element
   Panel panel(
-      {@required UniqueId uid,
+      {@required String id,
       @required String name,
       @required String sku,
       @required String description}) {
     return Panel(
-      uid: uid,
+      id: id,
       name: name,
       sku: sku,
       description: description,
@@ -43,12 +43,12 @@ class _$ProductTearOff {
 
 // ignore: unused_element
   Load load(
-      {@required UniqueId uid,
+      {@required String id,
       @required String name,
       @required String sku,
       @required String description}) {
     return Load(
-      uid: uid,
+      id: id,
       name: name,
       sku: sku,
       description: description,
@@ -57,12 +57,12 @@ class _$ProductTearOff {
 
 // ignore: unused_element
   MPowerUnit mPowerUnit(
-      {@required UniqueId uid,
+      {@required String id,
       @required String name,
       @required String sku,
       @required String description}) {
     return MPowerUnit(
-      uid: uid,
+      id: id,
       name: name,
       sku: sku,
       description: description,
@@ -76,7 +76,7 @@ const $Product = _$ProductTearOff();
 
 /// @nodoc
 mixin _$Product {
-  UniqueId get uid;
+  String get id;
 
   /// The name of the product
   String get name;
@@ -90,23 +90,21 @@ mixin _$Product {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result battery(
-            UniqueId uid, String name, String sku, String description),
+        Result battery(String id, String name, String sku, String description),
     @required
-        Result panel(UniqueId uid, String name, String sku, String description),
+        Result panel(String id, String name, String sku, String description),
     @required
-        Result load(UniqueId uid, String name, String sku, String description),
+        Result load(String id, String name, String sku, String description),
     @required
         Result mPowerUnit(
-            UniqueId uid, String name, String sku, String description),
+            String id, String name, String sku, String description),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result battery(UniqueId uid, String name, String sku, String description),
-    Result panel(UniqueId uid, String name, String sku, String description),
-    Result load(UniqueId uid, String name, String sku, String description),
-    Result mPowerUnit(
-        UniqueId uid, String name, String sku, String description),
+    Result battery(String id, String name, String sku, String description),
+    Result panel(String id, String name, String sku, String description),
+    Result load(String id, String name, String sku, String description),
+    Result mPowerUnit(String id, String name, String sku, String description),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -132,7 +130,7 @@ mixin _$Product {
 abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
       _$ProductCopyWithImpl<$Res>;
-  $Res call({UniqueId uid, String name, String sku, String description});
+  $Res call({String id, String name, String sku, String description});
 }
 
 /// @nodoc
@@ -145,13 +143,13 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
 
   @override
   $Res call({
-    Object uid = freezed,
+    Object id = freezed,
     Object name = freezed,
     Object sku = freezed,
     Object description = freezed,
   }) {
     return _then(_value.copyWith(
-      uid: uid == freezed ? _value.uid : uid as UniqueId,
+      id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       sku: sku == freezed ? _value.sku : sku as String,
       description:
@@ -165,7 +163,7 @@ abstract class $BatteryCopyWith<$Res> implements $ProductCopyWith<$Res> {
   factory $BatteryCopyWith(Battery value, $Res Function(Battery) then) =
       _$BatteryCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId uid, String name, String sku, String description});
+  $Res call({String id, String name, String sku, String description});
 }
 
 /// @nodoc
@@ -179,13 +177,13 @@ class _$BatteryCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object uid = freezed,
+    Object id = freezed,
     Object name = freezed,
     Object sku = freezed,
     Object description = freezed,
   }) {
     return _then(Battery(
-      uid: uid == freezed ? _value.uid : uid as UniqueId,
+      id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       sku: sku == freezed ? _value.sku : sku as String,
       description:
@@ -197,17 +195,17 @@ class _$BatteryCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 /// @nodoc
 class _$Battery implements Battery {
   const _$Battery(
-      {@required this.uid,
+      {@required this.id,
       @required this.name,
       @required this.sku,
       @required this.description})
-      : assert(uid != null),
+      : assert(id != null),
         assert(name != null),
         assert(sku != null),
         assert(description != null);
 
   @override
-  final UniqueId uid;
+  final String id;
   @override
 
   /// The name of the product
@@ -223,15 +221,15 @@ class _$Battery implements Battery {
 
   @override
   String toString() {
-    return 'Product.battery(uid: $uid, name: $name, sku: $sku, description: $description)';
+    return 'Product.battery(id: $id, name: $name, sku: $sku, description: $description)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Battery &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.sku, sku) ||
@@ -244,7 +242,7 @@ class _$Battery implements Battery {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(uid) ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(sku) ^
       const DeepCollectionEquality().hash(description);
@@ -257,36 +255,34 @@ class _$Battery implements Battery {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result battery(
-            UniqueId uid, String name, String sku, String description),
+        Result battery(String id, String name, String sku, String description),
     @required
-        Result panel(UniqueId uid, String name, String sku, String description),
+        Result panel(String id, String name, String sku, String description),
     @required
-        Result load(UniqueId uid, String name, String sku, String description),
+        Result load(String id, String name, String sku, String description),
     @required
         Result mPowerUnit(
-            UniqueId uid, String name, String sku, String description),
+            String id, String name, String sku, String description),
   }) {
     assert(battery != null);
     assert(panel != null);
     assert(load != null);
     assert(mPowerUnit != null);
-    return battery(uid, name, sku, description);
+    return battery(id, name, sku, description);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result battery(UniqueId uid, String name, String sku, String description),
-    Result panel(UniqueId uid, String name, String sku, String description),
-    Result load(UniqueId uid, String name, String sku, String description),
-    Result mPowerUnit(
-        UniqueId uid, String name, String sku, String description),
+    Result battery(String id, String name, String sku, String description),
+    Result panel(String id, String name, String sku, String description),
+    Result load(String id, String name, String sku, String description),
+    Result mPowerUnit(String id, String name, String sku, String description),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (battery != null) {
-      return battery(uid, name, sku, description);
+      return battery(id, name, sku, description);
     }
     return orElse();
   }
@@ -325,13 +321,13 @@ class _$Battery implements Battery {
 
 abstract class Battery implements Product {
   const factory Battery(
-      {@required UniqueId uid,
+      {@required String id,
       @required String name,
       @required String sku,
       @required String description}) = _$Battery;
 
   @override
-  UniqueId get uid;
+  String get id;
   @override
 
   /// The name of the product
@@ -353,7 +349,7 @@ abstract class $PanelCopyWith<$Res> implements $ProductCopyWith<$Res> {
   factory $PanelCopyWith(Panel value, $Res Function(Panel) then) =
       _$PanelCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId uid, String name, String sku, String description});
+  $Res call({String id, String name, String sku, String description});
 }
 
 /// @nodoc
@@ -367,13 +363,13 @@ class _$PanelCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object uid = freezed,
+    Object id = freezed,
     Object name = freezed,
     Object sku = freezed,
     Object description = freezed,
   }) {
     return _then(Panel(
-      uid: uid == freezed ? _value.uid : uid as UniqueId,
+      id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       sku: sku == freezed ? _value.sku : sku as String,
       description:
@@ -385,17 +381,17 @@ class _$PanelCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 /// @nodoc
 class _$Panel implements Panel {
   const _$Panel(
-      {@required this.uid,
+      {@required this.id,
       @required this.name,
       @required this.sku,
       @required this.description})
-      : assert(uid != null),
+      : assert(id != null),
         assert(name != null),
         assert(sku != null),
         assert(description != null);
 
   @override
-  final UniqueId uid;
+  final String id;
   @override
   final String name;
   @override
@@ -405,15 +401,15 @@ class _$Panel implements Panel {
 
   @override
   String toString() {
-    return 'Product.panel(uid: $uid, name: $name, sku: $sku, description: $description)';
+    return 'Product.panel(id: $id, name: $name, sku: $sku, description: $description)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Panel &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.sku, sku) ||
@@ -426,7 +422,7 @@ class _$Panel implements Panel {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(uid) ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(sku) ^
       const DeepCollectionEquality().hash(description);
@@ -439,36 +435,34 @@ class _$Panel implements Panel {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result battery(
-            UniqueId uid, String name, String sku, String description),
+        Result battery(String id, String name, String sku, String description),
     @required
-        Result panel(UniqueId uid, String name, String sku, String description),
+        Result panel(String id, String name, String sku, String description),
     @required
-        Result load(UniqueId uid, String name, String sku, String description),
+        Result load(String id, String name, String sku, String description),
     @required
         Result mPowerUnit(
-            UniqueId uid, String name, String sku, String description),
+            String id, String name, String sku, String description),
   }) {
     assert(battery != null);
     assert(panel != null);
     assert(load != null);
     assert(mPowerUnit != null);
-    return panel(uid, name, sku, description);
+    return panel(id, name, sku, description);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result battery(UniqueId uid, String name, String sku, String description),
-    Result panel(UniqueId uid, String name, String sku, String description),
-    Result load(UniqueId uid, String name, String sku, String description),
-    Result mPowerUnit(
-        UniqueId uid, String name, String sku, String description),
+    Result battery(String id, String name, String sku, String description),
+    Result panel(String id, String name, String sku, String description),
+    Result load(String id, String name, String sku, String description),
+    Result mPowerUnit(String id, String name, String sku, String description),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (panel != null) {
-      return panel(uid, name, sku, description);
+      return panel(id, name, sku, description);
     }
     return orElse();
   }
@@ -507,13 +501,13 @@ class _$Panel implements Panel {
 
 abstract class Panel implements Product {
   const factory Panel(
-      {@required UniqueId uid,
+      {@required String id,
       @required String name,
       @required String sku,
       @required String description}) = _$Panel;
 
   @override
-  UniqueId get uid;
+  String get id;
   @override
   String get name;
   @override
@@ -529,7 +523,7 @@ abstract class $LoadCopyWith<$Res> implements $ProductCopyWith<$Res> {
   factory $LoadCopyWith(Load value, $Res Function(Load) then) =
       _$LoadCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId uid, String name, String sku, String description});
+  $Res call({String id, String name, String sku, String description});
 }
 
 /// @nodoc
@@ -543,13 +537,13 @@ class _$LoadCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object uid = freezed,
+    Object id = freezed,
     Object name = freezed,
     Object sku = freezed,
     Object description = freezed,
   }) {
     return _then(Load(
-      uid: uid == freezed ? _value.uid : uid as UniqueId,
+      id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       sku: sku == freezed ? _value.sku : sku as String,
       description:
@@ -561,17 +555,17 @@ class _$LoadCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 /// @nodoc
 class _$Load implements Load {
   const _$Load(
-      {@required this.uid,
+      {@required this.id,
       @required this.name,
       @required this.sku,
       @required this.description})
-      : assert(uid != null),
+      : assert(id != null),
         assert(name != null),
         assert(sku != null),
         assert(description != null);
 
   @override
-  final UniqueId uid;
+  final String id;
   @override
   final String name;
   @override
@@ -581,15 +575,15 @@ class _$Load implements Load {
 
   @override
   String toString() {
-    return 'Product.load(uid: $uid, name: $name, sku: $sku, description: $description)';
+    return 'Product.load(id: $id, name: $name, sku: $sku, description: $description)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Load &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.sku, sku) ||
@@ -602,7 +596,7 @@ class _$Load implements Load {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(uid) ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(sku) ^
       const DeepCollectionEquality().hash(description);
@@ -615,36 +609,34 @@ class _$Load implements Load {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result battery(
-            UniqueId uid, String name, String sku, String description),
+        Result battery(String id, String name, String sku, String description),
     @required
-        Result panel(UniqueId uid, String name, String sku, String description),
+        Result panel(String id, String name, String sku, String description),
     @required
-        Result load(UniqueId uid, String name, String sku, String description),
+        Result load(String id, String name, String sku, String description),
     @required
         Result mPowerUnit(
-            UniqueId uid, String name, String sku, String description),
+            String id, String name, String sku, String description),
   }) {
     assert(battery != null);
     assert(panel != null);
     assert(load != null);
     assert(mPowerUnit != null);
-    return load(uid, name, sku, description);
+    return load(id, name, sku, description);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result battery(UniqueId uid, String name, String sku, String description),
-    Result panel(UniqueId uid, String name, String sku, String description),
-    Result load(UniqueId uid, String name, String sku, String description),
-    Result mPowerUnit(
-        UniqueId uid, String name, String sku, String description),
+    Result battery(String id, String name, String sku, String description),
+    Result panel(String id, String name, String sku, String description),
+    Result load(String id, String name, String sku, String description),
+    Result mPowerUnit(String id, String name, String sku, String description),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (load != null) {
-      return load(uid, name, sku, description);
+      return load(id, name, sku, description);
     }
     return orElse();
   }
@@ -683,13 +675,13 @@ class _$Load implements Load {
 
 abstract class Load implements Product {
   const factory Load(
-      {@required UniqueId uid,
+      {@required String id,
       @required String name,
       @required String sku,
       @required String description}) = _$Load;
 
   @override
-  UniqueId get uid;
+  String get id;
   @override
   String get name;
   @override
@@ -706,7 +698,7 @@ abstract class $MPowerUnitCopyWith<$Res> implements $ProductCopyWith<$Res> {
           MPowerUnit value, $Res Function(MPowerUnit) then) =
       _$MPowerUnitCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId uid, String name, String sku, String description});
+  $Res call({String id, String name, String sku, String description});
 }
 
 /// @nodoc
@@ -720,13 +712,13 @@ class _$MPowerUnitCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object uid = freezed,
+    Object id = freezed,
     Object name = freezed,
     Object sku = freezed,
     Object description = freezed,
   }) {
     return _then(MPowerUnit(
-      uid: uid == freezed ? _value.uid : uid as UniqueId,
+      id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       sku: sku == freezed ? _value.sku : sku as String,
       description:
@@ -738,17 +730,17 @@ class _$MPowerUnitCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 /// @nodoc
 class _$MPowerUnit implements MPowerUnit {
   const _$MPowerUnit(
-      {@required this.uid,
+      {@required this.id,
       @required this.name,
       @required this.sku,
       @required this.description})
-      : assert(uid != null),
+      : assert(id != null),
         assert(name != null),
         assert(sku != null),
         assert(description != null);
 
   @override
-  final UniqueId uid;
+  final String id;
   @override
   final String name;
   @override
@@ -758,15 +750,15 @@ class _$MPowerUnit implements MPowerUnit {
 
   @override
   String toString() {
-    return 'Product.mPowerUnit(uid: $uid, name: $name, sku: $sku, description: $description)';
+    return 'Product.mPowerUnit(id: $id, name: $name, sku: $sku, description: $description)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is MPowerUnit &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.sku, sku) ||
@@ -779,7 +771,7 @@ class _$MPowerUnit implements MPowerUnit {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(uid) ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(sku) ^
       const DeepCollectionEquality().hash(description);
@@ -792,36 +784,34 @@ class _$MPowerUnit implements MPowerUnit {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result battery(
-            UniqueId uid, String name, String sku, String description),
+        Result battery(String id, String name, String sku, String description),
     @required
-        Result panel(UniqueId uid, String name, String sku, String description),
+        Result panel(String id, String name, String sku, String description),
     @required
-        Result load(UniqueId uid, String name, String sku, String description),
+        Result load(String id, String name, String sku, String description),
     @required
         Result mPowerUnit(
-            UniqueId uid, String name, String sku, String description),
+            String id, String name, String sku, String description),
   }) {
     assert(battery != null);
     assert(panel != null);
     assert(load != null);
     assert(mPowerUnit != null);
-    return mPowerUnit(uid, name, sku, description);
+    return mPowerUnit(id, name, sku, description);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result battery(UniqueId uid, String name, String sku, String description),
-    Result panel(UniqueId uid, String name, String sku, String description),
-    Result load(UniqueId uid, String name, String sku, String description),
-    Result mPowerUnit(
-        UniqueId uid, String name, String sku, String description),
+    Result battery(String id, String name, String sku, String description),
+    Result panel(String id, String name, String sku, String description),
+    Result load(String id, String name, String sku, String description),
+    Result mPowerUnit(String id, String name, String sku, String description),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (mPowerUnit != null) {
-      return mPowerUnit(uid, name, sku, description);
+      return mPowerUnit(id, name, sku, description);
     }
     return orElse();
   }
@@ -860,13 +850,13 @@ class _$MPowerUnit implements MPowerUnit {
 
 abstract class MPowerUnit implements Product {
   const factory MPowerUnit(
-      {@required UniqueId uid,
+      {@required String id,
       @required String name,
       @required String sku,
       @required String description}) = _$MPowerUnit;
 
   @override
-  UniqueId get uid;
+  String get id;
   @override
   String get name;
   @override
