@@ -30,9 +30,4 @@ abstract class Order with _$Order implements IDBEntity {
     /// The list of items (products) the customer has requested for the order
     @required List<OrderItem> orderItems,
   }) = _Order;
-
-  /// Empty constructor for testing
-  ///
-  /// !Only use for testing purposes
-  const factory Order.empty() = _Order;
 }

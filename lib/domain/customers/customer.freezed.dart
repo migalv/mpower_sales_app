@@ -56,7 +56,7 @@ const $Customer = _$CustomerTearOff();
 mixin _$Customer {
   String get id;
 
-  /// The team this customer belongs to
+  /// The team to which this customer belongs to
   Team get team;
 
   /// The name of the customer
@@ -247,7 +247,7 @@ class _$Particular extends Particular {
   final String id;
   @override
 
-  /// The team this customer belongs to
+  /// The team to which this customer belongs to
   final Team team;
   @override
 
@@ -267,7 +267,7 @@ class _$Particular extends Particular {
   final DateTime birthDate;
   @override
 
-  /// An unique identifier of the persona. Commonly: DNI, NRC, NIF, etc.
+  /// An unique identifier of the person. Commonly: DNI, NRC, NIF, etc.
   final ParticularId particularId;
 
   @override
@@ -393,7 +393,7 @@ abstract class Particular extends Customer {
   String get id;
   @override
 
-  /// The team this customer belongs to
+  /// The team to which this customer belongs to
   Team get team;
   @override
 
@@ -410,7 +410,7 @@ abstract class Particular extends Customer {
   /// The birth date of the persona
   DateTime get birthDate;
 
-  /// An unique identifier of the persona. Commonly: DNI, NRC, NIF, etc.
+  /// An unique identifier of the person. Commonly: DNI, NRC, NIF, etc.
   ParticularId get particularId;
   @override
   $ParticularCopyWith<Particular> get copyWith;

@@ -30,11 +30,6 @@ class _$OrderTearOff {
       orderItems: orderItems,
     );
   }
-
-// ignore: unused_element
-  _Order empty() {
-    return const _Order();
-  }
 }
 
 /// @nodoc
@@ -43,61 +38,30 @@ const $Order = _$OrderTearOff();
 
 /// @nodoc
 mixin _$Order {
-  @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(
-        String id,
-        Customer customer,
-        PaymentMethod paymentMethod,
-        List<Attachment> attachments,
-        OrderStatus status,
-        List<OrderItem> orderItems), {
-    @required Result empty(),
-  });
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(
-        String id,
-        Customer customer,
-        PaymentMethod paymentMethod,
-        List<Attachment> attachments,
-        OrderStatus status,
-        List<OrderItem> orderItems), {
-    Result empty(),
-    @required Result orElse(),
-  });
-  @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(_Order value), {
-    @required Result empty(_Order value),
-  });
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(_Order value), {
-    Result empty(_Order value),
-    @required Result orElse(),
-  });
+  String get id;
+
+  /// The customer that has made the order
+  Customer get customer;
+
+  /// The payment method used for the order
+  PaymentMethod get paymentMethod;
+
+  /// The attachments related to the order (Contract, Loan application, etc.)
+  List<Attachment> get attachments;
+
+  /// The current status of the order (WAITING, DELIVERING, DELIVERED, CANCELED)
+  OrderStatus get status;
+
+  /// The list of items (products) the customer has requested for the order
+  List<OrderItem> get orderItems;
+
+  $OrderCopyWith<Order> get copyWith;
 }
 
 /// @nodoc
 abstract class $OrderCopyWith<$Res> {
   factory $OrderCopyWith(Order value, $Res Function(Order) then) =
       _$OrderCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
-  _$OrderCopyWithImpl(this._value, this._then);
-
-  final Order _value;
-  // ignore: unused_field
-  final $Res Function(Order) _then;
-}
-
-/// @nodoc
-abstract class _$OrderCopyWith<$Res> {
-  factory _$OrderCopyWith(_Order value, $Res Function(_Order) then) =
-      __$OrderCopyWithImpl<$Res>;
   $Res call(
       {String id,
       Customer customer,
@@ -107,6 +71,79 @@ abstract class _$OrderCopyWith<$Res> {
       List<OrderItem> orderItems});
 
   $CustomerCopyWith<$Res> get customer;
+  $PaymentMethodCopyWith<$Res> get paymentMethod;
+}
+
+/// @nodoc
+class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
+  _$OrderCopyWithImpl(this._value, this._then);
+
+  final Order _value;
+  // ignore: unused_field
+  final $Res Function(Order) _then;
+
+  @override
+  $Res call({
+    Object id = freezed,
+    Object customer = freezed,
+    Object paymentMethod = freezed,
+    Object attachments = freezed,
+    Object status = freezed,
+    Object orderItems = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed ? _value.id : id as String,
+      customer: customer == freezed ? _value.customer : customer as Customer,
+      paymentMethod: paymentMethod == freezed
+          ? _value.paymentMethod
+          : paymentMethod as PaymentMethod,
+      attachments: attachments == freezed
+          ? _value.attachments
+          : attachments as List<Attachment>,
+      status: status == freezed ? _value.status : status as OrderStatus,
+      orderItems: orderItems == freezed
+          ? _value.orderItems
+          : orderItems as List<OrderItem>,
+    ));
+  }
+
+  @override
+  $CustomerCopyWith<$Res> get customer {
+    if (_value.customer == null) {
+      return null;
+    }
+    return $CustomerCopyWith<$Res>(_value.customer, (value) {
+      return _then(_value.copyWith(customer: value));
+    });
+  }
+
+  @override
+  $PaymentMethodCopyWith<$Res> get paymentMethod {
+    if (_value.paymentMethod == null) {
+      return null;
+    }
+    return $PaymentMethodCopyWith<$Res>(_value.paymentMethod, (value) {
+      return _then(_value.copyWith(paymentMethod: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
+  factory _$OrderCopyWith(_Order value, $Res Function(_Order) then) =
+      __$OrderCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String id,
+      Customer customer,
+      PaymentMethod paymentMethod,
+      List<Attachment> attachments,
+      OrderStatus status,
+      List<OrderItem> orderItems});
+
+  @override
+  $CustomerCopyWith<$Res> get customer;
+  @override
   $PaymentMethodCopyWith<$Res> get paymentMethod;
 }
 
@@ -142,26 +179,6 @@ class __$OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res>
           ? _value.orderItems
           : orderItems as List<OrderItem>,
     ));
-  }
-
-  @override
-  $CustomerCopyWith<$Res> get customer {
-    if (_value.customer == null) {
-      return null;
-    }
-    return $CustomerCopyWith<$Res>(_value.customer, (value) {
-      return _then(_value.copyWith(customer: value));
-    });
-  }
-
-  @override
-  $PaymentMethodCopyWith<$Res> get paymentMethod {
-    if (_value.paymentMethod == null) {
-      return null;
-    }
-    return $PaymentMethodCopyWith<$Res>(_value.paymentMethod, (value) {
-      return _then(_value.copyWith(paymentMethod: value));
-    });
   }
 }
 
@@ -244,70 +261,6 @@ class _$_Order implements _Order {
   @override
   _$OrderCopyWith<_Order> get copyWith =>
       __$OrderCopyWithImpl<_Order>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(
-        String id,
-        Customer customer,
-        PaymentMethod paymentMethod,
-        List<Attachment> attachments,
-        OrderStatus status,
-        List<OrderItem> orderItems), {
-    @required Result empty(),
-  }) {
-    assert($default != null);
-    assert(empty != null);
-    return $default(
-        id, customer, paymentMethod, attachments, status, orderItems);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(
-        String id,
-        Customer customer,
-        PaymentMethod paymentMethod,
-        List<Attachment> attachments,
-        OrderStatus status,
-        List<OrderItem> orderItems), {
-    Result empty(),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if ($default != null) {
-      return $default(
-          id, customer, paymentMethod, attachments, status, orderItems);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(_Order value), {
-    @required Result empty(_Order value),
-  }) {
-    assert($default != null);
-    assert(empty != null);
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(_Order value), {
-    Result empty(_Order value),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
 }
 
 abstract class _Order implements Order {
@@ -319,121 +272,28 @@ abstract class _Order implements Order {
       @required OrderStatus status,
       @required List<OrderItem> orderItems}) = _$_Order;
 
+  @override
   String get id;
+  @override
 
   /// The customer that has made the order
   Customer get customer;
+  @override
 
   /// The payment method used for the order
   PaymentMethod get paymentMethod;
+  @override
 
   /// The attachments related to the order (Contract, Loan application, etc.)
   List<Attachment> get attachments;
+  @override
 
   /// The current status of the order (WAITING, DELIVERING, DELIVERED, CANCELED)
   OrderStatus get status;
+  @override
 
   /// The list of items (products) the customer has requested for the order
   List<OrderItem> get orderItems;
+  @override
   _$OrderCopyWith<_Order> get copyWith;
-}
-
-/// @nodoc
-abstract class _$OrderCopyWith<$Res> {
-  factory _$OrderCopyWith(_Order value, $Res Function(_Order) then) =
-      __$OrderCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res>
-    implements _$OrderCopyWith<$Res> {
-  __$OrderCopyWithImpl(_Order _value, $Res Function(_Order) _then)
-      : super(_value, (v) => _then(v as _Order));
-
-  @override
-  _Order get _value => super._value as _Order;
-}
-
-/// @nodoc
-class _$_Order implements _Order {
-  const _$_Order();
-
-  @override
-  String toString() {
-    return 'Order.empty()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Order);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(
-        String id,
-        Customer customer,
-        PaymentMethod paymentMethod,
-        List<Attachment> attachments,
-        OrderStatus status,
-        List<OrderItem> orderItems), {
-    @required Result empty(),
-  }) {
-    assert($default != null);
-    assert(empty != null);
-    return empty();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(
-        String id,
-        Customer customer,
-        PaymentMethod paymentMethod,
-        List<Attachment> attachments,
-        OrderStatus status,
-        List<OrderItem> orderItems), {
-    Result empty(),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (empty != null) {
-      return empty();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(_Order value), {
-    @required Result empty(_Order value),
-  }) {
-    assert($default != null);
-    assert(empty != null);
-    return empty(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(_Order value), {
-    Result empty(_Order value),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (empty != null) {
-      return empty(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Order implements Order {
-  const factory _Order() = _$_Order;
 }

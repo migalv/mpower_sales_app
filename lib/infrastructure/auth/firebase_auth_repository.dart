@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sales_app/core/errors/error_codes.dart';
 import 'package:sales_app/domain/auth/app_user.dart';
 import 'package:sales_app/domain/auth/auth_failure.dart';
 import 'package:dartz/dartz.dart';
@@ -35,7 +34,6 @@ class FirebaseAuthRepository implements IAuthRepository {
           message: "Unknown error ocurred! We catched the throwed error"
               " ($e) which is not expected in the sendRecoverPassword method from"
               " the FirebaseAuthRepository.",
-          errorCode: ErrorCodes.unexpectedException,
         ),
       );
     }
@@ -69,7 +67,6 @@ class FirebaseAuthRepository implements IAuthRepository {
               stackTrace: s,
               message: "Unknown error ocurred! The FirebaseAuthException"
                   " error code (${e.code}) is not contemplated.",
-              errorCode: ErrorCodes.unknownFirebaseAuthErrorCode,
             ),
           );
       }
@@ -83,7 +80,6 @@ class FirebaseAuthRepository implements IAuthRepository {
           message: "Unknown error ocurred! We catched the throwed error"
               " ($e) which is not expected in the trySignIn method from"
               " the FirebaseAuthRepository.",
-          errorCode: ErrorCodes.unexpectedException,
         ),
       );
     }
@@ -103,7 +99,6 @@ class FirebaseAuthRepository implements IAuthRepository {
         stackTrace: s,
         message: "An unknown error ocurred when trying to get the signed in "
             "Firebase user.",
-        errorCode: ErrorCodes.unexpectedException,
       ));
     }
 
@@ -129,7 +124,6 @@ class FirebaseAuthRepository implements IAuthRepository {
         stackTrace: s,
         message: "An unknown error ocurred when trying to sign out the current "
             "Firebase user.",
-        errorCode: ErrorCodes.unexpectedException,
       ));
     }
 

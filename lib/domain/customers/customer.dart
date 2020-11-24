@@ -12,11 +12,11 @@ part 'customer.freezed.dart';
 abstract class Customer implements _$Customer, IDBEntity {
   Customer._();
 
-  /// Creates a customer that is a particular (real person)
+  /// Creates a customer that is a real person
   factory Customer.particular({
     @required String id,
 
-    /// The team this customer belongs to
+    /// The team to which this customer belongs to
     @required Team team,
 
     /// The name of the customer
@@ -31,7 +31,7 @@ abstract class Customer implements _$Customer, IDBEntity {
     /// The birth date of the persona
     DateTime birthDate,
 
-    /// An unique identifier of the persona. Commonly: DNI, NRC, NIF, etc.
+    /// An unique identifier of the person. Commonly: DNI, NRC, NIF, etc.
     ParticularId particularId,
   }) = Particular;
 
@@ -43,5 +43,20 @@ abstract class Customer implements _$Customer, IDBEntity {
     @required Team team,
   }) = Company;
 
-  int get type => this is Particular ? 0 : 1;
+  /// The type of customer. See [CustomerType] for more info
+  int get type {
+    return map(
+      particular: (p) => CustomerType.particular.index,
+      company: (c) => CustomerType.company.index,
+    );
+  }
+}
+
+/// Defines the customer type
+enum CustomerType {
+  /// index = 0 -- It's a real person
+  particular,
+
+  /// index = 1 -- It's a company/society
+  company,
 }

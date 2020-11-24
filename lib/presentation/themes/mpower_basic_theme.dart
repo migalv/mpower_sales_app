@@ -42,6 +42,7 @@ class MPowerBasicTheme {
         // floatingActionButtonTheme: _buildFABTheme(),
       );
 
+  // ignore: unused_element
   ChipThemeData _buildMPowerChipTheme() {
     return ChipThemeData(
         backgroundColor: Colors.white,
@@ -68,6 +69,7 @@ class MPowerBasicTheme {
         brightness: Brightness.light);
   }
 
+  // ignore: unused_element
   TextTheme _buildMPowerTextTheme(TextTheme base) {
     return base.copyWith(
       headline4: base.headline4.copyWith(
@@ -152,6 +154,7 @@ class MPowerBasicTheme {
     );
   }
 
+  // ignore: unused_element
   ButtonThemeData _buildMPowerButtonTheme(ButtonThemeData base) {
     final ButtonThemeData buttonTheme = base.copyWith(
       colorScheme: const ColorScheme(
@@ -177,6 +180,7 @@ class MPowerBasicTheme {
     return buttonTheme;
   }
 
+  // ignore: unused_element
   FloatingActionButtonThemeData _buildFABTheme() {
     return const FloatingActionButtonThemeData(
       backgroundColor: secondaryMain,

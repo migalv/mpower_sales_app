@@ -3,23 +3,23 @@ import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/domain/customers/particular_id/particular_id.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number.dart';
 import 'package:sales_app/domain/teams/team.dart';
-import 'package:sales_app/infrastructure/customers/dtos/customer_firefunc_dto.dart';
+import 'package:sales_app/infrastructure/customers/dtos/firefunc/customer_firefunc_dto.dart';
 
 void main() {
   String customerId;
-  Team customerTeam;
   String customerName;
   String customerLastName;
   PhoneNumber customerPhoneNumber;
   DateTime customerBirthDate;
+  Team customerTeam;
 
   Customer tCustomer;
 
   setUp(() {
     customerId = "abc";
-    customerTeam = const Team(id: "abc", name: "Team 1");
     customerName = "Miguel";
     customerLastName = "Test";
+    customerTeam = const Team(id: "team_id", name: "Test team");
     customerPhoneNumber = const PhoneNumber(
       code: "34",
       number: "123456789",
@@ -47,8 +47,6 @@ void main() {
           final expectedJson = {
             "customer_id": customerId,
             "name": customerName,
-            "team_id": customerTeam.id,
-            "team_name": customerTeam.name,
             "surname": customerLastName,
             "type": tCustomer.type,
           };
@@ -77,8 +75,6 @@ void main() {
           final expectedJson = {
             "customer_id": customerId,
             "name": customerName,
-            "team_id": customerTeam.id,
-            "team_name": customerTeam.name,
             "surname": customerLastName,
             nrcKey: nrc,
             "type": tCustomer.type,
@@ -112,8 +108,6 @@ void main() {
           final expectedJson = {
             "customer_id": customerId,
             "name": customerName,
-            "team_id": customerTeam.id,
-            "team_name": customerTeam.name,
             "surname": customerLastName,
             employeeNumKey: employeeNum,
             "type": tCustomer.type,
@@ -147,8 +141,6 @@ void main() {
           final expectedJson = {
             "customer_id": customerId,
             "name": customerName,
-            "team_id": customerTeam.id,
-            "team_name": customerTeam.name,
             "surname": customerLastName,
             nationalIdKey: nationalId,
             "type": tCustomer.type,
@@ -177,8 +169,6 @@ void main() {
           final expectedJson = {
             "customer_id": customerId,
             "name": customerName,
-            "team_id": customerTeam.id,
-            "team_name": customerTeam.name,
             "type": tCustomer.type,
           };
 
@@ -209,8 +199,6 @@ void main() {
             "customer_id": customerId,
             "name": customerName,
             "surname": customerLastName,
-            "team_id": customerTeam.id,
-            "team_name": customerTeam.name,
             "type": tCustomer.type,
           };
 

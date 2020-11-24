@@ -5,8 +5,8 @@ part 'repository_failure.freezed.dart';
 @freezed
 abstract class RepositoryFailure with _$RepositoryFailure {
   const factory RepositoryFailure.unknownError({
-    @required exception,
-    @required stackTrace,
+    @required dynamic exception,
+    @required StackTrace stackTrace,
     @required String message,
     int errorCode,
   }) = UnknownError;
