@@ -15,10 +15,7 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
       state.maybeWhen(
-        signInSuccess: () {
-          // TODO IMPLEMENT THE NAVIGATION TO THE HOME PAGE
-          print("Signed in with success!");
-        },
+        signInSuccess: () {},
         signInFailure: (AuthFailure failure) => _mapFailure(context, failure),
         recoverPasswordSuccess: () => showDialog(
           context: context,
