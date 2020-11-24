@@ -5,8 +5,8 @@ part 'auth_failure.freezed.dart';
 @freezed
 abstract class AuthFailure with _$AuthFailure {
   const factory AuthFailure.unknownError({
-    @required dynamic exception,
-    @required StackTrace stackTrace,
+    exception,
+    stackTrace,
     String message,
     int errorCode,
   }) = UnknownError;

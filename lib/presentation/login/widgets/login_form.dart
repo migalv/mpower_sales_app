@@ -15,7 +15,10 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
       state.maybeWhen(
-        signInSuccess: () {},
+        signInSuccess: () {
+          // TODO IMPLEMENT THE NAVIGATION TO THE HOME PAGE
+          print("Signed in with success!");
+        },
         signInFailure: (AuthFailure failure) => _mapFailure(context, failure),
         recoverPasswordSuccess: () => showDialog(
           context: context,
@@ -83,10 +86,7 @@ class LoginForm extends StatelessWidget {
                 obscureText: true,
               ),
               if (signInInProgress)
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: LinearProgressIndicator(),
-                )
+                const LinearProgressIndicator()
               else
                 Container(),
               Center(
