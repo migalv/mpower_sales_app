@@ -35,7 +35,7 @@ abstract class Customer implements _$Customer {
   factory Customer.company({
     @required String id,
     @required String name,
-    @required String phoneNumber,
+    @required PhoneNumber phoneNumber,
   }) = Company;
 
   /// The type of customer. See [CustomerType] for more info

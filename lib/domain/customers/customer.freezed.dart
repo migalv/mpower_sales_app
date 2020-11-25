@@ -35,7 +35,7 @@ class _$CustomerTearOff {
   Company company(
       {@required String id,
       @required String name,
-      @required String phoneNumber}) {
+      @required PhoneNumber phoneNumber}) {
     return Company(
       id: id,
       name: name,
@@ -56,18 +56,21 @@ mixin _$Customer {
   /// The name of the customer
   String get name;
 
+  /// The phone number of the customer
+  PhoneNumber get phoneNumber;
+
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
         Result person(String id, String name, String lastName,
             PhoneNumber phoneNumber, DateTime birthDate, PersonalId personalId),
-    @required Result company(String id, String name, String phoneNumber),
+    @required Result company(String id, String name, PhoneNumber phoneNumber),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result person(String id, String name, String lastName,
         PhoneNumber phoneNumber, DateTime birthDate, PersonalId personalId),
-    Result company(String id, String name, String phoneNumber),
+    Result company(String id, String name, PhoneNumber phoneNumber),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -89,7 +92,9 @@ mixin _$Customer {
 abstract class $CustomerCopyWith<$Res> {
   factory $CustomerCopyWith(Customer value, $Res Function(Customer) then) =
       _$CustomerCopyWithImpl<$Res>;
-  $Res call({String id, String name});
+  $Res call({String id, String name, PhoneNumber phoneNumber});
+
+  $PhoneNumberCopyWith<$Res> get phoneNumber;
 }
 
 /// @nodoc
@@ -104,11 +109,25 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
   $Res call({
     Object id = freezed,
     Object name = freezed,
+    Object phoneNumber = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber as PhoneNumber,
     ));
+  }
+
+  @override
+  $PhoneNumberCopyWith<$Res> get phoneNumber {
+    if (_value.phoneNumber == null) {
+      return null;
+    }
+    return $PhoneNumberCopyWith<$Res>(_value.phoneNumber, (value) {
+      return _then(_value.copyWith(phoneNumber: value));
+    });
   }
 }
 
@@ -125,6 +144,7 @@ abstract class $PersonCopyWith<$Res> implements $CustomerCopyWith<$Res> {
       DateTime birthDate,
       PersonalId personalId});
 
+  @override
   $PhoneNumberCopyWith<$Res> get phoneNumber;
   $PersonalIdCopyWith<$Res> get personalId;
 }
@@ -159,16 +179,6 @@ class _$PersonCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
       personalId:
           personalId == freezed ? _value.personalId : personalId as PersonalId,
     ));
-  }
-
-  @override
-  $PhoneNumberCopyWith<$Res> get phoneNumber {
-    if (_value.phoneNumber == null) {
-      return null;
-    }
-    return $PhoneNumberCopyWith<$Res>(_value.phoneNumber, (value) {
-      return _then(_value.copyWith(phoneNumber: value));
-    });
   }
 
   @override
@@ -269,7 +279,7 @@ class _$Person extends Person {
     @required
         Result person(String id, String name, String lastName,
             PhoneNumber phoneNumber, DateTime birthDate, PersonalId personalId),
-    @required Result company(String id, String name, String phoneNumber),
+    @required Result company(String id, String name, PhoneNumber phoneNumber),
   }) {
     assert(person != null);
     assert(company != null);
@@ -281,7 +291,7 @@ class _$Person extends Person {
   Result maybeWhen<Result extends Object>({
     Result person(String id, String name, String lastName,
         PhoneNumber phoneNumber, DateTime birthDate, PersonalId personalId),
-    Result company(String id, String name, String phoneNumber),
+    Result company(String id, String name, PhoneNumber phoneNumber),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -338,6 +348,7 @@ abstract class Person extends Customer {
 
   /// The last name of the customer
   String get lastName;
+  @override
 
   /// The phone number of the customer
   PhoneNumber get phoneNumber;
@@ -356,7 +367,10 @@ abstract class $CompanyCopyWith<$Res> implements $CustomerCopyWith<$Res> {
   factory $CompanyCopyWith(Company value, $Res Function(Company) then) =
       _$CompanyCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, String phoneNumber});
+  $Res call({String id, String name, PhoneNumber phoneNumber});
+
+  @override
+  $PhoneNumberCopyWith<$Res> get phoneNumber;
 }
 
 /// @nodoc
@@ -377,8 +391,9 @@ class _$CompanyCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
     return _then(Company(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
-      phoneNumber:
-          phoneNumber == freezed ? _value.phoneNumber : phoneNumber as String,
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber as PhoneNumber,
     ));
   }
 }
@@ -397,7 +412,7 @@ class _$Company extends Company {
   @override
   final String name;
   @override
-  final String phoneNumber;
+  final PhoneNumber phoneNumber;
 
   @override
   String toString() {
@@ -434,7 +449,7 @@ class _$Company extends Company {
     @required
         Result person(String id, String name, String lastName,
             PhoneNumber phoneNumber, DateTime birthDate, PersonalId personalId),
-    @required Result company(String id, String name, String phoneNumber),
+    @required Result company(String id, String name, PhoneNumber phoneNumber),
   }) {
     assert(person != null);
     assert(company != null);
@@ -446,7 +461,7 @@ class _$Company extends Company {
   Result maybeWhen<Result extends Object>({
     Result person(String id, String name, String lastName,
         PhoneNumber phoneNumber, DateTime birthDate, PersonalId personalId),
-    Result company(String id, String name, String phoneNumber),
+    Result company(String id, String name, PhoneNumber phoneNumber),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -487,13 +502,14 @@ abstract class Company extends Customer {
   factory Company(
       {@required String id,
       @required String name,
-      @required String phoneNumber}) = _$Company;
+      @required PhoneNumber phoneNumber}) = _$Company;
 
   @override
   String get id;
   @override
   String get name;
-  String get phoneNumber;
+  @override
+  PhoneNumber get phoneNumber;
   @override
   $CompanyCopyWith<Company> get copyWith;
 }
