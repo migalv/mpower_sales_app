@@ -14,12 +14,10 @@ class _$PersonalIdTearOff {
   const _$PersonalIdTearOff();
 
 // ignore: unused_element
-  _PersonalId call(
-      {@required String key, @required String value, String label}) {
+  _PersonalId call({@required String key, @required String value}) {
     return _PersonalId(
       key: key,
       value: value,
-      label: label,
     );
   }
 }
@@ -30,9 +28,11 @@ const $PersonalId = _$PersonalIdTearOff();
 
 /// @nodoc
 mixin _$PersonalId {
+  /// The key used in the data base
   String get key;
+
+  /// The actual personal identifier
   String get value;
-  String get label;
 
   $PersonalIdCopyWith<PersonalId> get copyWith;
 }
@@ -42,7 +42,7 @@ abstract class $PersonalIdCopyWith<$Res> {
   factory $PersonalIdCopyWith(
           PersonalId value, $Res Function(PersonalId) then) =
       _$PersonalIdCopyWithImpl<$Res>;
-  $Res call({String key, String value, String label});
+  $Res call({String key, String value});
 }
 
 /// @nodoc
@@ -57,12 +57,10 @@ class _$PersonalIdCopyWithImpl<$Res> implements $PersonalIdCopyWith<$Res> {
   $Res call({
     Object key = freezed,
     Object value = freezed,
-    Object label = freezed,
   }) {
     return _then(_value.copyWith(
       key: key == freezed ? _value.key : key as String,
       value: value == freezed ? _value.value : value as String,
-      label: label == freezed ? _value.label : label as String,
     ));
   }
 }
@@ -73,7 +71,7 @@ abstract class _$PersonalIdCopyWith<$Res> implements $PersonalIdCopyWith<$Res> {
           _PersonalId value, $Res Function(_PersonalId) then) =
       __$PersonalIdCopyWithImpl<$Res>;
   @override
-  $Res call({String key, String value, String label});
+  $Res call({String key, String value});
 }
 
 /// @nodoc
@@ -90,32 +88,32 @@ class __$PersonalIdCopyWithImpl<$Res> extends _$PersonalIdCopyWithImpl<$Res>
   $Res call({
     Object key = freezed,
     Object value = freezed,
-    Object label = freezed,
   }) {
     return _then(_PersonalId(
       key: key == freezed ? _value.key : key as String,
       value: value == freezed ? _value.value : value as String,
-      label: label == freezed ? _value.label : label as String,
     ));
   }
 }
 
 /// @nodoc
 class _$_PersonalId implements _PersonalId {
-  const _$_PersonalId({@required this.key, @required this.value, this.label})
+  const _$_PersonalId({@required this.key, @required this.value})
       : assert(key != null),
         assert(value != null);
 
   @override
+
+  /// The key used in the data base
   final String key;
   @override
+
+  /// The actual personal identifier
   final String value;
-  @override
-  final String label;
 
   @override
   String toString() {
-    return 'PersonalId(key: $key, value: $value, label: $label)';
+    return 'PersonalId(key: $key, value: $value)';
   }
 
   @override
@@ -125,17 +123,14 @@ class _$_PersonalId implements _PersonalId {
             (identical(other.key, key) ||
                 const DeepCollectionEquality().equals(other.key, key)) &&
             (identical(other.value, value) ||
-                const DeepCollectionEquality().equals(other.value, value)) &&
-            (identical(other.label, label) ||
-                const DeepCollectionEquality().equals(other.label, label)));
+                const DeepCollectionEquality().equals(other.value, value)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(key) ^
-      const DeepCollectionEquality().hash(value) ^
-      const DeepCollectionEquality().hash(label);
+      const DeepCollectionEquality().hash(value);
 
   @override
   _$PersonalIdCopyWith<_PersonalId> get copyWith =>
@@ -143,17 +138,17 @@ class _$_PersonalId implements _PersonalId {
 }
 
 abstract class _PersonalId implements PersonalId {
-  const factory _PersonalId(
-      {@required String key,
-      @required String value,
-      String label}) = _$_PersonalId;
+  const factory _PersonalId({@required String key, @required String value}) =
+      _$_PersonalId;
 
   @override
+
+  /// The key used in the data base
   String get key;
   @override
+
+  /// The actual personal identifier
   String get value;
-  @override
-  String get label;
   @override
   _$PersonalIdCopyWith<_PersonalId> get copyWith;
 }

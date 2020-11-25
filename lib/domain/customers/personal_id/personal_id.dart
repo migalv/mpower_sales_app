@@ -7,8 +7,10 @@ part 'personal_id.freezed.dart';
 @freezed
 abstract class PersonalId with _$PersonalId {
   const factory PersonalId({
+    /// The key used in the data base
     @required String key,
+
+    /// The actual personal identifier
     @required String value,
-    String label,
   }) = _PersonalId;
 }
