@@ -15,7 +15,7 @@ void main() {
 
   setUp(() {
     mockFirebaseAuth = MockFirebaseAuth();
-    authRepository = FirebaseAuthRepository(firebaseAuth: mockFirebaseAuth);
+    authRepository = FirebaseAuthRepository(mockFirebaseAuth);
   });
 
   group('trySignIn', () {

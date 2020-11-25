@@ -12,21 +12,21 @@ import 'package:meta/meta.dart';
 
 /// Repository that wraps the FirebaseAuth service
 class FirebaseAuthRepository implements IAuthRepository {
-  final FirebaseAuth firebaseAuth;
+  final FirebaseAuth _firebaseAuth;
   final int _timeoutDuration = 10;
 
-  FirebaseAuthRepository({@required this.firebaseAuth});
+  FirebaseAuthRepository(this._firebaseAuth);
 
   @override
   Future<Either<AuthFailure, Unit>> sendRecoverPasswordToEmail(
       {@required String email}) async {
     try {
-      await firebaseAuth
+      await _firebaseAuth
           .sendPasswordResetEmail(email: email)
           .timeout(Duration(seconds: _timeoutDuration));
     } on TimeoutException {
       return const Left(AuthFailure.noServerResponse());
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       return left(
         AuthFailure.unknownError(
           exception: e,
@@ -48,7 +48,7 @@ class FirebaseAuthRepository implements IAuthRepository {
     @required String password,
   }) async {
     try {
-      await firebaseAuth
+      await _firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password)
           .timeout(Duration(seconds: _timeoutDuration));
     } on FirebaseAuthException catch (e, s) {
@@ -74,7 +74,7 @@ class FirebaseAuthRepository implements IAuthRepository {
       }
     } on TimeoutException {
       return left(const AuthFailure.noServerResponse());
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       return left(
         AuthFailure.unknownError(
           exception: e,

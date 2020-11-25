@@ -15,7 +15,10 @@ class _$AuthFailureTearOff {
 
 // ignore: unused_element
   UnknownError unknownError(
-      {dynamic exception, dynamic stackTrace, String message, int errorCode}) {
+      {@required Exception exception,
+      @required StackTrace stackTrace,
+      String message,
+      int errorCode}) {
     return UnknownError(
       exception: exception,
       stackTrace: stackTrace,
@@ -59,7 +62,7 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result unknownError(dynamic exception, dynamic stackTrace,
+        Result unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
     @required Result emailNotExists(),
     @required Result wrongPassword(),
@@ -69,8 +72,8 @@ mixin _$AuthFailure {
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result unknownError(
-        dynamic exception, dynamic stackTrace, String message, int errorCode),
+    Result unknownError(Exception exception, StackTrace stackTrace,
+        String message, int errorCode),
     Result emailNotExists(),
     Result wrongPassword(),
     Result invalidEmail(),
@@ -121,7 +124,10 @@ abstract class $UnknownErrorCopyWith<$Res> {
           UnknownError value, $Res Function(UnknownError) then) =
       _$UnknownErrorCopyWithImpl<$Res>;
   $Res call(
-      {dynamic exception, dynamic stackTrace, String message, int errorCode});
+      {Exception exception,
+      StackTrace stackTrace,
+      String message,
+      int errorCode});
 }
 
 /// @nodoc
@@ -142,8 +148,10 @@ class _$UnknownErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
     Object errorCode = freezed,
   }) {
     return _then(UnknownError(
-      exception: exception == freezed ? _value.exception : exception,
-      stackTrace: stackTrace == freezed ? _value.stackTrace : stackTrace,
+      exception:
+          exception == freezed ? _value.exception : exception as Exception,
+      stackTrace:
+          stackTrace == freezed ? _value.stackTrace : stackTrace as StackTrace,
       message: message == freezed ? _value.message : message as String,
       errorCode: errorCode == freezed ? _value.errorCode : errorCode as int,
     ));
@@ -153,12 +161,17 @@ class _$UnknownErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
 /// @nodoc
 class _$UnknownError implements UnknownError {
   const _$UnknownError(
-      {this.exception, this.stackTrace, this.message, this.errorCode});
+      {@required this.exception,
+      @required this.stackTrace,
+      this.message,
+      this.errorCode})
+      : assert(exception != null),
+        assert(stackTrace != null);
 
   @override
-  final dynamic exception;
+  final Exception exception;
   @override
-  final dynamic stackTrace;
+  final StackTrace stackTrace;
   @override
   final String message;
   @override
@@ -203,7 +216,7 @@ class _$UnknownError implements UnknownError {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result unknownError(dynamic exception, dynamic stackTrace,
+        Result unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
     @required Result emailNotExists(),
     @required Result wrongPassword(),
@@ -223,8 +236,8 @@ class _$UnknownError implements UnknownError {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result unknownError(
-        dynamic exception, dynamic stackTrace, String message, int errorCode),
+    Result unknownError(Exception exception, StackTrace stackTrace,
+        String message, int errorCode),
     Result emailNotExists(),
     Result wrongPassword(),
     Result invalidEmail(),
@@ -279,13 +292,13 @@ class _$UnknownError implements UnknownError {
 
 abstract class UnknownError implements AuthFailure {
   const factory UnknownError(
-      {dynamic exception,
-      dynamic stackTrace,
+      {@required Exception exception,
+      @required StackTrace stackTrace,
       String message,
       int errorCode}) = _$UnknownError;
 
-  dynamic get exception;
-  dynamic get stackTrace;
+  Exception get exception;
+  StackTrace get stackTrace;
   String get message;
   int get errorCode;
   $UnknownErrorCopyWith<UnknownError> get copyWith;
@@ -330,7 +343,7 @@ class _$EmailNotExists implements EmailNotExists {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result unknownError(dynamic exception, dynamic stackTrace,
+        Result unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
     @required Result emailNotExists(),
     @required Result wrongPassword(),
@@ -350,8 +363,8 @@ class _$EmailNotExists implements EmailNotExists {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result unknownError(
-        dynamic exception, dynamic stackTrace, String message, int errorCode),
+    Result unknownError(Exception exception, StackTrace stackTrace,
+        String message, int errorCode),
     Result emailNotExists(),
     Result wrongPassword(),
     Result invalidEmail(),
@@ -447,7 +460,7 @@ class _$WrongPassword implements WrongPassword {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result unknownError(dynamic exception, dynamic stackTrace,
+        Result unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
     @required Result emailNotExists(),
     @required Result wrongPassword(),
@@ -467,8 +480,8 @@ class _$WrongPassword implements WrongPassword {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result unknownError(
-        dynamic exception, dynamic stackTrace, String message, int errorCode),
+    Result unknownError(Exception exception, StackTrace stackTrace,
+        String message, int errorCode),
     Result emailNotExists(),
     Result wrongPassword(),
     Result invalidEmail(),
@@ -564,7 +577,7 @@ class _$InvalidEmail implements InvalidEmail {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result unknownError(dynamic exception, dynamic stackTrace,
+        Result unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
     @required Result emailNotExists(),
     @required Result wrongPassword(),
@@ -584,8 +597,8 @@ class _$InvalidEmail implements InvalidEmail {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result unknownError(
-        dynamic exception, dynamic stackTrace, String message, int errorCode),
+    Result unknownError(Exception exception, StackTrace stackTrace,
+        String message, int errorCode),
     Result emailNotExists(),
     Result wrongPassword(),
     Result invalidEmail(),
@@ -681,7 +694,7 @@ class _$UserDisabled implements UserDisabled {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result unknownError(dynamic exception, dynamic stackTrace,
+        Result unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
     @required Result emailNotExists(),
     @required Result wrongPassword(),
@@ -701,8 +714,8 @@ class _$UserDisabled implements UserDisabled {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result unknownError(
-        dynamic exception, dynamic stackTrace, String message, int errorCode),
+    Result unknownError(Exception exception, StackTrace stackTrace,
+        String message, int errorCode),
     Result emailNotExists(),
     Result wrongPassword(),
     Result invalidEmail(),
@@ -799,7 +812,7 @@ class _$NoServerResponse implements NoServerResponse {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result unknownError(dynamic exception, dynamic stackTrace,
+        Result unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
     @required Result emailNotExists(),
     @required Result wrongPassword(),
@@ -819,8 +832,8 @@ class _$NoServerResponse implements NoServerResponse {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result unknownError(
-        dynamic exception, dynamic stackTrace, String message, int errorCode),
+    Result unknownError(Exception exception, StackTrace stackTrace,
+        String message, int errorCode),
     Result emailNotExists(),
     Result wrongPassword(),
     Result invalidEmail(),

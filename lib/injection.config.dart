@@ -25,7 +25,7 @@ GetIt $initGetIt(
   final firebaseInjectableModule = _$FirebaseInjectableModule();
   gh.factory<FirebaseAuth>(() => firebaseInjectableModule.firebaseAuth);
   gh.lazySingleton<IAuthRepository>(
-      () => FirebaseAuthRepository(firebaseAuth: get<FirebaseAuth>()));
+      () => FirebaseAuthRepository(get<FirebaseAuth>()));
   gh.factory<LoginBloc>(() => LoginBloc(get<IAuthRepository>()));
   return get;
 }
