@@ -8,7 +8,6 @@ part of 'customer_dto.dart';
 
 _$_CustomerDTO _$_$_CustomerDTOFromJson(Map<String, dynamic> json) {
   return _$_CustomerDTO(
-    id: json['id'] as String,
     name: json['name'] as String,
     phoneNumber:
         const PhoneNumberConverter().fromJson(json['phone_number'] as String),
@@ -31,7 +30,6 @@ Map<String, dynamic> _$_$_CustomerDTOToJson(_$_CustomerDTO instance) {
     }
   }
 
-  writeNotNull('id', instance.id);
   writeNotNull('name', instance.name);
   writeNotNull('phone_number',
       const PhoneNumberConverter().toJson(instance.phoneNumber));

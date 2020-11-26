@@ -16,7 +16,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomersJson[index]));
       },
     );
 
@@ -28,7 +28,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomersJson[index]));
       },
     );
 
@@ -40,7 +40,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomersJson[index]));
       },
     );
 
@@ -52,7 +52,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomersJson[index]));
       },
     );
 
@@ -64,7 +64,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomersJson[index]));
       },
     );
 
@@ -76,7 +76,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomersJson[index]));
       },
     );
 
@@ -88,7 +88,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomersJson[index]));
       },
     );
 
@@ -100,7 +100,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomersJson[index]));
       },
     );
 
@@ -112,7 +112,7 @@ void main() {
             correctCustomers.map((c) => CustomerDTO.fromDomain(c)).toList();
         final result = customerDTOs.map((dto) => dto.toJson()).toList();
         // assert
-        expect(result, equals(correctCustomerJsons));
+        expect(result, equals(correctCustomersJson));
       },
     );
   });
@@ -129,7 +129,7 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.basicCustomer.index;
-        final customerDTO = CustomerDTO.fromJson(correctCustomerJsons[index]);
+        final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toDomain();
         // assert
         expect(result, equals(correctCustomers[index]));
@@ -142,9 +142,9 @@ void main() {
         // act
         final int index = CustomerIndex.companyCustomer.index;
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
-        final result = customerDTO.toJson();
+        final result = customerDTO.toDomain();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomers[index]));
       },
     );
 
@@ -154,9 +154,9 @@ void main() {
         // act
         final int index = CustomerIndex.birthDateCustomer.index;
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
-        final result = customerDTO.toJson();
+        final result = customerDTO.toDomain();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomers[index]));
       },
     );
 
@@ -166,9 +166,9 @@ void main() {
         // act
         final int index = CustomerIndex.nrcCustomer.index;
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
-        final result = customerDTO.toJson();
+        final result = customerDTO.toDomain();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomers[index]));
       },
     );
 
@@ -178,9 +178,9 @@ void main() {
         // act
         final int index = CustomerIndex.employeeNumCustomer.index;
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
-        final result = customerDTO.toJson();
+        final result = customerDTO.toDomain();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomers[index]));
       },
     );
 
@@ -190,9 +190,9 @@ void main() {
         // act
         final int index = CustomerIndex.farmerIdCustomer.index;
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
-        final result = customerDTO.toJson();
+        final result = customerDTO.toDomain();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomers[index]));
       },
     );
 
@@ -202,9 +202,9 @@ void main() {
         // act
         final int index = CustomerIndex.nationalIdCustomer.index;
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
-        final result = customerDTO.toJson();
+        final result = customerDTO.toDomain();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomers[index]));
       },
     );
 
@@ -214,28 +214,28 @@ void main() {
         // act
         final int index = CustomerIndex.completeCustomer.index;
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
-        final result = customerDTO.toJson();
+        final result = customerDTO.toDomain();
         // assert
-        expect(result, equals(correctCustomerJsons[index]));
+        expect(result, equals(correctCustomers[index]));
       },
     );
 
     test(
-      'should transform a list of Customer Entities into a valid JSON list using toJson',
+      'should transform a list of Customer DTOs into a valid Customer Entity list',
       () async {
         // act
         final customerDTOs =
             correctCustomers.map((c) => CustomerDTO.fromDomain(c)).toList();
-        final result = customerDTOs.map((dto) => dto.toJson()).toList();
+        final result = customerDTOs.map((dto) => dto.toDomain()).toList();
         // assert
-        expect(result, equals(correctCustomerJsons));
+        expect(result, equals(correctCustomers));
       },
     );
   });
 }
 
-List<Map<String, dynamic>> correctCustomerJsons =
-    jsonFixtureAsList('customers/dto_tests/customers.json')
+List<Map<String, dynamic>> correctCustomersJson =
+    jsonFixtureAsList('customers/dtos/customers.json')
         .cast<Map<String, dynamic>>();
 
 Customer basicCustomer = Customer.person(

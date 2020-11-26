@@ -12,7 +12,7 @@ part 'customer_dto.g.dart';
 /// CustomerDTO used to store Customer Entities locally
 abstract class CustomerDTO with _$CustomerDTO {
   const factory CustomerDTO._({
-    @required String id,
+    @JsonKey(ignore: true) String id,
     @required String name,
     @required @PhoneNumberConverter() PhoneNumber phoneNumber,
     @required CustomerType type,
@@ -79,9 +79,9 @@ extension CustomerDTOX on CustomerDTO {
     } else if (employeeNum != null) {
       personalId = PersonalId.employeeNum(employeeNum: employeeNum);
     } else if (farmerId != null) {
-      personalId = PersonalId.farmerId(farmerId: nrc);
+      personalId = PersonalId.farmerId(farmerId: farmerId);
     } else if (nationalId != null) {
-      personalId = PersonalId.nationalId(nationalId: nrc);
+      personalId = PersonalId.nationalId(nationalId: nationalId);
     }
 
     DateTime brithDateFromMiliseconds;
