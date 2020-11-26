@@ -18,7 +18,7 @@ class PhoneNumberConverter implements JsonConverter<PhoneNumber, String> {
     String number;
 
     final List<String> list = json.split(' ');
-    code = list.first;
+    code = list.first.replaceAll('+', '');
     number = list.last;
 
     return PhoneNumber(
