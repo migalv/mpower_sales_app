@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
+import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:sales_app/domain/core/data_sources/i_data_source.dart';
-import 'package:sales_app/domain/core/failures/failure/failure.dart';
 import 'package:sales_app/domain/customers/customer.dart';
+import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomerLocalDataSource implements IDataSource<Customer> {
-  SharedPreferences _sharedPreferences;
+  final SharedPreferences _sharedPreferences;
 
   /// The key used for SharedPreferences to store the customers
   static const String key = "customers";
@@ -16,60 +17,84 @@ class CustomerLocalDataSource implements IDataSource<Customer> {
   CustomerLocalDataSource(this._sharedPreferences);
 
   @override
-  Future<Either<Failure, Set<Customer>>> getAll() {
+  Future<Either<DataSourceFailure, Set<Customer>>> getAll() {
     // TODO: implement getAll
     throw UnimplementedError();
   }
 
   @override
-  Stream<Either<Failure, Set<Customer>>> watchAll() {
+  Stream<Either<DataSourceFailure, Set<Customer>>> watchAll() {
     // TODO: implement watchAll
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, Unit>> remove(Customer element) {
+  Future<Either<DataSourceFailure, Unit>> remove(Customer element) {
     // TODO: implement remove
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, Unit>> removeWithId(String id) {
+  Future<Either<DataSourceFailure, Unit>> removeWithId(String id) {
     // TODO: implement removeWithId
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, Unit>> save(Customer element) async {
+  Future<Either<DataSourceFailure, Unit>> save(Customer element) async {
+    if (element == null) {
+      const failure = DataSourceFailure.cannotSaveNullElements();
+      return const Left(failure);
+    }
     try {
-      final List<String> stringList = _sharedPreferences.getStringList(key);
+      Map<String, dynamic> json = {};
 
-      // Convert each string into Json Object
-      final Set<Map<String, dynamic>> jsonList = stringList
-          .map((string) => jsonDecode(string) as Map<String, dynamic>)
-          .toSet();
+      final String string = _sharedPreferences.getString(key);
 
-      // We create a new json because it's more efficient
-      final List<Map<String, dynamic>> newJsonList = [];
+      if (string != null) json = jsonDecode(string) as Map<String, dynamic>;
 
-      for (final Map<String, dynamic> json in jsonList) {
-        if (json["id"] != element.id) newJsonList.add(json);
-      }
+      final CustomerDTO dto = CustomerDTO.fromDomain(element);
+      json[element.id] = dto.toJson();
 
-      // TODO IMPLEMENT TO JSON
-      newJsonList.add(element.toJson());
+      final String newString = jsonEncode(json);
 
-      final List<String> newStringList =
-          newJsonList.map((json) => jsonEncode(json)).toList();
-
-      _sharedPreferences.setStringList(key, newStringList);
+      _sharedPreferences.setString(key, newString);
     } on Exception catch (e, s) {
-      final Failure failure =
-          Failure.unexpectedException(exception: e, stackTrace: s);
+      final failure =
+          DataSourceFailure.unexpectedException(exception: e, stackTrace: s);
 
       return Left(failure);
     }
 
     return const Right(unit);
+  }
+
+  @override
+  Future<Either<DataSourceFailure, Customer>> getElementWithId(
+      String id) async {
+    try {
+      Map<String, dynamic> json = {};
+
+      final String string = _sharedPreferences.getString(key);
+
+      if (string != null) {
+        json = jsonDecode(string) as Map<String, dynamic>;
+        final customerJson = json[id] as Map<String, dynamic>;
+
+        final CustomerDTO dto = CustomerDTO.fromJson(customerJson);
+        final Customer customer = dto.toDomain();
+
+        return Right(customer);
+      } else {
+        const failure = DataSourceFailure.elementNotFound();
+
+        return const Left(failure);
+      }
+    } on Exception catch (e, s) {
+      final failure =
+          DataSourceFailure.unexpectedException(exception: e, stackTrace: s);
+
+      return Left(failure);
+    }
   }
 }

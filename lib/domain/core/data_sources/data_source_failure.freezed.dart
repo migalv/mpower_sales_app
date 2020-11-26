@@ -26,6 +26,11 @@ class _$DataSourceFailureTearOff {
   CannotSaveNullElements cannotSaveNullElements() {
     return const CannotSaveNullElements();
   }
+
+// ignore: unused_element
+  ElementNotFound elementNotFound() {
+    return const ElementNotFound();
+  }
 }
 
 /// @nodoc
@@ -39,22 +44,26 @@ mixin _$DataSourceFailure {
     @required
         Result unexpectedException(Exception exception, StackTrace stackTrace),
     @required Result cannotSaveNullElements(),
+    @required Result elementNotFound(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result unexpectedException(Exception exception, StackTrace stackTrace),
     Result cannotSaveNullElements(),
+    Result elementNotFound(),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result unexpectedException(UnexpectedException value),
     @required Result cannotSaveNullElements(CannotSaveNullElements value),
+    @required Result elementNotFound(ElementNotFound value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result unexpectedException(UnexpectedException value),
     Result cannotSaveNullElements(CannotSaveNullElements value),
+    Result elementNotFound(ElementNotFound value),
     @required Result orElse(),
   });
 }
@@ -166,9 +175,11 @@ class _$UnexpectedException
     @required
         Result unexpectedException(Exception exception, StackTrace stackTrace),
     @required Result cannotSaveNullElements(),
+    @required Result elementNotFound(),
   }) {
     assert(unexpectedException != null);
     assert(cannotSaveNullElements != null);
+    assert(elementNotFound != null);
     return unexpectedException(exception, stackTrace);
   }
 
@@ -177,6 +188,7 @@ class _$UnexpectedException
   Result maybeWhen<Result extends Object>({
     Result unexpectedException(Exception exception, StackTrace stackTrace),
     Result cannotSaveNullElements(),
+    Result elementNotFound(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -191,9 +203,11 @@ class _$UnexpectedException
   Result map<Result extends Object>({
     @required Result unexpectedException(UnexpectedException value),
     @required Result cannotSaveNullElements(CannotSaveNullElements value),
+    @required Result elementNotFound(ElementNotFound value),
   }) {
     assert(unexpectedException != null);
     assert(cannotSaveNullElements != null);
+    assert(elementNotFound != null);
     return unexpectedException(this);
   }
 
@@ -202,6 +216,7 @@ class _$UnexpectedException
   Result maybeMap<Result extends Object>({
     Result unexpectedException(UnexpectedException value),
     Result cannotSaveNullElements(CannotSaveNullElements value),
+    Result elementNotFound(ElementNotFound value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -274,9 +289,11 @@ class _$CannotSaveNullElements
     @required
         Result unexpectedException(Exception exception, StackTrace stackTrace),
     @required Result cannotSaveNullElements(),
+    @required Result elementNotFound(),
   }) {
     assert(unexpectedException != null);
     assert(cannotSaveNullElements != null);
+    assert(elementNotFound != null);
     return cannotSaveNullElements();
   }
 
@@ -285,6 +302,7 @@ class _$CannotSaveNullElements
   Result maybeWhen<Result extends Object>({
     Result unexpectedException(Exception exception, StackTrace stackTrace),
     Result cannotSaveNullElements(),
+    Result elementNotFound(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -299,9 +317,11 @@ class _$CannotSaveNullElements
   Result map<Result extends Object>({
     @required Result unexpectedException(UnexpectedException value),
     @required Result cannotSaveNullElements(CannotSaveNullElements value),
+    @required Result elementNotFound(ElementNotFound value),
   }) {
     assert(unexpectedException != null);
     assert(cannotSaveNullElements != null);
+    assert(elementNotFound != null);
     return cannotSaveNullElements(this);
   }
 
@@ -310,6 +330,7 @@ class _$CannotSaveNullElements
   Result maybeMap<Result extends Object>({
     Result unexpectedException(UnexpectedException value),
     Result cannotSaveNullElements(CannotSaveNullElements value),
+    Result elementNotFound(ElementNotFound value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -322,4 +343,111 @@ class _$CannotSaveNullElements
 
 abstract class CannotSaveNullElements implements DataSourceFailure {
   const factory CannotSaveNullElements() = _$CannotSaveNullElements;
+}
+
+/// @nodoc
+abstract class $ElementNotFoundCopyWith<$Res> {
+  factory $ElementNotFoundCopyWith(
+          ElementNotFound value, $Res Function(ElementNotFound) then) =
+      _$ElementNotFoundCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ElementNotFoundCopyWithImpl<$Res>
+    extends _$DataSourceFailureCopyWithImpl<$Res>
+    implements $ElementNotFoundCopyWith<$Res> {
+  _$ElementNotFoundCopyWithImpl(
+      ElementNotFound _value, $Res Function(ElementNotFound) _then)
+      : super(_value, (v) => _then(v as ElementNotFound));
+
+  @override
+  ElementNotFound get _value => super._value as ElementNotFound;
+}
+
+/// @nodoc
+class _$ElementNotFound
+    with DiagnosticableTreeMixin
+    implements ElementNotFound {
+  const _$ElementNotFound();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'DataSourceFailure.elementNotFound()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DataSourceFailure.elementNotFound'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is ElementNotFound);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required
+        Result unexpectedException(Exception exception, StackTrace stackTrace),
+    @required Result cannotSaveNullElements(),
+    @required Result elementNotFound(),
+  }) {
+    assert(unexpectedException != null);
+    assert(cannotSaveNullElements != null);
+    assert(elementNotFound != null);
+    return elementNotFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result unexpectedException(Exception exception, StackTrace stackTrace),
+    Result cannotSaveNullElements(),
+    Result elementNotFound(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (elementNotFound != null) {
+      return elementNotFound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result unexpectedException(UnexpectedException value),
+    @required Result cannotSaveNullElements(CannotSaveNullElements value),
+    @required Result elementNotFound(ElementNotFound value),
+  }) {
+    assert(unexpectedException != null);
+    assert(cannotSaveNullElements != null);
+    assert(elementNotFound != null);
+    return elementNotFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result unexpectedException(UnexpectedException value),
+    Result cannotSaveNullElements(CannotSaveNullElements value),
+    Result elementNotFound(ElementNotFound value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (elementNotFound != null) {
+      return elementNotFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ElementNotFound implements DataSourceFailure {
+  const factory ElementNotFound() = _$ElementNotFound;
 }

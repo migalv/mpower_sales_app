@@ -12,4 +12,6 @@ abstract class DataSourceFailure with _$DataSourceFailure {
 
   const factory DataSourceFailure.cannotSaveNullElements() =
       CannotSaveNullElements;
+
+  const factory DataSourceFailure.elementNotFound() = ElementNotFound;
 }
