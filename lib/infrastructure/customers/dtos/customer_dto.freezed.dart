@@ -18,7 +18,7 @@ class _$CustomerDTOTearOff {
 
 // ignore: unused_element
   _CustomerDTO _(
-      {@JsonKey(ignore: true) String id,
+      {@required String id,
       @required String name,
       @required @PhoneNumberConverter() PhoneNumber phoneNumber,
       @required CustomerType type,
@@ -54,7 +54,6 @@ const $CustomerDTO = _$CustomerDTOTearOff();
 
 /// @nodoc
 mixin _$CustomerDTO {
-  @JsonKey(ignore: true)
   String get id;
   String get name;
   @PhoneNumberConverter()
@@ -77,7 +76,7 @@ abstract class $CustomerDTOCopyWith<$Res> {
           CustomerDTO value, $Res Function(CustomerDTO) then) =
       _$CustomerDTOCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(ignore: true) String id,
+      {String id,
       String name,
       @PhoneNumberConverter() PhoneNumber phoneNumber,
       CustomerType type,
@@ -149,7 +148,7 @@ abstract class _$CustomerDTOCopyWith<$Res>
       __$CustomerDTOCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(ignore: true) String id,
+      {String id,
       String name,
       @PhoneNumberConverter() PhoneNumber phoneNumber,
       CustomerType type,
@@ -211,7 +210,7 @@ class __$CustomerDTOCopyWithImpl<$Res> extends _$CustomerDTOCopyWithImpl<$Res>
 /// @nodoc
 class _$_CustomerDTO implements _CustomerDTO {
   const _$_CustomerDTO(
-      {@JsonKey(ignore: true) this.id,
+      {@required this.id,
       @required this.name,
       @required @PhoneNumberConverter() this.phoneNumber,
       @required this.type,
@@ -221,7 +220,8 @@ class _$_CustomerDTO implements _CustomerDTO {
       this.employeeNum,
       this.farmerId,
       this.nationalId})
-      : assert(name != null),
+      : assert(id != null),
+        assert(name != null),
         assert(phoneNumber != null),
         assert(type != null);
 
@@ -229,7 +229,6 @@ class _$_CustomerDTO implements _CustomerDTO {
       _$_$_CustomerDTOFromJson(json);
 
   @override
-  @JsonKey(ignore: true)
   final String id;
   @override
   final String name;
@@ -314,7 +313,7 @@ class _$_CustomerDTO implements _CustomerDTO {
 
 abstract class _CustomerDTO implements CustomerDTO {
   const factory _CustomerDTO(
-      {@JsonKey(ignore: true) String id,
+      {@required String id,
       @required String name,
       @required @PhoneNumberConverter() PhoneNumber phoneNumber,
       @required CustomerType type,
@@ -329,7 +328,6 @@ abstract class _CustomerDTO implements CustomerDTO {
       _$_CustomerDTO.fromJson;
 
   @override
-  @JsonKey(ignore: true)
   String get id;
   @override
   String get name;

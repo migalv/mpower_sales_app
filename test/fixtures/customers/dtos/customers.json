@@ -1,16 +1,19 @@
 [
     {
+        "id": "0",
         "name": "Basic",
         "last_name": "Customer",
         "phone_number": "+34 123456789",
         "type": "person"
     },
     {
+        "id": "1",
         "name": "Company 1",
         "phone_number": "+34 123456789",
         "type": "company"
     },
     {
+        "id": "2",
         "name": "Birthdate",
         "last_name": "Customer",
         "phone_number": "+34 123456789",
@@ -18,6 +21,7 @@
         "type": "person"
     },
     {
+        "id": "3",
         "name": "NRC",
         "last_name": "Customer",
         "phone_number": "+34 123456789",
@@ -25,6 +29,7 @@
         "type": "person"
     },
     {
+        "id": "4",
         "name": "EmployeeNum",
         "last_name": "Customer",
         "phone_number": "+34 123456789",
@@ -32,6 +37,7 @@
         "type": "person"
     },
     {
+        "id": "5",
         "name": "FarmerId",
         "last_name": "Customer",
         "phone_number": "+34 123456789",
@@ -39,6 +45,7 @@
         "type": "person"
     },
     {
+        "id": "6",
         "name": "NationalId",
         "last_name": "Customer",
         "phone_number": "+34 123456789",
@@ -46,6 +53,7 @@
         "type": "person"
     },
     {
+        "id": "7",
         "name": "Complete",
         "last_name": "Customer",
         "phone_number": "+34 123456789",

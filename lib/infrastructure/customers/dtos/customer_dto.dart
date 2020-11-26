@@ -12,7 +12,7 @@ part 'customer_dto.g.dart';
 /// CustomerDTO used to store Customer Entities locally
 abstract class CustomerDTO with _$CustomerDTO {
   const factory CustomerDTO._({
-    @JsonKey(ignore: true) String id,
+    @required String id,
     @required String name,
     @required @PhoneNumberConverter() PhoneNumber phoneNumber,
     @required CustomerType type,
