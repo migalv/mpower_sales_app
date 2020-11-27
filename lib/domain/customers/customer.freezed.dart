@@ -233,11 +233,6 @@ class _$Person extends Person {
   final PersonalId personalId;
 
   @override
-  String toString() {
-    return 'Customer.person(id: $id, name: $name, lastName: $lastName, phoneNumber: $phoneNumber, birthDate: $birthDate, personalId: $personalId)';
-  }
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Person &&
@@ -413,11 +408,6 @@ class _$Company extends Company {
   final String name;
   @override
   final PhoneNumber phoneNumber;
-
-  @override
-  String toString() {
-    return 'Customer.company(id: $id, name: $name, phoneNumber: $phoneNumber)';
-  }
 
   @override
   bool operator ==(dynamic other) {

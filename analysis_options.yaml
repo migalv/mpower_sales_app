@@ -9,3 +9,7 @@ analyzer:
     missing_required_param: error
     missing_return: error
     must_be_immutable: error
+
+linter:
+  rules:
+    avoid_implementing_value_types: false

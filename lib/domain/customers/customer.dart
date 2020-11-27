@@ -1,14 +1,15 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sales_app/domain/customers/personal_id/personal_id.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number.dart';
+import 'package:sales_app/domain/i_entity.dart';
 
 part 'customer.freezed.dart';
 
 @freezed
 
 /// A registered customer for an order
-abstract class Customer implements _$Customer {
-  Customer._();
+abstract class Customer implements _$Customer, IEntity {
+  const Customer._();
 
   /// Creates a customer that is a real person
   factory Customer.person({
@@ -45,6 +46,12 @@ abstract class Customer implements _$Customer {
       company: (c) => CustomerType.company.index,
     );
   }
+
+  @override
+  List<Object> get props => [id];
+
+  @override
+  bool get stringify => false;
 }
 
 /// Defines the customer type
