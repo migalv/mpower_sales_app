@@ -23,13 +23,20 @@ class _$DataSourceFailureTearOff {
   }
 
 // ignore: unused_element
-  CannotSaveNullElements cannotSaveNullElements() {
-    return const CannotSaveNullElements();
+  NullElement nullElement() {
+    return const NullElement();
   }
 
 // ignore: unused_element
   ElementNotFound elementNotFound() {
     return const ElementNotFound();
+  }
+
+// ignore: unused_element
+  NoElementsForCollection noElementsFor({@required String collection}) {
+    return NoElementsForCollection(
+      collection: collection,
+    );
   }
 }
 
@@ -43,27 +50,31 @@ mixin _$DataSourceFailure {
   Result when<Result extends Object>({
     @required
         Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result cannotSaveNullElements(),
+    @required Result nullElement(),
     @required Result elementNotFound(),
+    @required Result noElementsFor(String collection),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result cannotSaveNullElements(),
+    Result nullElement(),
     Result elementNotFound(),
+    Result noElementsFor(String collection),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result unexpectedException(UnexpectedException value),
-    @required Result cannotSaveNullElements(CannotSaveNullElements value),
+    @required Result nullElement(NullElement value),
     @required Result elementNotFound(ElementNotFound value),
+    @required Result noElementsFor(NoElementsForCollection value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result unexpectedException(UnexpectedException value),
-    Result cannotSaveNullElements(CannotSaveNullElements value),
+    Result nullElement(NullElement value),
     Result elementNotFound(ElementNotFound value),
+    Result noElementsFor(NoElementsForCollection value),
     @required Result orElse(),
   });
 }
@@ -174,12 +185,14 @@ class _$UnexpectedException
   Result when<Result extends Object>({
     @required
         Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result cannotSaveNullElements(),
+    @required Result nullElement(),
     @required Result elementNotFound(),
+    @required Result noElementsFor(String collection),
   }) {
     assert(unexpectedException != null);
-    assert(cannotSaveNullElements != null);
+    assert(nullElement != null);
     assert(elementNotFound != null);
+    assert(noElementsFor != null);
     return unexpectedException(exception, stackTrace);
   }
 
@@ -187,8 +200,9 @@ class _$UnexpectedException
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result cannotSaveNullElements(),
+    Result nullElement(),
     Result elementNotFound(),
+    Result noElementsFor(String collection),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -202,12 +216,14 @@ class _$UnexpectedException
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result unexpectedException(UnexpectedException value),
-    @required Result cannotSaveNullElements(CannotSaveNullElements value),
+    @required Result nullElement(NullElement value),
     @required Result elementNotFound(ElementNotFound value),
+    @required Result noElementsFor(NoElementsForCollection value),
   }) {
     assert(unexpectedException != null);
-    assert(cannotSaveNullElements != null);
+    assert(nullElement != null);
     assert(elementNotFound != null);
+    assert(noElementsFor != null);
     return unexpectedException(this);
   }
 
@@ -215,8 +231,9 @@ class _$UnexpectedException
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result unexpectedException(UnexpectedException value),
-    Result cannotSaveNullElements(CannotSaveNullElements value),
+    Result nullElement(NullElement value),
     Result elementNotFound(ElementNotFound value),
+    Result noElementsFor(NoElementsForCollection value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -238,46 +255,43 @@ abstract class UnexpectedException implements DataSourceFailure {
 }
 
 /// @nodoc
-abstract class $CannotSaveNullElementsCopyWith<$Res> {
-  factory $CannotSaveNullElementsCopyWith(CannotSaveNullElements value,
-          $Res Function(CannotSaveNullElements) then) =
-      _$CannotSaveNullElementsCopyWithImpl<$Res>;
+abstract class $NullElementCopyWith<$Res> {
+  factory $NullElementCopyWith(
+          NullElement value, $Res Function(NullElement) then) =
+      _$NullElementCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$CannotSaveNullElementsCopyWithImpl<$Res>
+class _$NullElementCopyWithImpl<$Res>
     extends _$DataSourceFailureCopyWithImpl<$Res>
-    implements $CannotSaveNullElementsCopyWith<$Res> {
-  _$CannotSaveNullElementsCopyWithImpl(CannotSaveNullElements _value,
-      $Res Function(CannotSaveNullElements) _then)
-      : super(_value, (v) => _then(v as CannotSaveNullElements));
+    implements $NullElementCopyWith<$Res> {
+  _$NullElementCopyWithImpl(
+      NullElement _value, $Res Function(NullElement) _then)
+      : super(_value, (v) => _then(v as NullElement));
 
   @override
-  CannotSaveNullElements get _value => super._value as CannotSaveNullElements;
+  NullElement get _value => super._value as NullElement;
 }
 
 /// @nodoc
-class _$CannotSaveNullElements
-    with DiagnosticableTreeMixin
-    implements CannotSaveNullElements {
-  const _$CannotSaveNullElements();
+class _$NullElement with DiagnosticableTreeMixin implements NullElement {
+  const _$NullElement();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DataSourceFailure.cannotSaveNullElements()';
+    return 'DataSourceFailure.nullElement()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty(
-          'type', 'DataSourceFailure.cannotSaveNullElements'));
+      ..add(DiagnosticsProperty('type', 'DataSourceFailure.nullElement'));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CannotSaveNullElements);
+    return identical(this, other) || (other is NullElement);
   }
 
   @override
@@ -288,26 +302,29 @@ class _$CannotSaveNullElements
   Result when<Result extends Object>({
     @required
         Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result cannotSaveNullElements(),
+    @required Result nullElement(),
     @required Result elementNotFound(),
+    @required Result noElementsFor(String collection),
   }) {
     assert(unexpectedException != null);
-    assert(cannotSaveNullElements != null);
+    assert(nullElement != null);
     assert(elementNotFound != null);
-    return cannotSaveNullElements();
+    assert(noElementsFor != null);
+    return nullElement();
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result cannotSaveNullElements(),
+    Result nullElement(),
     Result elementNotFound(),
+    Result noElementsFor(String collection),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (cannotSaveNullElements != null) {
-      return cannotSaveNullElements();
+    if (nullElement != null) {
+      return nullElement();
     }
     return orElse();
   }
@@ -316,33 +333,36 @@ class _$CannotSaveNullElements
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result unexpectedException(UnexpectedException value),
-    @required Result cannotSaveNullElements(CannotSaveNullElements value),
+    @required Result nullElement(NullElement value),
     @required Result elementNotFound(ElementNotFound value),
+    @required Result noElementsFor(NoElementsForCollection value),
   }) {
     assert(unexpectedException != null);
-    assert(cannotSaveNullElements != null);
+    assert(nullElement != null);
     assert(elementNotFound != null);
-    return cannotSaveNullElements(this);
+    assert(noElementsFor != null);
+    return nullElement(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result unexpectedException(UnexpectedException value),
-    Result cannotSaveNullElements(CannotSaveNullElements value),
+    Result nullElement(NullElement value),
     Result elementNotFound(ElementNotFound value),
+    Result noElementsFor(NoElementsForCollection value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (cannotSaveNullElements != null) {
-      return cannotSaveNullElements(this);
+    if (nullElement != null) {
+      return nullElement(this);
     }
     return orElse();
   }
 }
 
-abstract class CannotSaveNullElements implements DataSourceFailure {
-  const factory CannotSaveNullElements() = _$CannotSaveNullElements;
+abstract class NullElement implements DataSourceFailure {
+  const factory NullElement() = _$NullElement;
 }
 
 /// @nodoc
@@ -395,12 +415,14 @@ class _$ElementNotFound
   Result when<Result extends Object>({
     @required
         Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result cannotSaveNullElements(),
+    @required Result nullElement(),
     @required Result elementNotFound(),
+    @required Result noElementsFor(String collection),
   }) {
     assert(unexpectedException != null);
-    assert(cannotSaveNullElements != null);
+    assert(nullElement != null);
     assert(elementNotFound != null);
+    assert(noElementsFor != null);
     return elementNotFound();
   }
 
@@ -408,8 +430,9 @@ class _$ElementNotFound
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result cannotSaveNullElements(),
+    Result nullElement(),
     Result elementNotFound(),
+    Result noElementsFor(String collection),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -423,12 +446,14 @@ class _$ElementNotFound
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result unexpectedException(UnexpectedException value),
-    @required Result cannotSaveNullElements(CannotSaveNullElements value),
+    @required Result nullElement(NullElement value),
     @required Result elementNotFound(ElementNotFound value),
+    @required Result noElementsFor(NoElementsForCollection value),
   }) {
     assert(unexpectedException != null);
-    assert(cannotSaveNullElements != null);
+    assert(nullElement != null);
     assert(elementNotFound != null);
+    assert(noElementsFor != null);
     return elementNotFound(this);
   }
 
@@ -436,8 +461,9 @@ class _$ElementNotFound
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result unexpectedException(UnexpectedException value),
-    Result cannotSaveNullElements(CannotSaveNullElements value),
+    Result nullElement(NullElement value),
     Result elementNotFound(ElementNotFound value),
+    Result noElementsFor(NoElementsForCollection value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -450,4 +476,147 @@ class _$ElementNotFound
 
 abstract class ElementNotFound implements DataSourceFailure {
   const factory ElementNotFound() = _$ElementNotFound;
+}
+
+/// @nodoc
+abstract class $NoElementsForCollectionCopyWith<$Res> {
+  factory $NoElementsForCollectionCopyWith(NoElementsForCollection value,
+          $Res Function(NoElementsForCollection) then) =
+      _$NoElementsForCollectionCopyWithImpl<$Res>;
+  $Res call({String collection});
+}
+
+/// @nodoc
+class _$NoElementsForCollectionCopyWithImpl<$Res>
+    extends _$DataSourceFailureCopyWithImpl<$Res>
+    implements $NoElementsForCollectionCopyWith<$Res> {
+  _$NoElementsForCollectionCopyWithImpl(NoElementsForCollection _value,
+      $Res Function(NoElementsForCollection) _then)
+      : super(_value, (v) => _then(v as NoElementsForCollection));
+
+  @override
+  NoElementsForCollection get _value => super._value as NoElementsForCollection;
+
+  @override
+  $Res call({
+    Object collection = freezed,
+  }) {
+    return _then(NoElementsForCollection(
+      collection:
+          collection == freezed ? _value.collection : collection as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$NoElementsForCollection
+    with DiagnosticableTreeMixin
+    implements NoElementsForCollection {
+  const _$NoElementsForCollection({@required this.collection})
+      : assert(collection != null);
+
+  @override
+  final String collection;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'DataSourceFailure.noElementsFor(collection: $collection)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DataSourceFailure.noElementsFor'))
+      ..add(DiagnosticsProperty('collection', collection));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is NoElementsForCollection &&
+            (identical(other.collection, collection) ||
+                const DeepCollectionEquality()
+                    .equals(other.collection, collection)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(collection);
+
+  @override
+  $NoElementsForCollectionCopyWith<NoElementsForCollection> get copyWith =>
+      _$NoElementsForCollectionCopyWithImpl<NoElementsForCollection>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required
+        Result unexpectedException(Exception exception, StackTrace stackTrace),
+    @required Result nullElement(),
+    @required Result elementNotFound(),
+    @required Result noElementsFor(String collection),
+  }) {
+    assert(unexpectedException != null);
+    assert(nullElement != null);
+    assert(elementNotFound != null);
+    assert(noElementsFor != null);
+    return noElementsFor(collection);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result unexpectedException(Exception exception, StackTrace stackTrace),
+    Result nullElement(),
+    Result elementNotFound(),
+    Result noElementsFor(String collection),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (noElementsFor != null) {
+      return noElementsFor(collection);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result unexpectedException(UnexpectedException value),
+    @required Result nullElement(NullElement value),
+    @required Result elementNotFound(ElementNotFound value),
+    @required Result noElementsFor(NoElementsForCollection value),
+  }) {
+    assert(unexpectedException != null);
+    assert(nullElement != null);
+    assert(elementNotFound != null);
+    assert(noElementsFor != null);
+    return noElementsFor(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result unexpectedException(UnexpectedException value),
+    Result nullElement(NullElement value),
+    Result elementNotFound(ElementNotFound value),
+    Result noElementsFor(NoElementsForCollection value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (noElementsFor != null) {
+      return noElementsFor(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NoElementsForCollection implements DataSourceFailure {
+  const factory NoElementsForCollection({@required String collection}) =
+      _$NoElementsForCollection;
+
+  String get collection;
+  $NoElementsForCollectionCopyWith<NoElementsForCollection> get copyWith;
 }

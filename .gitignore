@@ -253,4 +253,8 @@ google-services.json
 .flutter-plugins-dependencies
 generated_plugin_registrant.dart
 
+## For testing
+.test_coverage.dart
+coverage/
+
 @migalv
