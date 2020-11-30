@@ -63,6 +63,7 @@ void main() {
       expect: [
         const LoginState.signInInProgress(),
         isA<LoginSignInFailure>(),
+        const LoginState.initial(),
       ],
       verify: (loginBloc) => verify(mockAuthRepository.trySignIn(
               email: tInvalidEmail, password: tPassword))
@@ -83,6 +84,7 @@ void main() {
           const LoginEvent.forgotPasswordButtonPressed(email: tValidEmail)),
       expect: const [
         LoginState.recoverPasswordSuccess(),
+        LoginState.initial(),
       ],
       verify: (loginBloc) =>
           verify(mockAuthRepository.sendRecoverPasswordToEmail(
@@ -104,6 +106,7 @@ void main() {
           const LoginEvent.forgotPasswordButtonPressed(email: tValidEmail)),
       expect: [
         isA<LoginRecoverPasswordFailure>(),
+        const LoginState.initial(),
       ],
       verify: (loginBloc) =>
           verify(mockAuthRepository.sendRecoverPasswordToEmail(
