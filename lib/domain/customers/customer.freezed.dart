@@ -20,6 +20,7 @@ class _$CustomerTearOff {
       @required String lastName,
       @required PhoneNumber phoneNumber,
       DateTime birthDate,
+      String email,
       PersonalId personalId}) {
     return Person(
       id: id,
@@ -27,6 +28,7 @@ class _$CustomerTearOff {
       lastName: lastName,
       phoneNumber: phoneNumber,
       birthDate: birthDate,
+      email: email,
       personalId: personalId,
     );
   }
@@ -62,14 +64,26 @@ mixin _$Customer {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result person(String id, String name, String lastName,
-            PhoneNumber phoneNumber, DateTime birthDate, PersonalId personalId),
+        Result person(
+            String id,
+            String name,
+            String lastName,
+            PhoneNumber phoneNumber,
+            DateTime birthDate,
+            String email,
+            PersonalId personalId),
     @required Result company(String id, String name, PhoneNumber phoneNumber),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result person(String id, String name, String lastName,
-        PhoneNumber phoneNumber, DateTime birthDate, PersonalId personalId),
+    Result person(
+        String id,
+        String name,
+        String lastName,
+        PhoneNumber phoneNumber,
+        DateTime birthDate,
+        String email,
+        PersonalId personalId),
     Result company(String id, String name, PhoneNumber phoneNumber),
     @required Result orElse(),
   });
@@ -142,6 +156,7 @@ abstract class $PersonCopyWith<$Res> implements $CustomerCopyWith<$Res> {
       String lastName,
       PhoneNumber phoneNumber,
       DateTime birthDate,
+      String email,
       PersonalId personalId});
 
   @override
@@ -165,6 +180,7 @@ class _$PersonCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
     Object lastName = freezed,
     Object phoneNumber = freezed,
     Object birthDate = freezed,
+    Object email = freezed,
     Object personalId = freezed,
   }) {
     return _then(Person(
@@ -176,6 +192,7 @@ class _$PersonCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
           : phoneNumber as PhoneNumber,
       birthDate:
           birthDate == freezed ? _value.birthDate : birthDate as DateTime,
+      email: email == freezed ? _value.email : email as String,
       personalId:
           personalId == freezed ? _value.personalId : personalId as PersonalId,
     ));
@@ -200,6 +217,7 @@ class _$Person extends Person {
       @required this.lastName,
       @required this.phoneNumber,
       this.birthDate,
+      this.email,
       this.personalId})
       : assert(id != null),
         assert(name != null),
@@ -229,6 +247,10 @@ class _$Person extends Person {
   final DateTime birthDate;
   @override
 
+  /// The contact email of the person
+  final String email;
+  @override
+
   /// An unique identifier of the person. Commonly: DNI, NRC, NIF, etc.
   final PersonalId personalId;
 
@@ -249,6 +271,8 @@ class _$Person extends Person {
             (identical(other.birthDate, birthDate) ||
                 const DeepCollectionEquality()
                     .equals(other.birthDate, birthDate)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.personalId, personalId) ||
                 const DeepCollectionEquality()
                     .equals(other.personalId, personalId)));
@@ -262,6 +286,7 @@ class _$Person extends Person {
       const DeepCollectionEquality().hash(lastName) ^
       const DeepCollectionEquality().hash(phoneNumber) ^
       const DeepCollectionEquality().hash(birthDate) ^
+      const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(personalId);
 
   @override
@@ -272,26 +297,40 @@ class _$Person extends Person {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result person(String id, String name, String lastName,
-            PhoneNumber phoneNumber, DateTime birthDate, PersonalId personalId),
+        Result person(
+            String id,
+            String name,
+            String lastName,
+            PhoneNumber phoneNumber,
+            DateTime birthDate,
+            String email,
+            PersonalId personalId),
     @required Result company(String id, String name, PhoneNumber phoneNumber),
   }) {
     assert(person != null);
     assert(company != null);
-    return person(id, name, lastName, phoneNumber, birthDate, personalId);
+    return person(
+        id, name, lastName, phoneNumber, birthDate, email, personalId);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result person(String id, String name, String lastName,
-        PhoneNumber phoneNumber, DateTime birthDate, PersonalId personalId),
+    Result person(
+        String id,
+        String name,
+        String lastName,
+        PhoneNumber phoneNumber,
+        DateTime birthDate,
+        String email,
+        PersonalId personalId),
     Result company(String id, String name, PhoneNumber phoneNumber),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (person != null) {
-      return person(id, name, lastName, phoneNumber, birthDate, personalId);
+      return person(
+          id, name, lastName, phoneNumber, birthDate, email, personalId);
     }
     return orElse();
   }
@@ -330,6 +369,7 @@ abstract class Person extends Customer {
       @required String lastName,
       @required PhoneNumber phoneNumber,
       DateTime birthDate,
+      String email,
       PersonalId personalId}) = _$Person;
 
   @override
@@ -350,6 +390,9 @@ abstract class Person extends Customer {
 
   /// The birth date of the persona
   DateTime get birthDate;
+
+  /// The contact email of the person
+  String get email;
 
   /// An unique identifier of the person. Commonly: DNI, NRC, NIF, etc.
   PersonalId get personalId;
@@ -437,8 +480,14 @@ class _$Company extends Company {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result person(String id, String name, String lastName,
-            PhoneNumber phoneNumber, DateTime birthDate, PersonalId personalId),
+        Result person(
+            String id,
+            String name,
+            String lastName,
+            PhoneNumber phoneNumber,
+            DateTime birthDate,
+            String email,
+            PersonalId personalId),
     @required Result company(String id, String name, PhoneNumber phoneNumber),
   }) {
     assert(person != null);
@@ -449,8 +498,14 @@ class _$Company extends Company {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result person(String id, String name, String lastName,
-        PhoneNumber phoneNumber, DateTime birthDate, PersonalId personalId),
+    Result person(
+        String id,
+        String name,
+        String lastName,
+        PhoneNumber phoneNumber,
+        DateTime birthDate,
+        String email,
+        PersonalId personalId),
     Result company(String id, String name, PhoneNumber phoneNumber),
     @required Result orElse(),
   }) {

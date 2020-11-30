@@ -9,19 +9,29 @@ part 'customer_dto.g.dart';
 
 @freezed
 
-/// CustomerDTO used to store Customer Entities locally
+/// Data Transfer Object used to store Customer Entities in Data Sources
 abstract class CustomerDTO with _$CustomerDTO {
   const factory CustomerDTO._({
-    @required String id,
+    @JsonKey(ignore: true) String id,
     @required String name,
-    @required @PhoneNumberConverter() PhoneNumber phoneNumber,
+    @required @PhoneNumberConverter() PhoneNumber phone,
     @required CustomerType type,
-    String lastName,
-    int birthDate,
+    String surname,
+    int dateOfBirth,
+    String email,
     String nrc,
     String employeeNum,
     String farmerId,
     String nationalId,
+
+    /// Timestamp when this customer was created
+    int createdAt,
+
+    /// Unique id of the user that created this customer
+    String createdBy,
+
+    /// Timestamp when this customer was last updated (Locally or Remotely)
+    int updatedAt,
   }) = _CustomerDTO;
 
   /// Transforms a Customer Entity into a CustomerDTO
@@ -42,13 +52,14 @@ abstract class CustomerDTO with _$CustomerDTO {
         return CustomerDTO._(
           id: p.id,
           name: p.name,
-          lastName: p.lastName,
-          phoneNumber: p.phoneNumber,
-          birthDate: p.birthDate?.millisecondsSinceEpoch,
+          surname: p.lastName,
+          phone: p.phoneNumber,
+          dateOfBirth: p.birthDate?.millisecondsSinceEpoch,
           nrc: nrc,
           employeeNum: employeeNum,
           farmerId: farmerId,
           nationalId: nationalId,
+          email: p.email,
           type: CustomerType.values[p.type],
         );
       },
@@ -56,7 +67,7 @@ abstract class CustomerDTO with _$CustomerDTO {
         return CustomerDTO._(
           id: c.id,
           name: c.name,
-          phoneNumber: c.phoneNumber,
+          phone: c.phoneNumber,
           type: CustomerType.values[c.type],
         );
       },
@@ -66,6 +77,15 @@ abstract class CustomerDTO with _$CustomerDTO {
   /// Transforms a Customer Entity encoded using JSON into a CustomerDTO
   factory CustomerDTO.fromJson(Map<String, dynamic> json) =>
       _$CustomerDTOFromJson(json);
+
+  /// Transforms a locally saved customer into a CustomerDTO
+  factory CustomerDTO.fromLocalDataSource({
+    @required Map<String, dynamic> json,
+
+    /// The id of the Customer (usally as the key of the JSON Map)
+    @required String id,
+  }) =>
+      CustomerDTO.fromJson(json).copyWith(id: id);
 }
 
 extension CustomerDTOX on CustomerDTO {
@@ -85,8 +105,9 @@ extension CustomerDTOX on CustomerDTO {
     }
 
     DateTime brithDateFromMiliseconds;
-    if (birthDate != null) {
-      brithDateFromMiliseconds = DateTime.fromMillisecondsSinceEpoch(birthDate);
+    if (dateOfBirth != null) {
+      brithDateFromMiliseconds =
+          DateTime.fromMillisecondsSinceEpoch(dateOfBirth);
     }
 
     switch (type) {
@@ -94,8 +115,8 @@ extension CustomerDTOX on CustomerDTO {
         customer = Customer.person(
           id: id,
           name: name,
-          lastName: lastName,
-          phoneNumber: phoneNumber,
+          lastName: surname,
+          phoneNumber: phone,
           birthDate: brithDateFromMiliseconds,
           personalId: personalId,
         );
@@ -104,7 +125,7 @@ extension CustomerDTOX on CustomerDTO {
         customer = Customer.company(
           id: id,
           name: name,
-          phoneNumber: phoneNumber,
+          phoneNumber: phone,
         );
         break;
     }

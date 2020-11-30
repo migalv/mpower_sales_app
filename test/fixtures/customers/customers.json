@@ -1,66 +1,58 @@
 {
     "customers": {
         "0": {
-            "id": "0",
             "name": "Basic",
-            "last_name": "Customer",
-            "phone_number": "+34 123456789",
-            "type": "person"
+            "surname": "Customer",
+            "phone": "+34 123456789",
+            "type": 0
         },
         "1": {
-            "id": "1",
             "name": "Company 1",
-            "phone_number": "+34 123456789",
-            "type": "company"
+            "phone": "+34 123456789",
+            "type": 1
         },
         "2": {
-            "id": "2",
             "name": "Birthdate",
-            "last_name": "Customer",
-            "phone_number": "+34 123456789",
-            "birth_date": 1606311725000,
-            "type": "person"
+            "surname": "Customer",
+            "phone": "+34 123456789",
+            "date_of_birth": 1606311725000,
+            "type": 0
         },
         "3": {
-            "id": "3",
             "name": "NRC",
-            "last_name": "Customer",
-            "phone_number": "+34 123456789",
+            "surname": "Customer",
+            "phone": "+34 123456789",
             "nrc": "1234567/90",
-            "type": "person"
+            "type": 0
         },
         "4": {
-            "id": "4",
             "name": "EmployeeNum",
-            "last_name": "Customer",
-            "phone_number": "+34 123456789",
+            "surname": "Customer",
+            "phone": "+34 123456789",
             "employee_num": "1234567090",
-            "type": "person"
+            "type": 0
         },
         "5": {
-            "id": "5",
             "name": "FarmerId",
-            "last_name": "Customer",
-            "phone_number": "+34 123456789",
+            "surname": "Customer",
+            "phone": "+34 123456789",
             "farmer_id": "1234567090",
-            "type": "person"
+            "type": 0
         },
         "6": {
-            "id": "6",
             "name": "NationalId",
-            "last_name": "Customer",
-            "phone_number": "+34 123456789",
+            "surname": "Customer",
+            "phone": "+34 123456789",
             "national_id": "1234567090",
-            "type": "person"
+            "type": 0
         },
         "7": {
-            "id": "7",
             "name": "Complete",
-            "last_name": "Customer",
-            "phone_number": "+34 123456789",
-            "birth_date": 1606311725000,
+            "surname": "Customer",
+            "phone": "+34 123456789",
+            "date_of_birth": 1606311725000,
             "nrc": "1234567/90",
-            "type": "person"
+            "type": 0
         }
     }
 }

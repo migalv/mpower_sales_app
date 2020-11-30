@@ -179,10 +179,10 @@ Future<void> main() async {
       'should return all the elements from the DataSource',
       () async {
         // arrange
-        final allCustomers = jsonCustomers.values
-            .map((customerJson) =>
-                CustomerDTO.fromJson(customerJson as Map<String, dynamic>)
-                    .toDomain())
+        final allCustomers = jsonCustomers.entries
+            .map((entry) => CustomerDTO.fromLocalDataSource(
+                    json: entry.value as Map<String, dynamic>, id: entry.key)
+                .toDomain())
             .toList();
         // act
         final result = await localDataSource.getAll();

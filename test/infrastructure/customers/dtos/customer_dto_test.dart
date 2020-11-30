@@ -7,6 +7,13 @@ import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 import '../../../fixtures/fixture_reader.dart';
 
 void main() {
+  Map<String, dynamic> correctCustomersJson;
+  setUp(() {
+    correctCustomersJson =
+        jsonFixtureAsMap('customers/customers.json')["customers"]
+            as Map<String, dynamic>;
+  });
+
   group('fromDomain', () {
     test(
       'should transform the most basic person Customer Entity into a valid JSON when using toJson',
@@ -16,7 +23,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomersJson[index]));
+        expect(result, equals(correctCustomersJson.values.toList()[index]));
       },
     );
 
@@ -28,7 +35,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomersJson[index]));
+        expect(result, equals(correctCustomersJson.values.toList()[index]));
       },
     );
 
@@ -40,7 +47,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomersJson[index]));
+        expect(result, equals(correctCustomersJson.values.toList()[index]));
       },
     );
 
@@ -52,7 +59,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomersJson[index]));
+        expect(result, equals(correctCustomersJson.values.toList()[index]));
       },
     );
 
@@ -64,7 +71,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomersJson[index]));
+        expect(result, equals(correctCustomersJson.values.toList()[index]));
       },
     );
 
@@ -76,7 +83,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomersJson[index]));
+        expect(result, equals(correctCustomersJson.values.toList()[index]));
       },
     );
 
@@ -88,7 +95,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomersJson[index]));
+        expect(result, equals(correctCustomersJson.values.toList()[index]));
       },
     );
 
@@ -100,7 +107,7 @@ void main() {
         final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
         final result = customerDTO.toJson();
         // assert
-        expect(result, equals(correctCustomersJson[index]));
+        expect(result, equals(correctCustomersJson.values.toList()[index]));
       },
     );
 
@@ -112,7 +119,7 @@ void main() {
             correctCustomers.map((c) => CustomerDTO.fromDomain(c)).toList();
         final result = customerDTOs.map((dto) => dto.toJson()).toList();
         // assert
-        expect(result, equals(correctCustomersJson));
+        expect(result, equals(correctCustomersJson.values.toList()));
       },
     );
   });
@@ -129,7 +136,10 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.basicCustomer.index;
-        final customerDTO = CustomerDTO.fromJson(correctCustomersJson[index]);
+        final customerDTO = CustomerDTO.fromLocalDataSource(
+            json: correctCustomersJson.values.toList()[index]
+                as Map<String, dynamic>,
+            id: correctCustomersJson.keys.toList()[index]);
         final result = customerDTO.toDomain();
         // assert
         expect(result, equals(correctCustomers[index]));
@@ -141,7 +151,10 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.companyCustomer.index;
-        final customerDTO = CustomerDTO.fromJson(correctCustomersJson[index]);
+        final customerDTO = CustomerDTO.fromLocalDataSource(
+            json: correctCustomersJson.values.toList()[index]
+                as Map<String, dynamic>,
+            id: correctCustomersJson.keys.toList()[index]);
         final result = customerDTO.toDomain();
         // assert
         expect(result, equals(correctCustomers[index]));
@@ -153,7 +166,10 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.birthDateCustomer.index;
-        final customerDTO = CustomerDTO.fromJson(correctCustomersJson[index]);
+        final customerDTO = CustomerDTO.fromLocalDataSource(
+            json: correctCustomersJson.values.toList()[index]
+                as Map<String, dynamic>,
+            id: correctCustomersJson.keys.toList()[index]);
         final result = customerDTO.toDomain();
         // assert
         expect(result, equals(correctCustomers[index]));
@@ -165,7 +181,10 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.nrcCustomer.index;
-        final customerDTO = CustomerDTO.fromJson(correctCustomersJson[index]);
+        final customerDTO = CustomerDTO.fromLocalDataSource(
+            json: correctCustomersJson.values.toList()[index]
+                as Map<String, dynamic>,
+            id: correctCustomersJson.keys.toList()[index]);
         final result = customerDTO.toDomain();
         // assert
         expect(result, equals(correctCustomers[index]));
@@ -177,7 +196,10 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.employeeNumCustomer.index;
-        final customerDTO = CustomerDTO.fromJson(correctCustomersJson[index]);
+        final customerDTO = CustomerDTO.fromLocalDataSource(
+            json: correctCustomersJson.values.toList()[index]
+                as Map<String, dynamic>,
+            id: correctCustomersJson.keys.toList()[index]);
         final result = customerDTO.toDomain();
         // assert
         expect(result, equals(correctCustomers[index]));
@@ -189,7 +211,10 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.farmerIdCustomer.index;
-        final customerDTO = CustomerDTO.fromJson(correctCustomersJson[index]);
+        final customerDTO = CustomerDTO.fromLocalDataSource(
+            json: correctCustomersJson.values.toList()[index]
+                as Map<String, dynamic>,
+            id: correctCustomersJson.keys.toList()[index]);
         final result = customerDTO.toDomain();
         // assert
         expect(result, equals(correctCustomers[index]));
@@ -201,7 +226,10 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.nationalIdCustomer.index;
-        final customerDTO = CustomerDTO.fromJson(correctCustomersJson[index]);
+        final customerDTO = CustomerDTO.fromLocalDataSource(
+            json: correctCustomersJson.values.toList()[index]
+                as Map<String, dynamic>,
+            id: correctCustomersJson.keys.toList()[index]);
         final result = customerDTO.toDomain();
         // assert
         expect(result, equals(correctCustomers[index]));
@@ -213,7 +241,10 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.completeCustomer.index;
-        final customerDTO = CustomerDTO.fromJson(correctCustomersJson[index]);
+        final customerDTO = CustomerDTO.fromLocalDataSource(
+            json: correctCustomersJson.values.toList()[index]
+                as Map<String, dynamic>,
+            id: correctCustomersJson.keys.toList()[index]);
         final result = customerDTO.toDomain();
         // assert
         expect(result, equals(correctCustomers[index]));
@@ -224,8 +255,10 @@ void main() {
       'should transform a list of Customer DTOs into a valid Customer Entity list',
       () async {
         // act
-        final customerDTOs =
-            correctCustomersJson.map((c) => CustomerDTO.fromJson(c)).toList();
+        final customerDTOs = correctCustomersJson.entries
+            .map((e) => CustomerDTO.fromLocalDataSource(
+                json: e.value as Map<String, dynamic>, id: e.key))
+            .toList();
         final result = customerDTOs.map((dto) => dto.toDomain()).toList();
         // assert
         expect(result, equals(correctCustomers));
@@ -233,10 +266,6 @@ void main() {
     );
   });
 }
-
-List<Map<String, dynamic>> correctCustomersJson =
-    jsonFixtureAsList('customers/dtos/customers.json')
-        .cast<Map<String, dynamic>>();
 
 Customer basicCustomer = Customer.person(
   id: "0",

@@ -28,6 +28,9 @@ abstract class Customer implements _$Customer, IEntity {
     /// The birth date of the persona
     DateTime birthDate,
 
+    /// The contact email of the person
+    String email,
+
     /// An unique identifier of the person. Commonly: DNI, NRC, NIF, etc.
     PersonalId personalId,
   }) = Person;
@@ -57,8 +60,10 @@ abstract class Customer implements _$Customer, IEntity {
 /// Defines the customer type
 enum CustomerType {
   /// index = 0 -- It's a real person
+  @JsonValue(0)
   person,
 
   /// index = 1 -- It's a company/society
+  @JsonValue(1)
   company,
 }

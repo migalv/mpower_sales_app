@@ -29,9 +29,9 @@ class CustomerLocalDataSource implements IDataSource<Customer> {
     if (string != null) {
       json = jsonDecode(string) as Map<String, dynamic>;
 
-      final Set<CustomerDTO> customerDTOs = json.values
-          .map((customerJson) =>
-              CustomerDTO.fromJson(customerJson as Map<String, dynamic>))
+      final Set<CustomerDTO> customerDTOs = json.entries
+          .map((entry) => CustomerDTO.fromLocalDataSource(
+              json: entry.value as Map<String, dynamic>, id: entry.key))
           .toSet();
 
       customers = customerDTOs.map((dto) => dto.toDomain()).toSet();
@@ -70,7 +70,9 @@ class CustomerLocalDataSource implements IDataSource<Customer> {
           return const Left(failure);
         }
 
-        final customer = CustomerDTO.fromJson(customerJson).toDomain();
+        final customer =
+            CustomerDTO.fromLocalDataSource(json: customerJson, id: id)
+                .toDomain();
 
         _sharedPreferences.setString(key, jsonEncode(json));
 
@@ -154,7 +156,8 @@ class CustomerLocalDataSource implements IDataSource<Customer> {
           return const Left(failure);
         }
 
-        final CustomerDTO dto = CustomerDTO.fromJson(customerJson);
+        final CustomerDTO dto =
+            CustomerDTO.fromLocalDataSource(json: customerJson, id: id);
         final Customer customer = dto.toDomain();
 
         return Right(customer);
