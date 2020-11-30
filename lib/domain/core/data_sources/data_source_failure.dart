@@ -21,4 +21,8 @@ abstract class DataSourceFailure with _$DataSourceFailure {
   const factory DataSourceFailure.noElementsFor({
     @required String collection,
   }) = NoElementsForCollection;
+
+  const factory DataSourceFailure.serverError({
+    dynamic error,
+  }) = ServerError;
 }

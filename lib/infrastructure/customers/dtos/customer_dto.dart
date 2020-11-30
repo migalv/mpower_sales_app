@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/domain/customers/personal_id/personal_id.dart';
@@ -80,12 +81,16 @@ abstract class CustomerDTO with _$CustomerDTO {
 
   /// Transforms a locally saved customer into a CustomerDTO
   factory CustomerDTO.fromLocalDataSource({
-    @required Map<String, dynamic> json,
+    @required dynamic json,
 
     /// The id of the Customer (usally as the key of the JSON Map)
     @required String id,
   }) =>
-      CustomerDTO.fromJson(json).copyWith(id: id);
+      CustomerDTO.fromJson(json as Map<String, dynamic>).copyWith(id: id);
+
+  /// Transforms a Customer Document from Firestore to a CustomerDTO
+  factory CustomerDTO.fromFirestore(DocumentSnapshot doc) =>
+      CustomerDTO.fromJson(doc.data()).copyWith(id: doc.id);
 }
 
 extension CustomerDTOX on CustomerDTO {

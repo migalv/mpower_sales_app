@@ -38,6 +38,13 @@ class _$DataSourceFailureTearOff {
       collection: collection,
     );
   }
+
+// ignore: unused_element
+  ServerError serverError({dynamic error}) {
+    return ServerError(
+      error: error,
+    );
+  }
 }
 
 /// @nodoc
@@ -53,6 +60,7 @@ mixin _$DataSourceFailure {
     @required Result nullElement(),
     @required Result elementNotFound(),
     @required Result noElementsFor(String collection),
+    @required Result serverError(dynamic error),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
@@ -60,6 +68,7 @@ mixin _$DataSourceFailure {
     Result nullElement(),
     Result elementNotFound(),
     Result noElementsFor(String collection),
+    Result serverError(dynamic error),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -68,6 +77,7 @@ mixin _$DataSourceFailure {
     @required Result nullElement(NullElement value),
     @required Result elementNotFound(ElementNotFound value),
     @required Result noElementsFor(NoElementsForCollection value),
+    @required Result serverError(ServerError value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
@@ -75,6 +85,7 @@ mixin _$DataSourceFailure {
     Result nullElement(NullElement value),
     Result elementNotFound(ElementNotFound value),
     Result noElementsFor(NoElementsForCollection value),
+    Result serverError(ServerError value),
     @required Result orElse(),
   });
 }
@@ -188,11 +199,13 @@ class _$UnexpectedException
     @required Result nullElement(),
     @required Result elementNotFound(),
     @required Result noElementsFor(String collection),
+    @required Result serverError(dynamic error),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
+    assert(serverError != null);
     return unexpectedException(exception, stackTrace);
   }
 
@@ -203,6 +216,7 @@ class _$UnexpectedException
     Result nullElement(),
     Result elementNotFound(),
     Result noElementsFor(String collection),
+    Result serverError(dynamic error),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -219,11 +233,13 @@ class _$UnexpectedException
     @required Result nullElement(NullElement value),
     @required Result elementNotFound(ElementNotFound value),
     @required Result noElementsFor(NoElementsForCollection value),
+    @required Result serverError(ServerError value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
+    assert(serverError != null);
     return unexpectedException(this);
   }
 
@@ -234,6 +250,7 @@ class _$UnexpectedException
     Result nullElement(NullElement value),
     Result elementNotFound(ElementNotFound value),
     Result noElementsFor(NoElementsForCollection value),
+    Result serverError(ServerError value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -305,11 +322,13 @@ class _$NullElement with DiagnosticableTreeMixin implements NullElement {
     @required Result nullElement(),
     @required Result elementNotFound(),
     @required Result noElementsFor(String collection),
+    @required Result serverError(dynamic error),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
+    assert(serverError != null);
     return nullElement();
   }
 
@@ -320,6 +339,7 @@ class _$NullElement with DiagnosticableTreeMixin implements NullElement {
     Result nullElement(),
     Result elementNotFound(),
     Result noElementsFor(String collection),
+    Result serverError(dynamic error),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -336,11 +356,13 @@ class _$NullElement with DiagnosticableTreeMixin implements NullElement {
     @required Result nullElement(NullElement value),
     @required Result elementNotFound(ElementNotFound value),
     @required Result noElementsFor(NoElementsForCollection value),
+    @required Result serverError(ServerError value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
+    assert(serverError != null);
     return nullElement(this);
   }
 
@@ -351,6 +373,7 @@ class _$NullElement with DiagnosticableTreeMixin implements NullElement {
     Result nullElement(NullElement value),
     Result elementNotFound(ElementNotFound value),
     Result noElementsFor(NoElementsForCollection value),
+    Result serverError(ServerError value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -418,11 +441,13 @@ class _$ElementNotFound
     @required Result nullElement(),
     @required Result elementNotFound(),
     @required Result noElementsFor(String collection),
+    @required Result serverError(dynamic error),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
+    assert(serverError != null);
     return elementNotFound();
   }
 
@@ -433,6 +458,7 @@ class _$ElementNotFound
     Result nullElement(),
     Result elementNotFound(),
     Result noElementsFor(String collection),
+    Result serverError(dynamic error),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -449,11 +475,13 @@ class _$ElementNotFound
     @required Result nullElement(NullElement value),
     @required Result elementNotFound(ElementNotFound value),
     @required Result noElementsFor(NoElementsForCollection value),
+    @required Result serverError(ServerError value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
+    assert(serverError != null);
     return elementNotFound(this);
   }
 
@@ -464,6 +492,7 @@ class _$ElementNotFound
     Result nullElement(NullElement value),
     Result elementNotFound(ElementNotFound value),
     Result noElementsFor(NoElementsForCollection value),
+    Result serverError(ServerError value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -557,11 +586,13 @@ class _$NoElementsForCollection
     @required Result nullElement(),
     @required Result elementNotFound(),
     @required Result noElementsFor(String collection),
+    @required Result serverError(dynamic error),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
+    assert(serverError != null);
     return noElementsFor(collection);
   }
 
@@ -572,6 +603,7 @@ class _$NoElementsForCollection
     Result nullElement(),
     Result elementNotFound(),
     Result noElementsFor(String collection),
+    Result serverError(dynamic error),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -588,11 +620,13 @@ class _$NoElementsForCollection
     @required Result nullElement(NullElement value),
     @required Result elementNotFound(ElementNotFound value),
     @required Result noElementsFor(NoElementsForCollection value),
+    @required Result serverError(ServerError value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
+    assert(serverError != null);
     return noElementsFor(this);
   }
 
@@ -603,6 +637,7 @@ class _$NoElementsForCollection
     Result nullElement(NullElement value),
     Result elementNotFound(ElementNotFound value),
     Result noElementsFor(NoElementsForCollection value),
+    Result serverError(ServerError value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -619,4 +654,146 @@ abstract class NoElementsForCollection implements DataSourceFailure {
 
   String get collection;
   $NoElementsForCollectionCopyWith<NoElementsForCollection> get copyWith;
+}
+
+/// @nodoc
+abstract class $ServerErrorCopyWith<$Res> {
+  factory $ServerErrorCopyWith(
+          ServerError value, $Res Function(ServerError) then) =
+      _$ServerErrorCopyWithImpl<$Res>;
+  $Res call({dynamic error});
+}
+
+/// @nodoc
+class _$ServerErrorCopyWithImpl<$Res>
+    extends _$DataSourceFailureCopyWithImpl<$Res>
+    implements $ServerErrorCopyWith<$Res> {
+  _$ServerErrorCopyWithImpl(
+      ServerError _value, $Res Function(ServerError) _then)
+      : super(_value, (v) => _then(v as ServerError));
+
+  @override
+  ServerError get _value => super._value as ServerError;
+
+  @override
+  $Res call({
+    Object error = freezed,
+  }) {
+    return _then(ServerError(
+      error: error == freezed ? _value.error : error as dynamic,
+    ));
+  }
+}
+
+/// @nodoc
+class _$ServerError with DiagnosticableTreeMixin implements ServerError {
+  const _$ServerError({this.error});
+
+  @override
+  final dynamic error;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'DataSourceFailure.serverError(error: $error)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DataSourceFailure.serverError'))
+      ..add(DiagnosticsProperty('error', error));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ServerError &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+
+  @override
+  $ServerErrorCopyWith<ServerError> get copyWith =>
+      _$ServerErrorCopyWithImpl<ServerError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required
+        Result unexpectedException(Exception exception, StackTrace stackTrace),
+    @required Result nullElement(),
+    @required Result elementNotFound(),
+    @required Result noElementsFor(String collection),
+    @required Result serverError(dynamic error),
+  }) {
+    assert(unexpectedException != null);
+    assert(nullElement != null);
+    assert(elementNotFound != null);
+    assert(noElementsFor != null);
+    assert(serverError != null);
+    return serverError(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result unexpectedException(Exception exception, StackTrace stackTrace),
+    Result nullElement(),
+    Result elementNotFound(),
+    Result noElementsFor(String collection),
+    Result serverError(dynamic error),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (serverError != null) {
+      return serverError(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result unexpectedException(UnexpectedException value),
+    @required Result nullElement(NullElement value),
+    @required Result elementNotFound(ElementNotFound value),
+    @required Result noElementsFor(NoElementsForCollection value),
+    @required Result serverError(ServerError value),
+  }) {
+    assert(unexpectedException != null);
+    assert(nullElement != null);
+    assert(elementNotFound != null);
+    assert(noElementsFor != null);
+    assert(serverError != null);
+    return serverError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result unexpectedException(UnexpectedException value),
+    Result nullElement(NullElement value),
+    Result elementNotFound(ElementNotFound value),
+    Result noElementsFor(NoElementsForCollection value),
+    Result serverError(ServerError value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (serverError != null) {
+      return serverError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ServerError implements DataSourceFailure {
+  const factory ServerError({dynamic error}) = _$ServerError;
+
+  dynamic get error;
+  $ServerErrorCopyWith<ServerError> get copyWith;
 }
