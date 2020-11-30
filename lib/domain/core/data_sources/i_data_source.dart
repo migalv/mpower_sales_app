@@ -11,12 +11,4 @@ abstract class IDataSource<T> {
 
   /// Watches, using streams all the available elements
   Stream<List<T>> watchAll();
-
-  /// Saves a given element in the Data Source
-  Future<Either<DataSourceFailure, Unit>> save(T element);
-
-  /// Removes an element from the Data Source that matches the given id
-  ///
-  /// The element is then returned by the function
-  Future<Either<DataSourceFailure, T>> removeWithId(String id);
 }

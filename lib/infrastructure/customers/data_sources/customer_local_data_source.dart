@@ -4,12 +4,12 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart' hide id;
 import 'package:rxdart/rxdart.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
-import 'package:sales_app/domain/core/data_sources/i_data_source.dart';
+import 'package:sales_app/domain/core/data_sources/i_local_data_source.dart';
 import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CustomerLocalDataSource implements IDataSource<Customer> {
+class CustomerLocalDataSource implements ILocalDataSource<Customer> {
   final SharedPreferences _sharedPreferences;
 
   /// Stream updated everytime we save or remove a Customer from SharedPreferences
@@ -172,5 +172,20 @@ class CustomerLocalDataSource implements IDataSource<Customer> {
 
       return Left(failure);
     }
+  }
+
+  @override
+  Future<Either<DataSourceFailure, Unit>> clear() async {
+    try {
+      await _sharedPreferences.clear();
+      _streamController.add({});
+    } on Exception catch (e, s) {
+      final failure =
+          DataSourceFailure.unexpectedException(exception: e, stackTrace: s);
+
+      return Left(failure);
+    }
+
+    return const Right(unit);
   }
 }

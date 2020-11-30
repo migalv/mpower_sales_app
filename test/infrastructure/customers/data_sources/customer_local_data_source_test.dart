@@ -259,6 +259,25 @@ Future<void> main() async {
       },
     );
   });
+
+  group('clear', () {
+    test(
+      'should remove all entities saved in the SharedPreferences',
+      () async {
+        // act
+        final result = await localDataSource.clear();
+        expectLater(
+          localDataSource.watchAll(),
+          emits([]),
+        );
+        // assert
+        final savedCustomers = await localDataSource.getAll();
+        expect(result, right(unit));
+        expect(null, sharedPreferences.getString(CustomerLocalDataSource.key));
+        expect(savedCustomers.getOrElse(() => null), []);
+      },
+    );
+  });
 }
 
 Customer basicCustomer = Customer.person(
