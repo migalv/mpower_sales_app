@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:sales_app/domain/core/data_sources/i_data_source.dart';
@@ -6,21 +7,14 @@ import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/infrastructure/core/firestore_collection_keys.dart';
 import 'package:sales_app/infrastructure/core/firestore_helpers.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
+import 'package:rxdart/rxdart.dart';
 
 class CustomerRemoteDataSource implements IDataSource<Customer> {
   final FirebaseFirestore _firestore;
   final String key = FirestoreCollectionKeys.customers;
 
-  Stream<List<Customer>> _stream;
-
   /// Data source that uses Firestore to store Customers remotely
-  CustomerRemoteDataSource(this._firestore) {
-    _stream = _firestore.customersCollection.snapshots().map((snapshot) {
-      return snapshot.docs.map((doc) {
-        return CustomerDTO.fromFirestore(doc).toDomain();
-      }).toList();
-    });
-  }
+  CustomerRemoteDataSource(this._firestore);
 
   @override
   Future<Either<DataSourceFailure, List<Customer>>> getAll() async {
@@ -79,5 +73,19 @@ class CustomerRemoteDataSource implements IDataSource<Customer> {
   }
 
   @override
-  Stream<List<Customer>> watchAll() => _stream;
+  Stream<Either<DataSourceFailure, List<Customer>>> watchAll() async* {
+    yield* _firestore.customersCollection.snapshots().map((snapshot) {
+      return right<DataSourceFailure, List<Customer>>(snapshot.docs.map((doc) {
+        return CustomerDTO.fromFirestore(doc).toDomain();
+      }).toList());
+    }).onErrorReturnWith((e) {
+      if (e is PlatformException && e.message.contains('PERMISSIONS_DENIED')) {
+        const failure = DataSourceFailure.insufficientPermissions();
+        return left(failure);
+      }
+
+      final failure = DataSourceFailure.serverError(error: e);
+      return left(failure);
+    });
+  }
 }

@@ -45,8 +45,8 @@ class CustomerLocalDataSource implements ILocalDataSource<Customer> {
       Right(_stream.value.toList());
 
   @override
-  Stream<List<Customer>> watchAll() =>
-      _stream.map((customers) => customers.toList());
+  Stream<Either<DataSourceFailure, List<Customer>>> watchAll() =>
+      _stream.map((customers) => Right(customers.toList()));
 
   @override
   Future<Either<DataSourceFailure, Customer>> removeWithId(String id) async {

@@ -109,7 +109,7 @@ void main() {
         }
         // act
         expectLater(
-          remoteDataSource.watchAll(),
+          remoteDataSource.watchAll().map((e) => e.getOrElse(() => null)),
           emits(tCustomers),
         );
       },

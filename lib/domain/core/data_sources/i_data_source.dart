@@ -10,5 +10,5 @@ abstract class IDataSource<T> {
   Future<Either<DataSourceFailure, T>> getElementWithId(String id);
 
   /// Watches, using streams all the available elements
-  Stream<List<T>> watchAll();
+  Stream<Either<DataSourceFailure, List<T>>> watchAll();
 }

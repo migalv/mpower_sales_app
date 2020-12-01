@@ -215,7 +215,7 @@ Future<void> main() async {
             (await localDataSource.getAll()).getOrElse(() => null);
         // act
         expectLater(
-          localDataSource.watchAll(),
+          localDataSource.watchAll().map((e) => e.getOrElse(() => null)),
           emits(customers),
         );
       },
@@ -242,7 +242,7 @@ Future<void> main() async {
 
         // act
         expectLater(
-          localDataSource.watchAll(),
+          localDataSource.watchAll().map((e) => e.getOrElse(() => null)),
           emitsInOrder([
             customers1,
             customers1,
@@ -267,7 +267,7 @@ Future<void> main() async {
         // act
         final result = await localDataSource.clear();
         expectLater(
-          localDataSource.watchAll(),
+          localDataSource.watchAll().map((e) => e.getOrElse(() => null)),
           emits([]),
         );
         // assert
