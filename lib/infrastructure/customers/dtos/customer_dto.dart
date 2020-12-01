@@ -90,10 +90,9 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
 
   /// Transforms a locally saved customer into a CustomerDTO
   factory CustomerDTO.fromLocalDataSource({
-    @required dynamic json,
-
     /// The id of the Customer (usally as the key of the JSON Map)
     @required String id,
+    @required dynamic json,
   }) =>
       CustomerDTO.fromJson(json as Map<String, dynamic>).copyWith(id: id);
 

@@ -16,7 +16,7 @@ class CustomerRemoteDataSource implements IDataSource<CustomerDTO> {
   CustomerRemoteDataSource(this._firestore);
 
   @override
-  Future<Either<DataSourceFailure, List<CustomerDTO>>> getAll() async {
+  Future<Either<DataSourceFailure, Map<String, CustomerDTO>>> getAll() async {
     QuerySnapshot snapshot;
 
     try {
@@ -31,8 +31,9 @@ class CustomerRemoteDataSource implements IDataSource<CustomerDTO> {
       return const Left(failure);
     }
 
-    final List<CustomerDTO> customers =
-        snapshot.docs.map((doc) => CustomerDTO.fromFirestore(doc)).toList();
+    final Map<String, CustomerDTO> customers = {
+      for (var doc in snapshot.docs) doc.id: CustomerDTO.fromFirestore(doc)
+    };
 
     return Right(customers);
   }
@@ -71,12 +72,12 @@ class CustomerRemoteDataSource implements IDataSource<CustomerDTO> {
   }
 
   @override
-  Stream<Either<DataSourceFailure, List<CustomerDTO>>> watchAll() async* {
+  Stream<Either<DataSourceFailure, Map<String, CustomerDTO>>>
+      watchAll() async* {
     yield* _firestore.customersCollection.snapshots().map((snapshot) {
-      return right<DataSourceFailure, List<CustomerDTO>>(
-          snapshot.docs.map((doc) {
-        return CustomerDTO.fromFirestore(doc);
-      }).toList());
+      return right<DataSourceFailure, Map<String, CustomerDTO>>({
+        for (var doc in snapshot.docs) doc.id: CustomerDTO.fromFirestore(doc)
+      });
     }).onErrorReturnWith((e) {
       if (e is PlatformException && e.message.contains('PERMISSIONS_DENIED')) {
         const failure = DataSourceFailure.insufficientPermissions();

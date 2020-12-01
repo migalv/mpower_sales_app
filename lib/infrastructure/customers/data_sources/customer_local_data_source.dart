@@ -12,8 +12,8 @@ class CustomerLocalDataSource implements ILocalDataSource<CustomerDTO> {
   final SharedPreferences _sharedPreferences;
 
   /// Stream updated everytime we save or remove a Customer from SharedPreferences
-  ValueStream<Set<CustomerDTO>> get _stream => _streamController.stream;
-  final _streamController = BehaviorSubject<Set<CustomerDTO>>();
+  ValueStream<Map<String, CustomerDTO>> get _stream => _streamController.stream;
+  final _streamController = BehaviorSubject<Map<String, CustomerDTO>>();
 
   /// The key used for SharedPreferences to store the customers
   static const String key = "customers";
@@ -23,27 +23,34 @@ class CustomerLocalDataSource implements ILocalDataSource<CustomerDTO> {
     final String string = _sharedPreferences.getString(key);
 
     Map<String, dynamic> json = {};
-    Set<CustomerDTO> customerDTOs = {};
+    Map<String, CustomerDTO> customerDTOs = {};
 
     if (string != null) {
       json = jsonDecode(string) as Map<String, dynamic>;
 
-      customerDTOs = json.entries
-          .map((entry) => CustomerDTO.fromLocalDataSource(
-              json: entry.value as Map<String, dynamic>, id: entry.key))
-          .toSet();
+      customerDTOs = json.map(
+        (id, json) => MapEntry(
+          id,
+          CustomerDTO.fromLocalDataSource(
+              id: id, json: json as Map<String, dynamic>),
+        ),
+      );
     }
 
     _streamController.add(customerDTOs);
   }
 
   @override
-  Future<Either<DataSourceFailure, List<CustomerDTO>>> getAll() async =>
-      Right(_stream.value.toList());
+  Future<Either<DataSourceFailure, Map<String, CustomerDTO>>> getAll() async =>
+      Right(_stream.value);
 
   @override
-  Stream<Either<DataSourceFailure, List<CustomerDTO>>> watchAll() =>
-      _stream.map((customers) => Right(customers.toList()));
+  Stream<Either<DataSourceFailure, Map<String, CustomerDTO>>> watchAll() =>
+      _stream.map((customers) {
+        return right<DataSourceFailure, Map<String, CustomerDTO>>(customers);
+      }).onErrorReturnWith((e) {
+        return left(DataSourceFailure.serverError(error: e));
+      });
 
   @override
   Future<Either<DataSourceFailure, CustomerDTO>> removeWithId(String id) async {
@@ -73,8 +80,8 @@ class CustomerLocalDataSource implements ILocalDataSource<CustomerDTO> {
         _sharedPreferences.setString(key, jsonEncode(json));
 
         // Update the stream
-        final Set<CustomerDTO> customerDTOs = _stream.value;
-        customerDTOs.removeWhere((c) => c.id == id);
+        final Map<String, CustomerDTO> customerDTOs = _stream.value;
+        customerDTOs.remove(id);
         _streamController.add(customerDTOs);
 
         return Right(customerDTO);
@@ -111,9 +118,8 @@ class CustomerLocalDataSource implements ILocalDataSource<CustomerDTO> {
       _sharedPreferences.setString(key, newString);
 
       // Update the stream
-      final Set<CustomerDTO> customerDTOs = _stream.value;
-      customerDTOs.removeWhere((c) => c.id == dto.id);
-      customerDTOs.add(dto);
+      final Map<String, CustomerDTO> customerDTOs = _stream.value;
+      customerDTOs[dto.id] = dto;
 
       _streamController.add(customerDTOs);
     } on Exception catch (e, s) {

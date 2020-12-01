@@ -15,15 +15,14 @@ void main() {
   final Map<String, dynamic> customersJson =
       jsonFixtureAsMap('customers/customers.json')["customers"]
           as Map<String, dynamic>;
-  List<CustomerDTO> tCustomerDTOs;
+  Map<String, CustomerDTO> tCustomerDTOs;
 
   setUp(() {
     mockFirestore = MockFirestoreInstance();
     remoteDataSource = CustomerRemoteDataSource(mockFirestore);
 
-    tCustomerDTOs = customersJson.entries
-        .map((e) => CustomerDTO.fromLocalDataSource(json: e.value, id: e.key))
-        .toList();
+    tCustomerDTOs = customersJson.map((id, json) =>
+        MapEntry(id, CustomerDTO.fromLocalDataSource(json: json, id: id)));
   });
 
   group('getAll', () {
@@ -31,10 +30,8 @@ void main() {
       'should return all available customers for the user',
       () async {
         // arrange
-        for (final customer in tCustomerDTOs) {
-          await mockFirestore.customersCollection
-              .doc(customer.id)
-              .set(customer.toJson());
+        for (final dto in tCustomerDTOs.values) {
+          await mockFirestore.customersCollection.doc(dto.id).set(dto.toJson());
         }
         // act
         final result = await remoteDataSource.getAll();
@@ -49,7 +46,7 @@ void main() {
         // act
         final result = await remoteDataSource.getAll();
         // assert
-        expect(result.getOrElse(() => null), equals([]));
+        expect(result.getOrElse(() => null), equals({}));
       },
     );
   });
@@ -59,11 +56,9 @@ void main() {
       'should return a Customer with the desired id',
       () async {
         // arrange
-        final expectedCustomer = tCustomerDTOs[0];
-        for (final customer in tCustomerDTOs) {
-          await mockFirestore.customersCollection
-              .doc(customer.id)
-              .set(customer.toJson());
+        final expectedCustomer = tCustomerDTOs.values.first;
+        for (final dto in tCustomerDTOs.values) {
+          await mockFirestore.customersCollection.doc(dto.id).set(dto.toJson());
         }
         // act
         final result =
@@ -77,8 +72,8 @@ void main() {
       'should return ElementNotFound Failure when getting an unsaved customer',
       () async {
         // act
-        final result =
-            await remoteDataSource.getElementWithId(tCustomerDTOs[0].id);
+        final result = await remoteDataSource
+            .getElementWithId(tCustomerDTOs.values.first.id);
         // assert
         expect(result, left(const DataSourceFailure.elementNotFound()));
       },
@@ -100,10 +95,8 @@ void main() {
       'should emit Customer Entities available from Firestore',
       () async {
         // arrange
-        for (final customer in tCustomerDTOs) {
-          await mockFirestore.customersCollection
-              .doc(customer.id)
-              .set(customer.toJson());
+        for (final dto in tCustomerDTOs.values) {
+          await mockFirestore.customersCollection.doc(dto.id).set(dto.toJson());
         }
         // act
         expectLater(
