@@ -4,6 +4,7 @@ import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/domain/customers/personal_id/personal_id.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number_converter.dart';
+import 'package:sales_app/domain/i_entity.dart';
 
 part 'customer_dto.freezed.dart';
 part 'customer_dto.g.dart';
@@ -11,8 +12,10 @@ part 'customer_dto.g.dart';
 @freezed
 
 /// Data Transfer Object used to store Customer Entities in Data Sources
-abstract class CustomerDTO with _$CustomerDTO {
-  const factory CustomerDTO._({
+abstract class CustomerDTO implements _$CustomerDTO, IEntity {
+  const CustomerDTO._();
+
+  const factory CustomerDTO._private({
     @JsonKey(ignore: true) String id,
     @required String name,
     @required @PhoneNumberConverter() PhoneNumber phone,
@@ -50,7 +53,7 @@ abstract class CustomerDTO with _$CustomerDTO {
           );
         }
 
-        return CustomerDTO._(
+        return CustomerDTO._private(
           id: p.id,
           name: p.name,
           surname: p.lastName,
@@ -65,7 +68,7 @@ abstract class CustomerDTO with _$CustomerDTO {
         );
       },
       company: (c) {
-        return CustomerDTO._(
+        return CustomerDTO._private(
           id: c.id,
           name: c.name,
           phone: c.phoneNumber,
@@ -74,6 +77,12 @@ abstract class CustomerDTO with _$CustomerDTO {
       },
     );
   }
+
+  @override
+  List<Object> get props => [id];
+
+  @override
+  bool get stringify => false;
 
   /// Transforms a Customer Entity encoded using JSON into a CustomerDTO
   factory CustomerDTO.fromJson(Map<String, dynamic> json) =>

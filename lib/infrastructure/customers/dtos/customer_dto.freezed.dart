@@ -17,7 +17,7 @@ class _$CustomerDTOTearOff {
   const _$CustomerDTOTearOff();
 
 // ignore: unused_element
-  _CustomerDTO _(
+  _CustomerDTO _private(
       {@JsonKey(ignore: true) String id,
       @required String name,
       @required @PhoneNumberConverter() PhoneNumber phone,
@@ -249,7 +249,7 @@ class __$CustomerDTOCopyWithImpl<$Res> extends _$CustomerDTOCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_CustomerDTO implements _CustomerDTO {
+class _$_CustomerDTO extends _CustomerDTO {
   const _$_CustomerDTO(
       {@JsonKey(ignore: true) this.id,
       @required this.name,
@@ -267,7 +267,8 @@ class _$_CustomerDTO implements _CustomerDTO {
       this.updatedAt})
       : assert(name != null),
         assert(phone != null),
-        assert(type != null);
+        assert(type != null),
+        super._();
 
   factory _$_CustomerDTO.fromJson(Map<String, dynamic> json) =>
       _$_$_CustomerDTOFromJson(json);
@@ -308,11 +309,6 @@ class _$_CustomerDTO implements _CustomerDTO {
 
   /// Timestamp when this customer was last updated (Locally or Remotely)
   final int updatedAt;
-
-  @override
-  String toString() {
-    return 'CustomerDTO._(id: $id, name: $name, phone: $phone, type: $type, surname: $surname, dateOfBirth: $dateOfBirth, email: $email, nrc: $nrc, employeeNum: $employeeNum, farmerId: $farmerId, nationalId: $nationalId, createdAt: $createdAt, createdBy: $createdBy, updatedAt: $updatedAt)';
-  }
 
   @override
   bool operator ==(dynamic other) {
@@ -384,7 +380,8 @@ class _$_CustomerDTO implements _CustomerDTO {
   }
 }
 
-abstract class _CustomerDTO implements CustomerDTO {
+abstract class _CustomerDTO extends CustomerDTO {
+  const _CustomerDTO._() : super._();
   const factory _CustomerDTO(
       {@JsonKey(ignore: true) String id,
       @required String name,

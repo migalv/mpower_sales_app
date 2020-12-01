@@ -5,16 +5,15 @@ import 'package:dartz/dartz.dart' hide id;
 import 'package:rxdart/rxdart.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:sales_app/domain/core/data_sources/i_local_data_source.dart';
-import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CustomerLocalDataSource implements ILocalDataSource<Customer> {
+class CustomerLocalDataSource implements ILocalDataSource<CustomerDTO> {
   final SharedPreferences _sharedPreferences;
 
   /// Stream updated everytime we save or remove a Customer from SharedPreferences
-  ValueStream<Set<Customer>> get _stream => _streamController.stream;
-  final _streamController = BehaviorSubject<Set<Customer>>();
+  ValueStream<Set<CustomerDTO>> get _stream => _streamController.stream;
+  final _streamController = BehaviorSubject<Set<CustomerDTO>>();
 
   /// The key used for SharedPreferences to store the customers
   static const String key = "customers";
@@ -24,32 +23,30 @@ class CustomerLocalDataSource implements ILocalDataSource<Customer> {
     final String string = _sharedPreferences.getString(key);
 
     Map<String, dynamic> json = {};
-    Set<Customer> customers = {};
+    Set<CustomerDTO> customerDTOs = {};
 
     if (string != null) {
       json = jsonDecode(string) as Map<String, dynamic>;
 
-      final Set<CustomerDTO> customerDTOs = json.entries
+      customerDTOs = json.entries
           .map((entry) => CustomerDTO.fromLocalDataSource(
               json: entry.value as Map<String, dynamic>, id: entry.key))
           .toSet();
-
-      customers = customerDTOs.map((dto) => dto.toDomain()).toSet();
     }
 
-    _streamController.add(customers);
+    _streamController.add(customerDTOs);
   }
 
   @override
-  Future<Either<DataSourceFailure, List<Customer>>> getAll() async =>
+  Future<Either<DataSourceFailure, List<CustomerDTO>>> getAll() async =>
       Right(_stream.value.toList());
 
   @override
-  Stream<Either<DataSourceFailure, List<Customer>>> watchAll() =>
+  Stream<Either<DataSourceFailure, List<CustomerDTO>>> watchAll() =>
       _stream.map((customers) => Right(customers.toList()));
 
   @override
-  Future<Either<DataSourceFailure, Customer>> removeWithId(String id) async {
+  Future<Either<DataSourceFailure, CustomerDTO>> removeWithId(String id) async {
     if (id == null) {
       const failure = DataSourceFailure.nullElement();
 
@@ -70,18 +67,17 @@ class CustomerLocalDataSource implements ILocalDataSource<Customer> {
           return const Left(failure);
         }
 
-        final customer =
-            CustomerDTO.fromLocalDataSource(json: customerJson, id: id)
-                .toDomain();
+        final customerDTO =
+            CustomerDTO.fromLocalDataSource(json: customerJson, id: id);
 
         _sharedPreferences.setString(key, jsonEncode(json));
 
         // Update the stream
-        final Set<Customer> customers = _stream.value;
-        customers.removeWhere((c) => c.id == id);
-        _streamController.add(customers);
+        final Set<CustomerDTO> customerDTOs = _stream.value;
+        customerDTOs.removeWhere((c) => c.id == id);
+        _streamController.add(customerDTOs);
 
-        return Right(customer);
+        return Right(customerDTO);
       } else {
         const failure = DataSourceFailure.noElementsFor(collection: key);
 
@@ -96,8 +92,8 @@ class CustomerLocalDataSource implements ILocalDataSource<Customer> {
   }
 
   @override
-  Future<Either<DataSourceFailure, Unit>> save(Customer element) async {
-    if (element == null) {
+  Future<Either<DataSourceFailure, Unit>> save(CustomerDTO dto) async {
+    if (dto == null) {
       const failure = DataSourceFailure.nullElement();
       return const Left(failure);
     }
@@ -108,20 +104,18 @@ class CustomerLocalDataSource implements ILocalDataSource<Customer> {
 
       if (string != null) json = jsonDecode(string) as Map<String, dynamic>;
 
-      final CustomerDTO dto = CustomerDTO.fromDomain(element);
-      json[element.id] = dto.toJson();
+      json[dto.id] = dto.toJson();
 
       final String newString = jsonEncode(json);
 
       _sharedPreferences.setString(key, newString);
 
       // Update the stream
-      final addedCustomer = dto.toDomain();
-      final Set<Customer> customers = _stream.value;
-      customers.removeWhere((c) => c.id == addedCustomer.id);
-      customers.add(addedCustomer);
+      final Set<CustomerDTO> customerDTOs = _stream.value;
+      customerDTOs.removeWhere((c) => c.id == dto.id);
+      customerDTOs.add(dto);
 
-      _streamController.add(customers);
+      _streamController.add(customerDTOs);
     } on Exception catch (e, s) {
       final failure =
           DataSourceFailure.unexpectedException(exception: e, stackTrace: s);
@@ -133,7 +127,7 @@ class CustomerLocalDataSource implements ILocalDataSource<Customer> {
   }
 
   @override
-  Future<Either<DataSourceFailure, Customer>> getElementWithId(
+  Future<Either<DataSourceFailure, CustomerDTO>> getElementWithId(
     String id,
   ) async {
     if (id == null) {
@@ -158,9 +152,8 @@ class CustomerLocalDataSource implements ILocalDataSource<Customer> {
 
         final CustomerDTO dto =
             CustomerDTO.fromLocalDataSource(json: customerJson, id: id);
-        final Customer customer = dto.toDomain();
 
-        return Right(customer);
+        return Right(dto);
       } else {
         const failure = DataSourceFailure.noElementsFor(collection: key);
 

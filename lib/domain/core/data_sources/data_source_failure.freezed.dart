@@ -45,6 +45,11 @@ class _$DataSourceFailureTearOff {
       error: error,
     );
   }
+
+// ignore: unused_element
+  InsufficientPermissions insufficientPermissions() {
+    return const InsufficientPermissions();
+  }
 }
 
 /// @nodoc
@@ -61,6 +66,7 @@ mixin _$DataSourceFailure {
     @required Result elementNotFound(),
     @required Result noElementsFor(String collection),
     @required Result serverError(dynamic error),
+    @required Result insufficientPermissions(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
@@ -69,6 +75,7 @@ mixin _$DataSourceFailure {
     Result elementNotFound(),
     Result noElementsFor(String collection),
     Result serverError(dynamic error),
+    Result insufficientPermissions(),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -78,6 +85,7 @@ mixin _$DataSourceFailure {
     @required Result elementNotFound(ElementNotFound value),
     @required Result noElementsFor(NoElementsForCollection value),
     @required Result serverError(ServerError value),
+    @required Result insufficientPermissions(InsufficientPermissions value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
@@ -86,6 +94,7 @@ mixin _$DataSourceFailure {
     Result elementNotFound(ElementNotFound value),
     Result noElementsFor(NoElementsForCollection value),
     Result serverError(ServerError value),
+    Result insufficientPermissions(InsufficientPermissions value),
     @required Result orElse(),
   });
 }
@@ -200,12 +209,14 @@ class _$UnexpectedException
     @required Result elementNotFound(),
     @required Result noElementsFor(String collection),
     @required Result serverError(dynamic error),
+    @required Result insufficientPermissions(),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
     assert(serverError != null);
+    assert(insufficientPermissions != null);
     return unexpectedException(exception, stackTrace);
   }
 
@@ -217,6 +228,7 @@ class _$UnexpectedException
     Result elementNotFound(),
     Result noElementsFor(String collection),
     Result serverError(dynamic error),
+    Result insufficientPermissions(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -234,12 +246,14 @@ class _$UnexpectedException
     @required Result elementNotFound(ElementNotFound value),
     @required Result noElementsFor(NoElementsForCollection value),
     @required Result serverError(ServerError value),
+    @required Result insufficientPermissions(InsufficientPermissions value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
     assert(serverError != null);
+    assert(insufficientPermissions != null);
     return unexpectedException(this);
   }
 
@@ -251,6 +265,7 @@ class _$UnexpectedException
     Result elementNotFound(ElementNotFound value),
     Result noElementsFor(NoElementsForCollection value),
     Result serverError(ServerError value),
+    Result insufficientPermissions(InsufficientPermissions value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -323,12 +338,14 @@ class _$NullElement with DiagnosticableTreeMixin implements NullElement {
     @required Result elementNotFound(),
     @required Result noElementsFor(String collection),
     @required Result serverError(dynamic error),
+    @required Result insufficientPermissions(),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
     assert(serverError != null);
+    assert(insufficientPermissions != null);
     return nullElement();
   }
 
@@ -340,6 +357,7 @@ class _$NullElement with DiagnosticableTreeMixin implements NullElement {
     Result elementNotFound(),
     Result noElementsFor(String collection),
     Result serverError(dynamic error),
+    Result insufficientPermissions(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -357,12 +375,14 @@ class _$NullElement with DiagnosticableTreeMixin implements NullElement {
     @required Result elementNotFound(ElementNotFound value),
     @required Result noElementsFor(NoElementsForCollection value),
     @required Result serverError(ServerError value),
+    @required Result insufficientPermissions(InsufficientPermissions value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
     assert(serverError != null);
+    assert(insufficientPermissions != null);
     return nullElement(this);
   }
 
@@ -374,6 +394,7 @@ class _$NullElement with DiagnosticableTreeMixin implements NullElement {
     Result elementNotFound(ElementNotFound value),
     Result noElementsFor(NoElementsForCollection value),
     Result serverError(ServerError value),
+    Result insufficientPermissions(InsufficientPermissions value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -442,12 +463,14 @@ class _$ElementNotFound
     @required Result elementNotFound(),
     @required Result noElementsFor(String collection),
     @required Result serverError(dynamic error),
+    @required Result insufficientPermissions(),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
     assert(serverError != null);
+    assert(insufficientPermissions != null);
     return elementNotFound();
   }
 
@@ -459,6 +482,7 @@ class _$ElementNotFound
     Result elementNotFound(),
     Result noElementsFor(String collection),
     Result serverError(dynamic error),
+    Result insufficientPermissions(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -476,12 +500,14 @@ class _$ElementNotFound
     @required Result elementNotFound(ElementNotFound value),
     @required Result noElementsFor(NoElementsForCollection value),
     @required Result serverError(ServerError value),
+    @required Result insufficientPermissions(InsufficientPermissions value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
     assert(serverError != null);
+    assert(insufficientPermissions != null);
     return elementNotFound(this);
   }
 
@@ -493,6 +519,7 @@ class _$ElementNotFound
     Result elementNotFound(ElementNotFound value),
     Result noElementsFor(NoElementsForCollection value),
     Result serverError(ServerError value),
+    Result insufficientPermissions(InsufficientPermissions value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -587,12 +614,14 @@ class _$NoElementsForCollection
     @required Result elementNotFound(),
     @required Result noElementsFor(String collection),
     @required Result serverError(dynamic error),
+    @required Result insufficientPermissions(),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
     assert(serverError != null);
+    assert(insufficientPermissions != null);
     return noElementsFor(collection);
   }
 
@@ -604,6 +633,7 @@ class _$NoElementsForCollection
     Result elementNotFound(),
     Result noElementsFor(String collection),
     Result serverError(dynamic error),
+    Result insufficientPermissions(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -621,12 +651,14 @@ class _$NoElementsForCollection
     @required Result elementNotFound(ElementNotFound value),
     @required Result noElementsFor(NoElementsForCollection value),
     @required Result serverError(ServerError value),
+    @required Result insufficientPermissions(InsufficientPermissions value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
     assert(serverError != null);
+    assert(insufficientPermissions != null);
     return noElementsFor(this);
   }
 
@@ -638,6 +670,7 @@ class _$NoElementsForCollection
     Result elementNotFound(ElementNotFound value),
     Result noElementsFor(NoElementsForCollection value),
     Result serverError(ServerError value),
+    Result insufficientPermissions(InsufficientPermissions value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -730,12 +763,14 @@ class _$ServerError with DiagnosticableTreeMixin implements ServerError {
     @required Result elementNotFound(),
     @required Result noElementsFor(String collection),
     @required Result serverError(dynamic error),
+    @required Result insufficientPermissions(),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
     assert(serverError != null);
+    assert(insufficientPermissions != null);
     return serverError(error);
   }
 
@@ -747,6 +782,7 @@ class _$ServerError with DiagnosticableTreeMixin implements ServerError {
     Result elementNotFound(),
     Result noElementsFor(String collection),
     Result serverError(dynamic error),
+    Result insufficientPermissions(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -764,12 +800,14 @@ class _$ServerError with DiagnosticableTreeMixin implements ServerError {
     @required Result elementNotFound(ElementNotFound value),
     @required Result noElementsFor(NoElementsForCollection value),
     @required Result serverError(ServerError value),
+    @required Result insufficientPermissions(InsufficientPermissions value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
     assert(elementNotFound != null);
     assert(noElementsFor != null);
     assert(serverError != null);
+    assert(insufficientPermissions != null);
     return serverError(this);
   }
 
@@ -781,6 +819,7 @@ class _$ServerError with DiagnosticableTreeMixin implements ServerError {
     Result elementNotFound(ElementNotFound value),
     Result noElementsFor(NoElementsForCollection value),
     Result serverError(ServerError value),
+    Result insufficientPermissions(InsufficientPermissions value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -796,4 +835,130 @@ abstract class ServerError implements DataSourceFailure {
 
   dynamic get error;
   $ServerErrorCopyWith<ServerError> get copyWith;
+}
+
+/// @nodoc
+abstract class $InsufficientPermissionsCopyWith<$Res> {
+  factory $InsufficientPermissionsCopyWith(InsufficientPermissions value,
+          $Res Function(InsufficientPermissions) then) =
+      _$InsufficientPermissionsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InsufficientPermissionsCopyWithImpl<$Res>
+    extends _$DataSourceFailureCopyWithImpl<$Res>
+    implements $InsufficientPermissionsCopyWith<$Res> {
+  _$InsufficientPermissionsCopyWithImpl(InsufficientPermissions _value,
+      $Res Function(InsufficientPermissions) _then)
+      : super(_value, (v) => _then(v as InsufficientPermissions));
+
+  @override
+  InsufficientPermissions get _value => super._value as InsufficientPermissions;
+}
+
+/// @nodoc
+class _$InsufficientPermissions
+    with DiagnosticableTreeMixin
+    implements InsufficientPermissions {
+  const _$InsufficientPermissions();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'DataSourceFailure.insufficientPermissions()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'DataSourceFailure.insufficientPermissions'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is InsufficientPermissions);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required
+        Result unexpectedException(Exception exception, StackTrace stackTrace),
+    @required Result nullElement(),
+    @required Result elementNotFound(),
+    @required Result noElementsFor(String collection),
+    @required Result serverError(dynamic error),
+    @required Result insufficientPermissions(),
+  }) {
+    assert(unexpectedException != null);
+    assert(nullElement != null);
+    assert(elementNotFound != null);
+    assert(noElementsFor != null);
+    assert(serverError != null);
+    assert(insufficientPermissions != null);
+    return insufficientPermissions();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result unexpectedException(Exception exception, StackTrace stackTrace),
+    Result nullElement(),
+    Result elementNotFound(),
+    Result noElementsFor(String collection),
+    Result serverError(dynamic error),
+    Result insufficientPermissions(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (insufficientPermissions != null) {
+      return insufficientPermissions();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result unexpectedException(UnexpectedException value),
+    @required Result nullElement(NullElement value),
+    @required Result elementNotFound(ElementNotFound value),
+    @required Result noElementsFor(NoElementsForCollection value),
+    @required Result serverError(ServerError value),
+    @required Result insufficientPermissions(InsufficientPermissions value),
+  }) {
+    assert(unexpectedException != null);
+    assert(nullElement != null);
+    assert(elementNotFound != null);
+    assert(noElementsFor != null);
+    assert(serverError != null);
+    assert(insufficientPermissions != null);
+    return insufficientPermissions(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result unexpectedException(UnexpectedException value),
+    Result nullElement(NullElement value),
+    Result elementNotFound(ElementNotFound value),
+    Result noElementsFor(NoElementsForCollection value),
+    Result serverError(ServerError value),
+    Result insufficientPermissions(InsufficientPermissions value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (insufficientPermissions != null) {
+      return insufficientPermissions(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InsufficientPermissions implements DataSourceFailure {
+  const factory InsufficientPermissions() = _$InsufficientPermissions;
 }

@@ -3,13 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:sales_app/domain/core/data_sources/i_data_source.dart';
-import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/infrastructure/core/firestore_collection_keys.dart';
 import 'package:sales_app/infrastructure/core/firestore_helpers.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 import 'package:rxdart/rxdart.dart';
 
-class CustomerRemoteDataSource implements IDataSource<Customer> {
+class CustomerRemoteDataSource implements IDataSource<CustomerDTO> {
   final FirebaseFirestore _firestore;
   final String key = FirestoreCollectionKeys.customers;
 
@@ -17,7 +16,7 @@ class CustomerRemoteDataSource implements IDataSource<Customer> {
   CustomerRemoteDataSource(this._firestore);
 
   @override
-  Future<Either<DataSourceFailure, List<Customer>>> getAll() async {
+  Future<Either<DataSourceFailure, List<CustomerDTO>>> getAll() async {
     QuerySnapshot snapshot;
 
     try {
@@ -32,15 +31,14 @@ class CustomerRemoteDataSource implements IDataSource<Customer> {
       return const Left(failure);
     }
 
-    final List<Customer> customers = snapshot.docs
-        .map((doc) => CustomerDTO.fromFirestore(doc).toDomain())
-        .toList();
+    final List<CustomerDTO> customers =
+        snapshot.docs.map((doc) => CustomerDTO.fromFirestore(doc)).toList();
 
     return Right(customers);
   }
 
   @override
-  Future<Either<DataSourceFailure, Customer>> getElementWithId(
+  Future<Either<DataSourceFailure, CustomerDTO>> getElementWithId(
       String id) async {
     DocumentSnapshot snapshot;
 
@@ -67,16 +65,17 @@ class CustomerRemoteDataSource implements IDataSource<Customer> {
       return const Left(failure);
     }
 
-    final Customer customer = CustomerDTO.fromFirestore(snapshot).toDomain();
+    final customer = CustomerDTO.fromFirestore(snapshot);
 
     return Right(customer);
   }
 
   @override
-  Stream<Either<DataSourceFailure, List<Customer>>> watchAll() async* {
+  Stream<Either<DataSourceFailure, List<CustomerDTO>>> watchAll() async* {
     yield* _firestore.customersCollection.snapshots().map((snapshot) {
-      return right<DataSourceFailure, List<Customer>>(snapshot.docs.map((doc) {
-        return CustomerDTO.fromFirestore(doc).toDomain();
+      return right<DataSourceFailure, List<CustomerDTO>>(
+          snapshot.docs.map((doc) {
+        return CustomerDTO.fromFirestore(doc);
       }).toList());
     }).onErrorReturnWith((e) {
       if (e is PlatformException && e.message.contains('PERMISSIONS_DENIED')) {

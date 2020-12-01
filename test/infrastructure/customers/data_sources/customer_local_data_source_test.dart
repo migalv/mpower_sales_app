@@ -37,8 +37,10 @@ Future<void> main() async {
     test(
       'should correctly save a new Customer in the SharedPreferences',
       () async {
+        // arrange
+        final CustomerDTO dto = CustomerDTO.fromDomain(basicCustomer);
         // act
-        final result = await localDataSource.save(basicCustomer);
+        final result = await localDataSource.save(dto);
         // assert
         expect(result, right(unit));
       },
@@ -47,9 +49,10 @@ Future<void> main() async {
       'should correctly override an existing (same id) Customer in the SharedPreferences',
       () async {
         // arrange
-        final Customer updatedCustomer =
-            basicCustomer.copyWith(name: "New name");
-        await localDataSource.save(basicCustomer);
+        final CustomerDTO dto = CustomerDTO.fromDomain(basicCustomer);
+
+        final CustomerDTO updatedCustomer = dto.copyWith(name: "New name");
+        await localDataSource.save(dto);
         // act
         final result = await localDataSource.save(updatedCustomer);
         // assert
@@ -58,7 +61,7 @@ Future<void> main() async {
         final element = json[basicCustomer.id];
 
         expect(result, right(unit));
-        expect(element, CustomerDTO.fromDomain(updatedCustomer).toJson());
+        expect(element, updatedCustomer.toJson());
         expect(basicCustomer, isNot(updatedCustomer));
       },
     );
@@ -79,11 +82,12 @@ Future<void> main() async {
       'should return a Customer that matches the given id',
       () async {
         // arrange
-        final desiredId = basicCustomer.id;
+        final dto = CustomerDTO.fromDomain(basicCustomer);
+        final desiredId = dto.id;
         // act
         final result = await localDataSource.getElementWithId(desiredId);
         // assert
-        expect(result, right(basicCustomer));
+        expect(result, right(dto));
       },
     );
 
@@ -127,11 +131,12 @@ Future<void> main() async {
       'should remove the element that matches the given id from the Data Source',
       () async {
         // act
-        final result = await localDataSource.removeWithId(basicCustomer.id);
-        final after = await localDataSource.getElementWithId(basicCustomer.id);
+        final dto = CustomerDTO.fromDomain(basicCustomer);
+        final result = await localDataSource.removeWithId(dto.id);
+        final after = await localDataSource.getElementWithId(dto.id);
 
         // assert
-        expect(result, right(basicCustomer));
+        expect(result, right(dto));
         expect(after, left(const DataSourceFailure.elementNotFound()));
       },
     );
@@ -181,8 +186,7 @@ Future<void> main() async {
         // arrange
         final allCustomers = jsonCustomers.entries
             .map((entry) => CustomerDTO.fromLocalDataSource(
-                    json: entry.value as Map<String, dynamic>, id: entry.key)
-                .toDomain())
+                json: entry.value as Map<String, dynamic>, id: entry.key))
             .toList();
         // act
         final result = await localDataSource.getAll();
@@ -211,7 +215,7 @@ Future<void> main() async {
       'should emit all the saved elements',
       () async {
         // arrange
-        final List<Customer> customers =
+        final List<CustomerDTO> customers =
             (await localDataSource.getAll()).getOrElse(() => null);
         // act
         expectLater(
@@ -225,20 +229,22 @@ Future<void> main() async {
       'should emit every time an save or remove is performed on the local storage',
       () async {
         // arrange
-        final List<Customer> initialCustomers =
+        final dto = CustomerDTO.fromDomain(basicCustomer);
+
+        final List<CustomerDTO> initialCustomers =
             (await localDataSource.getAll()).getOrElse(() => null);
 
-        final List<Customer> customers1 = List.from(initialCustomers)
-          ..removeWhere((c) => c.id == basicCustomer.id);
+        final List<CustomerDTO> customers1 = List.from(initialCustomers)
+          ..removeWhere((c) => c.id == dto.id);
 
-        final List<Customer> customers2 = List.from(customers1)
-          ..add(basicCustomer.copyWith(id: "newId1"));
+        final List<CustomerDTO> customers2 = List.from(customers1)
+          ..add(dto.copyWith(id: "newId1"));
 
-        final List<Customer> customers3 = List.from(customers2)
-          ..add(basicCustomer.copyWith(id: "newId2"));
+        final List<CustomerDTO> customers3 = List.from(customers2)
+          ..add(dto.copyWith(id: "newId2"));
 
-        final List<Customer> customers4 = List.from(customers3)
-          ..add(basicCustomer.copyWith(id: "newId3"));
+        final List<CustomerDTO> customers4 = List.from(customers3)
+          ..add(dto.copyWith(id: "newId3"));
 
         // act
         expectLater(
@@ -252,10 +258,10 @@ Future<void> main() async {
           ]),
         );
 
-        await localDataSource.removeWithId(basicCustomer.id);
-        await localDataSource.save(basicCustomer.copyWith(id: "newId1"));
-        await localDataSource.save(basicCustomer.copyWith(id: "newId2"));
-        await localDataSource.save(basicCustomer.copyWith(id: "newId3"));
+        await localDataSource.removeWithId(dto.id);
+        await localDataSource.save(dto.copyWith(id: "newId1"));
+        await localDataSource.save(dto.copyWith(id: "newId2"));
+        await localDataSource.save(dto.copyWith(id: "newId3"));
       },
     );
   });

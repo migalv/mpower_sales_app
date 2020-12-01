@@ -25,4 +25,8 @@ abstract class DataSourceFailure with _$DataSourceFailure {
   const factory DataSourceFailure.serverError({
     dynamic error,
   }) = ServerError;
+
+  /// Failure when trying to access data without the required permissions
+  const factory DataSourceFailure.insufficientPermissions() =
+      InsufficientPermissions;
 }
