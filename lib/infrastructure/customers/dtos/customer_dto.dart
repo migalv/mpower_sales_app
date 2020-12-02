@@ -40,6 +40,7 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
 
   /// Transforms a Customer Entity into a CustomerDTO
   factory CustomerDTO.fromDomain(Customer customer) {
+    if (customer == null) return null;
     return customer.map(
       person: (p) {
         String nrc, employeeNum, farmerId, nationalId;
