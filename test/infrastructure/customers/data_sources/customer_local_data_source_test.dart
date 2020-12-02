@@ -295,6 +295,7 @@ Customer basicCustomer = Customer.person(
   name: "Basic",
   lastName: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
+  updatedAt: 0,
 );
 
 Customer notInDataSource = Customer.person(
@@ -302,4 +303,5 @@ Customer notInDataSource = Customer.person(
   name: "Not In",
   lastName: "Data Source",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
+  updatedAt: 0,
 );

@@ -4,47 +4,54 @@
             "name": "Basic",
             "surname": "Customer",
             "phone": "+34 123456789",
-            "type": 0
+            "type": 0,
+            "updated_at": 0
         },
         "1": {
             "name": "Company 1",
             "phone": "+34 123456789",
-            "type": 1
+            "type": 1,
+            "updated_at": 0
         },
         "2": {
             "name": "Birthdate",
             "surname": "Customer",
             "phone": "+34 123456789",
             "date_of_birth": 1606311725000,
-            "type": 0
+            "type": 0,
+            "updated_at": 0
         },
         "3": {
             "name": "NRC",
             "surname": "Customer",
             "phone": "+34 123456789",
             "nrc": "1234567/90",
-            "type": 0
+            "type": 0,
+            "updated_at": 0
         },
         "4": {
             "name": "EmployeeNum",
             "surname": "Customer",
             "phone": "+34 123456789",
             "employee_num": "1234567090",
-            "type": 0
+            "type": 0,
+            "updated_at": 0
         },
         "5": {
             "name": "FarmerId",
             "surname": "Customer",
             "phone": "+34 123456789",
             "farmer_id": "1234567090",
-            "type": 0
+            "type": 0,
+            "updated_at": 0
         },
         "6": {
             "name": "NationalId",
             "surname": "Customer",
             "phone": "+34 123456789",
             "national_id": "1234567090",
-            "type": 0
+            "type": 0,
+            "updated_at": 0
         },
         "7": {
             "name": "Complete",
@@ -52,7 +59,8 @@
             "phone": "+34 123456789",
             "date_of_birth": 1606311725000,
             "nrc": "1234567/90",
-            "type": 0
+            "type": 0,
+            "updated_at": 0
         }
     }
 }

@@ -272,12 +272,14 @@ Customer basicCustomer = Customer.person(
   name: "Basic",
   lastName: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
+  updatedAt: 0,
 );
 
 Customer companyCustomer = Customer.company(
   id: "1",
   name: "Company 1",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
+  updatedAt: 0,
 );
 
 Customer birthDateCustomer = Customer.person(
@@ -286,6 +288,7 @@ Customer birthDateCustomer = Customer.person(
   lastName: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   birthDate: DateTime.fromMillisecondsSinceEpoch(1606311725000),
+  updatedAt: 0,
 );
 
 Customer nrcCustomer = Customer.person(
@@ -294,6 +297,7 @@ Customer nrcCustomer = Customer.person(
   lastName: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   personalId: const PersonalId.nrc(nrc: "1234567/90"),
+  updatedAt: 0,
 );
 
 Customer employeeNumCustomer = Customer.person(
@@ -302,6 +306,7 @@ Customer employeeNumCustomer = Customer.person(
   lastName: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   personalId: const PersonalId.employeeNum(employeeNum: "1234567090"),
+  updatedAt: 0,
 );
 
 Customer farmerIdCustomer = Customer.person(
@@ -310,6 +315,7 @@ Customer farmerIdCustomer = Customer.person(
   lastName: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   personalId: const PersonalId.farmerId(farmerId: "1234567090"),
+  updatedAt: 0,
 );
 
 Customer nationalIdCustomer = Customer.person(
@@ -318,6 +324,7 @@ Customer nationalIdCustomer = Customer.person(
   lastName: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   personalId: const PersonalId.nationalId(nationalId: "1234567090"),
+  updatedAt: 0,
 );
 
 Customer completeCustomer = Customer.person(
@@ -327,6 +334,7 @@ Customer completeCustomer = Customer.person(
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   birthDate: DateTime.fromMillisecondsSinceEpoch(1606311725000),
   personalId: const PersonalId.nrc(nrc: "1234567/90"),
+  updatedAt: 0,
 );
 
 List<Customer> correctCustomers = [

@@ -20,6 +20,9 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
     @required String name,
     @required @PhoneNumberConverter() PhoneNumber phone,
     @required CustomerType type,
+
+    /// Timestamp when this customer was last updated (Locally or Remotely)
+    @required int updatedAt,
     String surname,
     int dateOfBirth,
     String email,
@@ -33,9 +36,6 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
 
     /// Unique id of the user that created this customer
     String createdBy,
-
-    /// Timestamp when this customer was last updated (Locally or Remotely)
-    int updatedAt,
   }) = _CustomerDTO;
 
   /// Transforms a Customer Entity into a CustomerDTO
@@ -65,6 +65,7 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
           nationalId: nationalId,
           email: p.email,
           type: CustomerType.values[p.type],
+          updatedAt: p.updatedAt,
         );
       },
       company: (c) {
@@ -73,6 +74,7 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
           name: c.name,
           phone: c.phoneNumber,
           type: CustomerType.values[c.type],
+          updatedAt: c.updatedAt,
         );
       },
     );
@@ -132,6 +134,7 @@ extension CustomerDTOX on CustomerDTO {
           phoneNumber: phone,
           birthDate: brithDateFromMiliseconds,
           personalId: personalId,
+          updatedAt: updatedAt,
         );
         break;
       case CustomerType.company:
@@ -139,6 +142,7 @@ extension CustomerDTOX on CustomerDTO {
           id: id,
           name: name,
           phoneNumber: phone,
+          updatedAt: updatedAt,
         );
         break;
     }

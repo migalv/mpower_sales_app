@@ -22,6 +22,7 @@ class _$CustomerDTOTearOff {
       @required String name,
       @required @PhoneNumberConverter() PhoneNumber phone,
       @required CustomerType type,
+      @required int updatedAt,
       String surname,
       int dateOfBirth,
       String email,
@@ -30,13 +31,13 @@ class _$CustomerDTOTearOff {
       String farmerId,
       String nationalId,
       int createdAt,
-      String createdBy,
-      int updatedAt}) {
+      String createdBy}) {
     return _CustomerDTO(
       id: id,
       name: name,
       phone: phone,
       type: type,
+      updatedAt: updatedAt,
       surname: surname,
       dateOfBirth: dateOfBirth,
       email: email,
@@ -46,7 +47,6 @@ class _$CustomerDTOTearOff {
       nationalId: nationalId,
       createdAt: createdAt,
       createdBy: createdBy,
-      updatedAt: updatedAt,
     );
   }
 
@@ -68,6 +68,9 @@ mixin _$CustomerDTO {
   @PhoneNumberConverter()
   PhoneNumber get phone;
   CustomerType get type;
+
+  /// Timestamp when this customer was last updated (Locally or Remotely)
+  int get updatedAt;
   String get surname;
   int get dateOfBirth;
   String get email;
@@ -81,9 +84,6 @@ mixin _$CustomerDTO {
 
   /// Unique id of the user that created this customer
   String get createdBy;
-
-  /// Timestamp when this customer was last updated (Locally or Remotely)
-  int get updatedAt;
 
   Map<String, dynamic> toJson();
   $CustomerDTOCopyWith<CustomerDTO> get copyWith;
@@ -99,6 +99,7 @@ abstract class $CustomerDTOCopyWith<$Res> {
       String name,
       @PhoneNumberConverter() PhoneNumber phone,
       CustomerType type,
+      int updatedAt,
       String surname,
       int dateOfBirth,
       String email,
@@ -107,8 +108,7 @@ abstract class $CustomerDTOCopyWith<$Res> {
       String farmerId,
       String nationalId,
       int createdAt,
-      String createdBy,
-      int updatedAt});
+      String createdBy});
 
   $PhoneNumberCopyWith<$Res> get phone;
 }
@@ -127,6 +127,7 @@ class _$CustomerDTOCopyWithImpl<$Res> implements $CustomerDTOCopyWith<$Res> {
     Object name = freezed,
     Object phone = freezed,
     Object type = freezed,
+    Object updatedAt = freezed,
     Object surname = freezed,
     Object dateOfBirth = freezed,
     Object email = freezed,
@@ -136,13 +137,13 @@ class _$CustomerDTOCopyWithImpl<$Res> implements $CustomerDTOCopyWith<$Res> {
     Object nationalId = freezed,
     Object createdAt = freezed,
     Object createdBy = freezed,
-    Object updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       phone: phone == freezed ? _value.phone : phone as PhoneNumber,
       type: type == freezed ? _value.type : type as CustomerType,
+      updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as int,
       surname: surname == freezed ? _value.surname : surname as String,
       dateOfBirth:
           dateOfBirth == freezed ? _value.dateOfBirth : dateOfBirth as int,
@@ -155,7 +156,6 @@ class _$CustomerDTOCopyWithImpl<$Res> implements $CustomerDTOCopyWith<$Res> {
           nationalId == freezed ? _value.nationalId : nationalId as String,
       createdAt: createdAt == freezed ? _value.createdAt : createdAt as int,
       createdBy: createdBy == freezed ? _value.createdBy : createdBy as String,
-      updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as int,
     ));
   }
 
@@ -182,6 +182,7 @@ abstract class _$CustomerDTOCopyWith<$Res>
       String name,
       @PhoneNumberConverter() PhoneNumber phone,
       CustomerType type,
+      int updatedAt,
       String surname,
       int dateOfBirth,
       String email,
@@ -190,8 +191,7 @@ abstract class _$CustomerDTOCopyWith<$Res>
       String farmerId,
       String nationalId,
       int createdAt,
-      String createdBy,
-      int updatedAt});
+      String createdBy});
 
   @override
   $PhoneNumberCopyWith<$Res> get phone;
@@ -213,6 +213,7 @@ class __$CustomerDTOCopyWithImpl<$Res> extends _$CustomerDTOCopyWithImpl<$Res>
     Object name = freezed,
     Object phone = freezed,
     Object type = freezed,
+    Object updatedAt = freezed,
     Object surname = freezed,
     Object dateOfBirth = freezed,
     Object email = freezed,
@@ -222,13 +223,13 @@ class __$CustomerDTOCopyWithImpl<$Res> extends _$CustomerDTOCopyWithImpl<$Res>
     Object nationalId = freezed,
     Object createdAt = freezed,
     Object createdBy = freezed,
-    Object updatedAt = freezed,
   }) {
     return _then(_CustomerDTO(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       phone: phone == freezed ? _value.phone : phone as PhoneNumber,
       type: type == freezed ? _value.type : type as CustomerType,
+      updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as int,
       surname: surname == freezed ? _value.surname : surname as String,
       dateOfBirth:
           dateOfBirth == freezed ? _value.dateOfBirth : dateOfBirth as int,
@@ -241,7 +242,6 @@ class __$CustomerDTOCopyWithImpl<$Res> extends _$CustomerDTOCopyWithImpl<$Res>
           nationalId == freezed ? _value.nationalId : nationalId as String,
       createdAt: createdAt == freezed ? _value.createdAt : createdAt as int,
       createdBy: createdBy == freezed ? _value.createdBy : createdBy as String,
-      updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as int,
     ));
   }
 }
@@ -255,6 +255,7 @@ class _$_CustomerDTO extends _CustomerDTO {
       @required this.name,
       @required @PhoneNumberConverter() this.phone,
       @required this.type,
+      @required this.updatedAt,
       this.surname,
       this.dateOfBirth,
       this.email,
@@ -263,11 +264,11 @@ class _$_CustomerDTO extends _CustomerDTO {
       this.farmerId,
       this.nationalId,
       this.createdAt,
-      this.createdBy,
-      this.updatedAt})
+      this.createdBy})
       : assert(name != null),
         assert(phone != null),
         assert(type != null),
+        assert(updatedAt != null),
         super._();
 
   factory _$_CustomerDTO.fromJson(Map<String, dynamic> json) =>
@@ -283,6 +284,10 @@ class _$_CustomerDTO extends _CustomerDTO {
   final PhoneNumber phone;
   @override
   final CustomerType type;
+  @override
+
+  /// Timestamp when this customer was last updated (Locally or Remotely)
+  final int updatedAt;
   @override
   final String surname;
   @override
@@ -305,10 +310,6 @@ class _$_CustomerDTO extends _CustomerDTO {
 
   /// Unique id of the user that created this customer
   final String createdBy;
-  @override
-
-  /// Timestamp when this customer was last updated (Locally or Remotely)
-  final int updatedAt;
 
   @override
   bool operator ==(dynamic other) {
@@ -322,6 +323,9 @@ class _$_CustomerDTO extends _CustomerDTO {
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.updatedAt, updatedAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.updatedAt, updatedAt)) &&
             (identical(other.surname, surname) ||
                 const DeepCollectionEquality()
                     .equals(other.surname, surname)) &&
@@ -346,10 +350,7 @@ class _$_CustomerDTO extends _CustomerDTO {
                     .equals(other.createdAt, createdAt)) &&
             (identical(other.createdBy, createdBy) ||
                 const DeepCollectionEquality()
-                    .equals(other.createdBy, createdBy)) &&
-            (identical(other.updatedAt, updatedAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.updatedAt, updatedAt)));
+                    .equals(other.createdBy, createdBy)));
   }
 
   @override
@@ -359,6 +360,7 @@ class _$_CustomerDTO extends _CustomerDTO {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(updatedAt) ^
       const DeepCollectionEquality().hash(surname) ^
       const DeepCollectionEquality().hash(dateOfBirth) ^
       const DeepCollectionEquality().hash(email) ^
@@ -367,8 +369,7 @@ class _$_CustomerDTO extends _CustomerDTO {
       const DeepCollectionEquality().hash(farmerId) ^
       const DeepCollectionEquality().hash(nationalId) ^
       const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(createdBy) ^
-      const DeepCollectionEquality().hash(updatedAt);
+      const DeepCollectionEquality().hash(createdBy);
 
   @override
   _$CustomerDTOCopyWith<_CustomerDTO> get copyWith =>
@@ -387,6 +388,7 @@ abstract class _CustomerDTO extends CustomerDTO {
       @required String name,
       @required @PhoneNumberConverter() PhoneNumber phone,
       @required CustomerType type,
+      @required int updatedAt,
       String surname,
       int dateOfBirth,
       String email,
@@ -395,8 +397,7 @@ abstract class _CustomerDTO extends CustomerDTO {
       String farmerId,
       String nationalId,
       int createdAt,
-      String createdBy,
-      int updatedAt}) = _$_CustomerDTO;
+      String createdBy}) = _$_CustomerDTO;
 
   factory _CustomerDTO.fromJson(Map<String, dynamic> json) =
       _$_CustomerDTO.fromJson;
@@ -411,6 +412,10 @@ abstract class _CustomerDTO extends CustomerDTO {
   PhoneNumber get phone;
   @override
   CustomerType get type;
+  @override
+
+  /// Timestamp when this customer was last updated (Locally or Remotely)
+  int get updatedAt;
   @override
   String get surname;
   @override
@@ -433,10 +438,6 @@ abstract class _CustomerDTO extends CustomerDTO {
 
   /// Unique id of the user that created this customer
   String get createdBy;
-  @override
-
-  /// Timestamp when this customer was last updated (Locally or Remotely)
-  int get updatedAt;
   @override
   _$CustomerDTOCopyWith<_CustomerDTO> get copyWith;
 }

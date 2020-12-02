@@ -11,6 +11,7 @@ _$_CustomerDTO _$_$_CustomerDTOFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     phone: const PhoneNumberConverter().fromJson(json['phone'] as String),
     type: _$enumDecodeNullable(_$CustomerTypeEnumMap, json['type']),
+    updatedAt: json['updated_at'] as int,
     surname: json['surname'] as String,
     dateOfBirth: json['date_of_birth'] as int,
     email: json['email'] as String,
@@ -20,7 +21,6 @@ _$_CustomerDTO _$_$_CustomerDTOFromJson(Map<String, dynamic> json) {
     nationalId: json['national_id'] as String,
     createdAt: json['created_at'] as int,
     createdBy: json['created_by'] as String,
-    updatedAt: json['updated_at'] as int,
   );
 }
 
@@ -36,6 +36,7 @@ Map<String, dynamic> _$_$_CustomerDTOToJson(_$_CustomerDTO instance) {
   writeNotNull('name', instance.name);
   writeNotNull('phone', const PhoneNumberConverter().toJson(instance.phone));
   writeNotNull('type', _$CustomerTypeEnumMap[instance.type]);
+  writeNotNull('updated_at', instance.updatedAt);
   writeNotNull('surname', instance.surname);
   writeNotNull('date_of_birth', instance.dateOfBirth);
   writeNotNull('email', instance.email);
@@ -45,7 +46,6 @@ Map<String, dynamic> _$_$_CustomerDTOToJson(_$_CustomerDTO instance) {
   writeNotNull('national_id', instance.nationalId);
   writeNotNull('created_at', instance.createdAt);
   writeNotNull('created_by', instance.createdBy);
-  writeNotNull('updated_at', instance.updatedAt);
   return val;
 }
 

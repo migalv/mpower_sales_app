@@ -19,6 +19,7 @@ class _$CustomerTearOff {
       @required String name,
       @required String lastName,
       @required PhoneNumber phoneNumber,
+      @required int updatedAt,
       DateTime birthDate,
       String email,
       PersonalId personalId}) {
@@ -27,6 +28,7 @@ class _$CustomerTearOff {
       name: name,
       lastName: lastName,
       phoneNumber: phoneNumber,
+      updatedAt: updatedAt,
       birthDate: birthDate,
       email: email,
       personalId: personalId,
@@ -37,11 +39,13 @@ class _$CustomerTearOff {
   Company company(
       {@required String id,
       @required String name,
-      @required PhoneNumber phoneNumber}) {
+      @required PhoneNumber phoneNumber,
+      @required int updatedAt}) {
     return Company(
       id: id,
       name: name,
       phoneNumber: phoneNumber,
+      updatedAt: updatedAt,
     );
   }
 }
@@ -61,6 +65,9 @@ mixin _$Customer {
   /// The phone number of the customer
   PhoneNumber get phoneNumber;
 
+  /// Timestamp that represents the last time this entity was updated
+  int get updatedAt;
+
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
@@ -69,10 +76,13 @@ mixin _$Customer {
             String name,
             String lastName,
             PhoneNumber phoneNumber,
+            int updatedAt,
             DateTime birthDate,
             String email,
             PersonalId personalId),
-    @required Result company(String id, String name, PhoneNumber phoneNumber),
+    @required
+        Result company(
+            String id, String name, PhoneNumber phoneNumber, int updatedAt),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
@@ -81,10 +91,12 @@ mixin _$Customer {
         String name,
         String lastName,
         PhoneNumber phoneNumber,
+        int updatedAt,
         DateTime birthDate,
         String email,
         PersonalId personalId),
-    Result company(String id, String name, PhoneNumber phoneNumber),
+    Result company(
+        String id, String name, PhoneNumber phoneNumber, int updatedAt),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -106,7 +118,7 @@ mixin _$Customer {
 abstract class $CustomerCopyWith<$Res> {
   factory $CustomerCopyWith(Customer value, $Res Function(Customer) then) =
       _$CustomerCopyWithImpl<$Res>;
-  $Res call({String id, String name, PhoneNumber phoneNumber});
+  $Res call({String id, String name, PhoneNumber phoneNumber, int updatedAt});
 
   $PhoneNumberCopyWith<$Res> get phoneNumber;
 }
@@ -124,6 +136,7 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
     Object id = freezed,
     Object name = freezed,
     Object phoneNumber = freezed,
+    Object updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -131,6 +144,7 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber as PhoneNumber,
+      updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as int,
     ));
   }
 
@@ -155,6 +169,7 @@ abstract class $PersonCopyWith<$Res> implements $CustomerCopyWith<$Res> {
       String name,
       String lastName,
       PhoneNumber phoneNumber,
+      int updatedAt,
       DateTime birthDate,
       String email,
       PersonalId personalId});
@@ -179,6 +194,7 @@ class _$PersonCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
     Object name = freezed,
     Object lastName = freezed,
     Object phoneNumber = freezed,
+    Object updatedAt = freezed,
     Object birthDate = freezed,
     Object email = freezed,
     Object personalId = freezed,
@@ -190,6 +206,7 @@ class _$PersonCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber as PhoneNumber,
+      updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as int,
       birthDate:
           birthDate == freezed ? _value.birthDate : birthDate as DateTime,
       email: email == freezed ? _value.email : email as String,
@@ -216,6 +233,7 @@ class _$Person extends Person {
       @required this.name,
       @required this.lastName,
       @required this.phoneNumber,
+      @required this.updatedAt,
       this.birthDate,
       this.email,
       this.personalId})
@@ -223,6 +241,7 @@ class _$Person extends Person {
         assert(name != null),
         assert(lastName != null),
         assert(phoneNumber != null),
+        assert(updatedAt != null),
         super._();
 
   @override
@@ -241,6 +260,10 @@ class _$Person extends Person {
 
   /// The phone number of the customer
   final PhoneNumber phoneNumber;
+  @override
+
+  /// Timestamp that represents the last time this entity was updated
+  final int updatedAt;
   @override
 
   /// The birth date of the persona
@@ -268,6 +291,9 @@ class _$Person extends Person {
             (identical(other.phoneNumber, phoneNumber) ||
                 const DeepCollectionEquality()
                     .equals(other.phoneNumber, phoneNumber)) &&
+            (identical(other.updatedAt, updatedAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.updatedAt, updatedAt)) &&
             (identical(other.birthDate, birthDate) ||
                 const DeepCollectionEquality()
                     .equals(other.birthDate, birthDate)) &&
@@ -285,6 +311,7 @@ class _$Person extends Person {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(lastName) ^
       const DeepCollectionEquality().hash(phoneNumber) ^
+      const DeepCollectionEquality().hash(updatedAt) ^
       const DeepCollectionEquality().hash(birthDate) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(personalId);
@@ -302,15 +329,18 @@ class _$Person extends Person {
             String name,
             String lastName,
             PhoneNumber phoneNumber,
+            int updatedAt,
             DateTime birthDate,
             String email,
             PersonalId personalId),
-    @required Result company(String id, String name, PhoneNumber phoneNumber),
+    @required
+        Result company(
+            String id, String name, PhoneNumber phoneNumber, int updatedAt),
   }) {
     assert(person != null);
     assert(company != null);
-    return person(
-        id, name, lastName, phoneNumber, birthDate, email, personalId);
+    return person(id, name, lastName, phoneNumber, updatedAt, birthDate, email,
+        personalId);
   }
 
   @override
@@ -321,16 +351,18 @@ class _$Person extends Person {
         String name,
         String lastName,
         PhoneNumber phoneNumber,
+        int updatedAt,
         DateTime birthDate,
         String email,
         PersonalId personalId),
-    Result company(String id, String name, PhoneNumber phoneNumber),
+    Result company(
+        String id, String name, PhoneNumber phoneNumber, int updatedAt),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (person != null) {
-      return person(
-          id, name, lastName, phoneNumber, birthDate, email, personalId);
+      return person(id, name, lastName, phoneNumber, updatedAt, birthDate,
+          email, personalId);
     }
     return orElse();
   }
@@ -368,6 +400,7 @@ abstract class Person extends Customer {
       @required String name,
       @required String lastName,
       @required PhoneNumber phoneNumber,
+      @required int updatedAt,
       DateTime birthDate,
       String email,
       PersonalId personalId}) = _$Person;
@@ -387,6 +420,10 @@ abstract class Person extends Customer {
 
   /// The phone number of the customer
   PhoneNumber get phoneNumber;
+  @override
+
+  /// Timestamp that represents the last time this entity was updated
+  int get updatedAt;
 
   /// The birth date of the persona
   DateTime get birthDate;
@@ -405,7 +442,7 @@ abstract class $CompanyCopyWith<$Res> implements $CustomerCopyWith<$Res> {
   factory $CompanyCopyWith(Company value, $Res Function(Company) then) =
       _$CompanyCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, PhoneNumber phoneNumber});
+  $Res call({String id, String name, PhoneNumber phoneNumber, int updatedAt});
 
   @override
   $PhoneNumberCopyWith<$Res> get phoneNumber;
@@ -425,6 +462,7 @@ class _$CompanyCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
     Object id = freezed,
     Object name = freezed,
     Object phoneNumber = freezed,
+    Object updatedAt = freezed,
   }) {
     return _then(Company(
       id: id == freezed ? _value.id : id as String,
@@ -432,6 +470,7 @@ class _$CompanyCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber as PhoneNumber,
+      updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as int,
     ));
   }
 }
@@ -439,10 +478,14 @@ class _$CompanyCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
 /// @nodoc
 class _$Company extends Company {
   _$Company(
-      {@required this.id, @required this.name, @required this.phoneNumber})
+      {@required this.id,
+      @required this.name,
+      @required this.phoneNumber,
+      @required this.updatedAt})
       : assert(id != null),
         assert(name != null),
         assert(phoneNumber != null),
+        assert(updatedAt != null),
         super._();
 
   @override
@@ -451,6 +494,8 @@ class _$Company extends Company {
   final String name;
   @override
   final PhoneNumber phoneNumber;
+  @override
+  final int updatedAt;
 
   @override
   bool operator ==(dynamic other) {
@@ -462,7 +507,10 @@ class _$Company extends Company {
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 const DeepCollectionEquality()
-                    .equals(other.phoneNumber, phoneNumber)));
+                    .equals(other.phoneNumber, phoneNumber)) &&
+            (identical(other.updatedAt, updatedAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.updatedAt, updatedAt)));
   }
 
   @override
@@ -470,7 +518,8 @@ class _$Company extends Company {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(phoneNumber);
+      const DeepCollectionEquality().hash(phoneNumber) ^
+      const DeepCollectionEquality().hash(updatedAt);
 
   @override
   $CompanyCopyWith<Company> get copyWith =>
@@ -485,14 +534,17 @@ class _$Company extends Company {
             String name,
             String lastName,
             PhoneNumber phoneNumber,
+            int updatedAt,
             DateTime birthDate,
             String email,
             PersonalId personalId),
-    @required Result company(String id, String name, PhoneNumber phoneNumber),
+    @required
+        Result company(
+            String id, String name, PhoneNumber phoneNumber, int updatedAt),
   }) {
     assert(person != null);
     assert(company != null);
-    return company(id, name, phoneNumber);
+    return company(id, name, phoneNumber, updatedAt);
   }
 
   @override
@@ -503,15 +555,17 @@ class _$Company extends Company {
         String name,
         String lastName,
         PhoneNumber phoneNumber,
+        int updatedAt,
         DateTime birthDate,
         String email,
         PersonalId personalId),
-    Result company(String id, String name, PhoneNumber phoneNumber),
+    Result company(
+        String id, String name, PhoneNumber phoneNumber, int updatedAt),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (company != null) {
-      return company(id, name, phoneNumber);
+      return company(id, name, phoneNumber, updatedAt);
     }
     return orElse();
   }
@@ -547,7 +601,8 @@ abstract class Company extends Customer {
   factory Company(
       {@required String id,
       @required String name,
-      @required PhoneNumber phoneNumber}) = _$Company;
+      @required PhoneNumber phoneNumber,
+      @required int updatedAt}) = _$Company;
 
   @override
   String get id;
@@ -555,6 +610,8 @@ abstract class Company extends Customer {
   String get name;
   @override
   PhoneNumber get phoneNumber;
+  @override
+  int get updatedAt;
   @override
   $CompanyCopyWith<Company> get copyWith;
 }
