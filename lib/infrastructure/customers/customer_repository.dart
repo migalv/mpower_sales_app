@@ -13,7 +13,7 @@ import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 /// Repository that has 2 data sources: Local & Remote for handling customers
 ///
 /// It merges the data sources using the [CustomerDataMerger]
-class CustomerRepository implements ICustomerRespository {
+class CustomerRepository implements ICustomerRepository {
   // ignore: prefer_final_fields
   ILocalDataSource<CustomerDTO> _localDataSource;
   // ignore: prefer_final_fields
