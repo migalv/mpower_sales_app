@@ -98,10 +98,11 @@ class __$PhoneNumberCopyWithImpl<$Res> extends _$PhoneNumberCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$_PhoneNumber implements _PhoneNumber {
+class _$_PhoneNumber extends _PhoneNumber {
   const _$_PhoneNumber({@required this.code, @required this.number})
       : assert(code != null),
-        assert(number != null);
+        assert(number != null),
+        super._();
 
   @override
 
@@ -111,11 +112,6 @@ class _$_PhoneNumber implements _PhoneNumber {
 
   /// Phone number
   final String number;
-
-  @override
-  String toString() {
-    return 'PhoneNumber(code: $code, number: $number)';
-  }
 
   @override
   bool operator ==(dynamic other) {
@@ -138,7 +134,8 @@ class _$_PhoneNumber implements _PhoneNumber {
       __$PhoneNumberCopyWithImpl<_PhoneNumber>(this, _$identity);
 }
 
-abstract class _PhoneNumber implements PhoneNumber {
+abstract class _PhoneNumber extends PhoneNumber {
+  const _PhoneNumber._() : super._();
   const factory _PhoneNumber({@required String code, @required String number}) =
       _$_PhoneNumber;
 
