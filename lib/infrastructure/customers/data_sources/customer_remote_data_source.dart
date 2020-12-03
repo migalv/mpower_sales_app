@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:sales_app/domain/core/data_sources/i_data_source.dart';
@@ -8,6 +9,7 @@ import 'package:sales_app/infrastructure/core/firestore_helpers.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 import 'package:rxdart/rxdart.dart';
 
+@LazySingleton(as: IDataSource)
 class CustomerRemoteDataSource implements IDataSource<CustomerDTO> {
   final FirebaseFirestore _firestore;
   final String key = FirestoreCollectionKeys.customers;

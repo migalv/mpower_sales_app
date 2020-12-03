@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:sales_app/domain/core/data_sources/i_data_source.dart';
@@ -9,6 +10,8 @@ import 'package:sales_app/domain/customers/i_customer_repository.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sales_app/infrastructure/customers/customer_data_merger.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
+
+@LazySingleton(as: ICustomerRepository)
 
 /// Repository that has 2 data sources: Local & Remote for handling customers
 ///

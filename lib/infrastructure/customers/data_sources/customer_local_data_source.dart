@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart' hide id;
+import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:sales_app/domain/core/data_sources/i_local_data_source.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@LazySingleton(as: ILocalDataSource)
 class CustomerLocalDataSource implements ILocalDataSource<CustomerDTO> {
   final SharedPreferences _sharedPreferences;
 
