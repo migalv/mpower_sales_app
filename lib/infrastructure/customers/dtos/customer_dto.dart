@@ -30,12 +30,6 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
     String employeeNum,
     String farmerId,
     String nationalId,
-
-    /// Timestamp when this customer was created
-    int createdAt,
-
-    /// Unique id of the user that created this customer
-    String createdBy,
   }) = _CustomerDTO;
 
   /// Transforms a Customer Entity into a CustomerDTO
@@ -66,7 +60,7 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
           nationalId: nationalId,
           email: p.email,
           type: CustomerType.values[p.type],
-          updatedAt: p.updatedAt,
+          updatedAt: p.updatedAt ?? DateTime.now().millisecondsSinceEpoch,
         );
       },
       company: (c) {
@@ -75,7 +69,7 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
           name: c.name,
           phone: c.phoneNumber,
           type: CustomerType.values[c.type],
-          updatedAt: c.updatedAt,
+          updatedAt: c.updatedAt ?? DateTime.now().millisecondsSinceEpoch,
         );
       },
     );

@@ -29,9 +29,7 @@ class _$CustomerDTOTearOff {
       String nrc,
       String employeeNum,
       String farmerId,
-      String nationalId,
-      int createdAt,
-      String createdBy}) {
+      String nationalId}) {
     return _CustomerDTO(
       id: id,
       name: name,
@@ -45,8 +43,6 @@ class _$CustomerDTOTearOff {
       employeeNum: employeeNum,
       farmerId: farmerId,
       nationalId: nationalId,
-      createdAt: createdAt,
-      createdBy: createdBy,
     );
   }
 
@@ -79,12 +75,6 @@ mixin _$CustomerDTO {
   String get farmerId;
   String get nationalId;
 
-  /// Timestamp when this customer was created
-  int get createdAt;
-
-  /// Unique id of the user that created this customer
-  String get createdBy;
-
   Map<String, dynamic> toJson();
   $CustomerDTOCopyWith<CustomerDTO> get copyWith;
 }
@@ -106,9 +96,7 @@ abstract class $CustomerDTOCopyWith<$Res> {
       String nrc,
       String employeeNum,
       String farmerId,
-      String nationalId,
-      int createdAt,
-      String createdBy});
+      String nationalId});
 
   $PhoneNumberCopyWith<$Res> get phone;
 }
@@ -135,8 +123,6 @@ class _$CustomerDTOCopyWithImpl<$Res> implements $CustomerDTOCopyWith<$Res> {
     Object employeeNum = freezed,
     Object farmerId = freezed,
     Object nationalId = freezed,
-    Object createdAt = freezed,
-    Object createdBy = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -154,8 +140,6 @@ class _$CustomerDTOCopyWithImpl<$Res> implements $CustomerDTOCopyWith<$Res> {
       farmerId: farmerId == freezed ? _value.farmerId : farmerId as String,
       nationalId:
           nationalId == freezed ? _value.nationalId : nationalId as String,
-      createdAt: createdAt == freezed ? _value.createdAt : createdAt as int,
-      createdBy: createdBy == freezed ? _value.createdBy : createdBy as String,
     ));
   }
 
@@ -189,9 +173,7 @@ abstract class _$CustomerDTOCopyWith<$Res>
       String nrc,
       String employeeNum,
       String farmerId,
-      String nationalId,
-      int createdAt,
-      String createdBy});
+      String nationalId});
 
   @override
   $PhoneNumberCopyWith<$Res> get phone;
@@ -221,8 +203,6 @@ class __$CustomerDTOCopyWithImpl<$Res> extends _$CustomerDTOCopyWithImpl<$Res>
     Object employeeNum = freezed,
     Object farmerId = freezed,
     Object nationalId = freezed,
-    Object createdAt = freezed,
-    Object createdBy = freezed,
   }) {
     return _then(_CustomerDTO(
       id: id == freezed ? _value.id : id as String,
@@ -240,8 +220,6 @@ class __$CustomerDTOCopyWithImpl<$Res> extends _$CustomerDTOCopyWithImpl<$Res>
       farmerId: farmerId == freezed ? _value.farmerId : farmerId as String,
       nationalId:
           nationalId == freezed ? _value.nationalId : nationalId as String,
-      createdAt: createdAt == freezed ? _value.createdAt : createdAt as int,
-      createdBy: createdBy == freezed ? _value.createdBy : createdBy as String,
     ));
   }
 }
@@ -262,9 +240,7 @@ class _$_CustomerDTO extends _CustomerDTO {
       this.nrc,
       this.employeeNum,
       this.farmerId,
-      this.nationalId,
-      this.createdAt,
-      this.createdBy})
+      this.nationalId})
       : assert(name != null),
         assert(phone != null),
         assert(type != null),
@@ -302,14 +278,6 @@ class _$_CustomerDTO extends _CustomerDTO {
   final String farmerId;
   @override
   final String nationalId;
-  @override
-
-  /// Timestamp when this customer was created
-  final int createdAt;
-  @override
-
-  /// Unique id of the user that created this customer
-  final String createdBy;
 
   @override
   bool operator ==(dynamic other) {
@@ -344,13 +312,7 @@ class _$_CustomerDTO extends _CustomerDTO {
                     .equals(other.farmerId, farmerId)) &&
             (identical(other.nationalId, nationalId) ||
                 const DeepCollectionEquality()
-                    .equals(other.nationalId, nationalId)) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)) &&
-            (identical(other.createdBy, createdBy) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdBy, createdBy)));
+                    .equals(other.nationalId, nationalId)));
   }
 
   @override
@@ -367,9 +329,7 @@ class _$_CustomerDTO extends _CustomerDTO {
       const DeepCollectionEquality().hash(nrc) ^
       const DeepCollectionEquality().hash(employeeNum) ^
       const DeepCollectionEquality().hash(farmerId) ^
-      const DeepCollectionEquality().hash(nationalId) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(createdBy);
+      const DeepCollectionEquality().hash(nationalId);
 
   @override
   _$CustomerDTOCopyWith<_CustomerDTO> get copyWith =>
@@ -395,9 +355,7 @@ abstract class _CustomerDTO extends CustomerDTO {
       String nrc,
       String employeeNum,
       String farmerId,
-      String nationalId,
-      int createdAt,
-      String createdBy}) = _$_CustomerDTO;
+      String nationalId}) = _$_CustomerDTO;
 
   factory _CustomerDTO.fromJson(Map<String, dynamic> json) =
       _$_CustomerDTO.fromJson;
@@ -430,14 +388,6 @@ abstract class _CustomerDTO extends CustomerDTO {
   String get farmerId;
   @override
   String get nationalId;
-  @override
-
-  /// Timestamp when this customer was created
-  int get createdAt;
-  @override
-
-  /// Unique id of the user that created this customer
-  String get createdBy;
   @override
   _$CustomerDTOCopyWith<_CustomerDTO> get copyWith;
 }

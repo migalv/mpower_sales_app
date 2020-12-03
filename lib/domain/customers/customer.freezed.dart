@@ -19,7 +19,7 @@ class _$CustomerTearOff {
       @required String name,
       @required String lastName,
       @required PhoneNumber phoneNumber,
-      @required int updatedAt,
+      int updatedAt,
       DateTime birthDate,
       String email,
       PersonalId personalId}) {
@@ -40,7 +40,7 @@ class _$CustomerTearOff {
       {@required String id,
       @required String name,
       @required PhoneNumber phoneNumber,
-      @required int updatedAt}) {
+      int updatedAt}) {
     return Company(
       id: id,
       name: name,
@@ -233,7 +233,7 @@ class _$Person extends Person {
       @required this.name,
       @required this.lastName,
       @required this.phoneNumber,
-      @required this.updatedAt,
+      this.updatedAt,
       this.birthDate,
       this.email,
       this.personalId})
@@ -241,7 +241,6 @@ class _$Person extends Person {
         assert(name != null),
         assert(lastName != null),
         assert(phoneNumber != null),
-        assert(updatedAt != null),
         super._();
 
   @override
@@ -400,7 +399,7 @@ abstract class Person extends Customer {
       @required String name,
       @required String lastName,
       @required PhoneNumber phoneNumber,
-      @required int updatedAt,
+      int updatedAt,
       DateTime birthDate,
       String email,
       PersonalId personalId}) = _$Person;
@@ -481,11 +480,10 @@ class _$Company extends Company {
       {@required this.id,
       @required this.name,
       @required this.phoneNumber,
-      @required this.updatedAt})
+      this.updatedAt})
       : assert(id != null),
         assert(name != null),
         assert(phoneNumber != null),
-        assert(updatedAt != null),
         super._();
 
   @override
@@ -602,7 +600,7 @@ abstract class Company extends Customer {
       {@required String id,
       @required String name,
       @required PhoneNumber phoneNumber,
-      @required int updatedAt}) = _$Company;
+      int updatedAt}) = _$Company;
 
   @override
   String get id;

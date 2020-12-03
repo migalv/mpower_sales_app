@@ -26,7 +26,7 @@ abstract class Customer implements _$Customer, IEntity {
     @required PhoneNumber phoneNumber,
 
     /// Timestamp that represents the last time this entity was updated
-    @required int updatedAt,
+    int updatedAt,
 
     /// The birth date of the persona
     DateTime birthDate,
@@ -43,7 +43,7 @@ abstract class Customer implements _$Customer, IEntity {
     @required String id,
     @required String name,
     @required PhoneNumber phoneNumber,
-    @required int updatedAt,
+    int updatedAt,
   }) = Company;
 
   /// The type of customer. See [CustomerType] for more info
