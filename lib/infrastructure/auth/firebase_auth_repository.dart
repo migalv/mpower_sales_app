@@ -18,6 +18,10 @@ class FirebaseAuthRepository implements IAuthRepository {
   FirebaseAuthRepository(this._firebaseAuth);
 
   @override
+  Future<Option<User>> get signedInUser async =>
+      optionOf(_firebaseAuth.currentUser);
+
+  @override
   Future<Either<AuthFailure, Unit>> sendRecoverPasswordToEmail(
       {@required String email}) async {
     try {
@@ -90,4 +94,7 @@ class FirebaseAuthRepository implements IAuthRepository {
     // No errors ocurred
     return right(unit);
   }
+
+  @override
+  Future<void> signOut() => _firebaseAuth.signOut();
 }

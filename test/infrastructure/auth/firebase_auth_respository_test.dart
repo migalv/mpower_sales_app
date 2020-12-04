@@ -9,6 +9,8 @@ import 'package:sales_app/infrastructure/auth/firebase_auth_repository.dart';
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 
+class MockFirebaseUser extends Mock implements User {}
+
 void main() {
   FirebaseAuthRepository authRepository;
   MockFirebaseAuth mockFirebaseAuth;
@@ -16,6 +18,37 @@ void main() {
   setUp(() {
     mockFirebaseAuth = MockFirebaseAuth();
     authRepository = FirebaseAuthRepository(mockFirebaseAuth);
+  });
+
+  group('signedInUser', () {
+    test(
+      'should return the signed in user',
+      () async {
+        // arrange
+        final firebaseUser = MockFirebaseUser();
+        when(mockFirebaseAuth.currentUser).thenAnswer((_) => firebaseUser);
+        // act
+        final result = await authRepository.signedInUser;
+        // assert
+        expect(result.getOrElse(() => null), firebaseUser);
+        verify(mockFirebaseAuth.currentUser).called(1);
+      },
+    );
+  });
+
+  group('singOut', () {
+    test(
+      'should call the signout method for Firebase',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.signOut())
+            .thenAnswer((_) async => Future.value());
+        // act
+        await authRepository.signOut();
+        // assert
+        verify(mockFirebaseAuth.signOut()).called(1);
+      },
+    );
   });
 
   group('trySignIn', () {
