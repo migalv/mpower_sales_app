@@ -18,11 +18,11 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
   const factory CustomerDTO._private({
     @JsonKey(ignore: true) String id,
     @required String name,
-    @required @PhoneNumberConverter() PhoneNumber phone,
-    @required CustomerType type,
 
     /// Timestamp when this customer was last updated (Locally or Remotely)
     @required int updatedAt,
+    CustomerType type,
+    @PhoneNumberConverter() PhoneNumber phone,
     String surname,
     int dateOfBirth,
     String email,
@@ -35,6 +35,15 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
   /// Transforms a Customer Entity into a CustomerDTO
   factory CustomerDTO.fromDomain(Customer customer) {
     if (customer == null) return null;
+    CustomerType customerType;
+
+    // If the type of customer is null we asume it's a person
+    if (customer.type == null) {
+      customerType = CustomerType.person;
+    } else {
+      customerType = CustomerType.values[customer.type];
+    }
+
     return customer.map(
       person: (p) {
         String nrc, employeeNum, farmerId, nationalId;
@@ -59,7 +68,7 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
           farmerId: farmerId,
           nationalId: nationalId,
           email: p.email,
-          type: CustomerType.values[p.type],
+          type: customerType,
           updatedAt: p.updatedAt ?? DateTime.now().millisecondsSinceEpoch,
         );
       },
@@ -68,7 +77,7 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
           id: c.id,
           name: c.name,
           phone: c.phoneNumber,
-          type: CustomerType.values[c.type],
+          type: customerType,
           updatedAt: c.updatedAt ?? DateTime.now().millisecondsSinceEpoch,
         );
       },
@@ -120,7 +129,8 @@ extension CustomerDTOX on CustomerDTO {
           DateTime.fromMillisecondsSinceEpoch(dateOfBirth);
     }
 
-    switch (type) {
+    // If the type of customer is null we asume it's a person
+    switch (type ?? CustomerType.person) {
       case CustomerType.person:
         customer = Customer.person(
           id: id,

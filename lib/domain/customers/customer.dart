@@ -23,7 +23,7 @@ abstract class Customer implements _$Customer, IEntity {
     @required String lastName,
 
     /// The phone number of the customer
-    @required PhoneNumber phoneNumber,
+    PhoneNumber phoneNumber,
 
     /// Timestamp that represents the last time this entity was updated
     int updatedAt,
@@ -42,7 +42,7 @@ abstract class Customer implements _$Customer, IEntity {
   factory Customer.company({
     @required String id,
     @required String name,
-    @required PhoneNumber phoneNumber,
+    PhoneNumber phoneNumber,
     int updatedAt,
   }) = Company;
 

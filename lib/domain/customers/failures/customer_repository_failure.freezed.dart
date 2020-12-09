@@ -28,8 +28,10 @@ class _$CustomerRepositoryFailureTearOff {
   }
 
 // ignore: unused_element
-  UnexpectedFailure unexpectedFailure() {
-    return const UnexpectedFailure();
+  UnexpectedFailure unexpectedFailure({DataSourceFailure failure}) {
+    return UnexpectedFailure(
+      failure: failure,
+    );
   }
 
 // ignore: unused_element
@@ -45,35 +47,35 @@ const $CustomerRepositoryFailure = _$CustomerRepositoryFailureTearOff();
 /// @nodoc
 mixin _$CustomerRepositoryFailure {
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result insufficientPermissions(),
-    @required Result unexpectedFailure(),
-    @required Result invalidElement(),
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult insufficientPermissions(),
+    @required TResult unexpectedFailure(DataSourceFailure failure),
+    @required TResult invalidElement(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result insufficientPermissions(),
-    Result unexpectedFailure(),
-    Result invalidElement(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult insufficientPermissions(),
+    TResult unexpectedFailure(DataSourceFailure failure),
+    TResult invalidElement(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unexpectedException(UnexpectedException value),
-    @required Result insufficientPermissions(InsufficientPermissions value),
-    @required Result unexpectedFailure(UnexpectedFailure value),
-    @required Result invalidElement(InvalidElement value),
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult unexpectedFailure(UnexpectedFailure value),
+    @required TResult invalidElement(InvalidElement value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unexpectedException(UnexpectedException value),
-    Result insufficientPermissions(InsufficientPermissions value),
-    Result unexpectedFailure(UnexpectedFailure value),
-    Result invalidElement(InvalidElement value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    TResult unexpectedFailure(UnexpectedFailure value),
+    TResult invalidElement(InvalidElement value),
+    @required TResult orElse(),
   });
 }
 
@@ -168,12 +170,12 @@ class _$UnexpectedException implements UnexpectedException {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result insufficientPermissions(),
-    @required Result unexpectedFailure(),
-    @required Result invalidElement(),
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult insufficientPermissions(),
+    @required TResult unexpectedFailure(DataSourceFailure failure),
+    @required TResult invalidElement(),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
@@ -184,12 +186,12 @@ class _$UnexpectedException implements UnexpectedException {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result insufficientPermissions(),
-    Result unexpectedFailure(),
-    Result invalidElement(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult insufficientPermissions(),
+    TResult unexpectedFailure(DataSourceFailure failure),
+    TResult invalidElement(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unexpectedException != null) {
@@ -200,11 +202,11 @@ class _$UnexpectedException implements UnexpectedException {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unexpectedException(UnexpectedException value),
-    @required Result insufficientPermissions(InsufficientPermissions value),
-    @required Result unexpectedFailure(UnexpectedFailure value),
-    @required Result invalidElement(InvalidElement value),
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult unexpectedFailure(UnexpectedFailure value),
+    @required TResult invalidElement(InvalidElement value),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
@@ -215,12 +217,12 @@ class _$UnexpectedException implements UnexpectedException {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unexpectedException(UnexpectedException value),
-    Result insufficientPermissions(InsufficientPermissions value),
-    Result unexpectedFailure(UnexpectedFailure value),
-    Result invalidElement(InvalidElement value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    TResult unexpectedFailure(UnexpectedFailure value),
+    TResult invalidElement(InvalidElement value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unexpectedException != null) {
@@ -278,12 +280,12 @@ class _$InsufficientPermissions implements InsufficientPermissions {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result insufficientPermissions(),
-    @required Result unexpectedFailure(),
-    @required Result invalidElement(),
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult insufficientPermissions(),
+    @required TResult unexpectedFailure(DataSourceFailure failure),
+    @required TResult invalidElement(),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
@@ -294,12 +296,12 @@ class _$InsufficientPermissions implements InsufficientPermissions {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result insufficientPermissions(),
-    Result unexpectedFailure(),
-    Result invalidElement(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult insufficientPermissions(),
+    TResult unexpectedFailure(DataSourceFailure failure),
+    TResult invalidElement(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (insufficientPermissions != null) {
@@ -310,11 +312,11 @@ class _$InsufficientPermissions implements InsufficientPermissions {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unexpectedException(UnexpectedException value),
-    @required Result insufficientPermissions(InsufficientPermissions value),
-    @required Result unexpectedFailure(UnexpectedFailure value),
-    @required Result invalidElement(InvalidElement value),
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult unexpectedFailure(UnexpectedFailure value),
+    @required TResult invalidElement(InvalidElement value),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
@@ -325,12 +327,12 @@ class _$InsufficientPermissions implements InsufficientPermissions {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unexpectedException(UnexpectedException value),
-    Result insufficientPermissions(InsufficientPermissions value),
-    Result unexpectedFailure(UnexpectedFailure value),
-    Result invalidElement(InvalidElement value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    TResult unexpectedFailure(UnexpectedFailure value),
+    TResult invalidElement(InvalidElement value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (insufficientPermissions != null) {
@@ -349,6 +351,9 @@ abstract class $UnexpectedFailureCopyWith<$Res> {
   factory $UnexpectedFailureCopyWith(
           UnexpectedFailure value, $Res Function(UnexpectedFailure) then) =
       _$UnexpectedFailureCopyWithImpl<$Res>;
+  $Res call({DataSourceFailure failure});
+
+  $DataSourceFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -361,64 +366,95 @@ class _$UnexpectedFailureCopyWithImpl<$Res>
 
   @override
   UnexpectedFailure get _value => super._value as UnexpectedFailure;
+
+  @override
+  $Res call({
+    Object failure = freezed,
+  }) {
+    return _then(UnexpectedFailure(
+      failure:
+          failure == freezed ? _value.failure : failure as DataSourceFailure,
+    ));
+  }
+
+  @override
+  $DataSourceFailureCopyWith<$Res> get failure {
+    if (_value.failure == null) {
+      return null;
+    }
+    return $DataSourceFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
 }
 
 /// @nodoc
 class _$UnexpectedFailure implements UnexpectedFailure {
-  const _$UnexpectedFailure();
+  const _$UnexpectedFailure({this.failure});
+
+  @override
+  final DataSourceFailure failure;
 
   @override
   String toString() {
-    return 'CustomerRepositoryFailure.unexpectedFailure()';
+    return 'CustomerRepositoryFailure.unexpectedFailure(failure: $failure)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is UnexpectedFailure);
+    return identical(this, other) ||
+        (other is UnexpectedFailure &&
+            (identical(other.failure, failure) ||
+                const DeepCollectionEquality().equals(other.failure, failure)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+
+  @override
+  $UnexpectedFailureCopyWith<UnexpectedFailure> get copyWith =>
+      _$UnexpectedFailureCopyWithImpl<UnexpectedFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result insufficientPermissions(),
-    @required Result unexpectedFailure(),
-    @required Result invalidElement(),
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult insufficientPermissions(),
+    @required TResult unexpectedFailure(DataSourceFailure failure),
+    @required TResult invalidElement(),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
     assert(unexpectedFailure != null);
     assert(invalidElement != null);
-    return unexpectedFailure();
+    return unexpectedFailure(failure);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result insufficientPermissions(),
-    Result unexpectedFailure(),
-    Result invalidElement(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult insufficientPermissions(),
+    TResult unexpectedFailure(DataSourceFailure failure),
+    TResult invalidElement(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unexpectedFailure != null) {
-      return unexpectedFailure();
+      return unexpectedFailure(failure);
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unexpectedException(UnexpectedException value),
-    @required Result insufficientPermissions(InsufficientPermissions value),
-    @required Result unexpectedFailure(UnexpectedFailure value),
-    @required Result invalidElement(InvalidElement value),
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult unexpectedFailure(UnexpectedFailure value),
+    @required TResult invalidElement(InvalidElement value),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
@@ -429,12 +465,12 @@ class _$UnexpectedFailure implements UnexpectedFailure {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unexpectedException(UnexpectedException value),
-    Result insufficientPermissions(InsufficientPermissions value),
-    Result unexpectedFailure(UnexpectedFailure value),
-    Result invalidElement(InvalidElement value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    TResult unexpectedFailure(UnexpectedFailure value),
+    TResult invalidElement(InvalidElement value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unexpectedFailure != null) {
@@ -445,7 +481,11 @@ class _$UnexpectedFailure implements UnexpectedFailure {
 }
 
 abstract class UnexpectedFailure implements CustomerRepositoryFailure {
-  const factory UnexpectedFailure() = _$UnexpectedFailure;
+  const factory UnexpectedFailure({DataSourceFailure failure}) =
+      _$UnexpectedFailure;
+
+  DataSourceFailure get failure;
+  $UnexpectedFailureCopyWith<UnexpectedFailure> get copyWith;
 }
 
 /// @nodoc
@@ -486,12 +526,12 @@ class _$InvalidElement implements InvalidElement {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result insufficientPermissions(),
-    @required Result unexpectedFailure(),
-    @required Result invalidElement(),
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult insufficientPermissions(),
+    @required TResult unexpectedFailure(DataSourceFailure failure),
+    @required TResult invalidElement(),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
@@ -502,12 +542,12 @@ class _$InvalidElement implements InvalidElement {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result insufficientPermissions(),
-    Result unexpectedFailure(),
-    Result invalidElement(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult insufficientPermissions(),
+    TResult unexpectedFailure(DataSourceFailure failure),
+    TResult invalidElement(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (invalidElement != null) {
@@ -518,11 +558,11 @@ class _$InvalidElement implements InvalidElement {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unexpectedException(UnexpectedException value),
-    @required Result insufficientPermissions(InsufficientPermissions value),
-    @required Result unexpectedFailure(UnexpectedFailure value),
-    @required Result invalidElement(InvalidElement value),
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult unexpectedFailure(UnexpectedFailure value),
+    @required TResult invalidElement(InvalidElement value),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
@@ -533,12 +573,12 @@ class _$InvalidElement implements InvalidElement {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unexpectedException(UnexpectedException value),
-    Result insufficientPermissions(InsufficientPermissions value),
-    Result unexpectedFailure(UnexpectedFailure value),
-    Result invalidElement(InvalidElement value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    TResult unexpectedFailure(UnexpectedFailure value),
+    TResult invalidElement(InvalidElement value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (invalidElement != null) {

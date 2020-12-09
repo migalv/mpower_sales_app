@@ -28,5 +28,6 @@ class PhoneNumberConverter implements JsonConverter<PhoneNumber, String> {
   }
 
   @override
-  String toJson(PhoneNumber pn) => "+${pn.code} ${pn.number}";
+  String toJson(PhoneNumber pn) =>
+      pn != null ? "+${pn.code} ${pn.number}" : null;
 }

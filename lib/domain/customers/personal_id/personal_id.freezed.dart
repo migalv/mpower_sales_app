@@ -49,34 +49,34 @@ const $PersonalId = _$PersonalIdTearOff();
 /// @nodoc
 mixin _$PersonalId {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result nrc(String nrc),
-    @required Result employeeNum(String employeeNum),
-    @required Result farmerId(String farmerId),
-    @required Result nationalId(String nationalId),
+  TResult when<TResult extends Object>({
+    @required TResult nrc(String nrc),
+    @required TResult employeeNum(String employeeNum),
+    @required TResult farmerId(String farmerId),
+    @required TResult nationalId(String nationalId),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result nrc(String nrc),
-    Result employeeNum(String employeeNum),
-    Result farmerId(String farmerId),
-    Result nationalId(String nationalId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult nrc(String nrc),
+    TResult employeeNum(String employeeNum),
+    TResult farmerId(String farmerId),
+    TResult nationalId(String nationalId),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result nrc(NRC value),
-    @required Result employeeNum(EmployeeNum value),
-    @required Result farmerId(FarmerId value),
-    @required Result nationalId(NationalId value),
+  TResult map<TResult extends Object>({
+    @required TResult nrc(NRC value),
+    @required TResult employeeNum(EmployeeNum value),
+    @required TResult farmerId(FarmerId value),
+    @required TResult nationalId(NationalId value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result nrc(NRC value),
-    Result employeeNum(EmployeeNum value),
-    Result farmerId(FarmerId value),
-    Result nationalId(NationalId value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult nrc(NRC value),
+    TResult employeeNum(EmployeeNum value),
+    TResult farmerId(FarmerId value),
+    TResult nationalId(NationalId value),
+    @required TResult orElse(),
   });
 }
 
@@ -151,11 +151,11 @@ class _$NRC implements NRC {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result nrc(String nrc),
-    @required Result employeeNum(String employeeNum),
-    @required Result farmerId(String farmerId),
-    @required Result nationalId(String nationalId),
+  TResult when<TResult extends Object>({
+    @required TResult nrc(String nrc),
+    @required TResult employeeNum(String employeeNum),
+    @required TResult farmerId(String farmerId),
+    @required TResult nationalId(String nationalId),
   }) {
     assert(nrc != null);
     assert(employeeNum != null);
@@ -166,12 +166,12 @@ class _$NRC implements NRC {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result nrc(String nrc),
-    Result employeeNum(String employeeNum),
-    Result farmerId(String farmerId),
-    Result nationalId(String nationalId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult nrc(String nrc),
+    TResult employeeNum(String employeeNum),
+    TResult farmerId(String farmerId),
+    TResult nationalId(String nationalId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (nrc != null) {
@@ -182,11 +182,11 @@ class _$NRC implements NRC {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result nrc(NRC value),
-    @required Result employeeNum(EmployeeNum value),
-    @required Result farmerId(FarmerId value),
-    @required Result nationalId(NationalId value),
+  TResult map<TResult extends Object>({
+    @required TResult nrc(NRC value),
+    @required TResult employeeNum(EmployeeNum value),
+    @required TResult farmerId(FarmerId value),
+    @required TResult nationalId(NationalId value),
   }) {
     assert(nrc != null);
     assert(employeeNum != null);
@@ -197,12 +197,12 @@ class _$NRC implements NRC {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result nrc(NRC value),
-    Result employeeNum(EmployeeNum value),
-    Result farmerId(FarmerId value),
-    Result nationalId(NationalId value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult nrc(NRC value),
+    TResult employeeNum(EmployeeNum value),
+    TResult farmerId(FarmerId value),
+    TResult nationalId(NationalId value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (nrc != null) {
@@ -280,11 +280,11 @@ class _$EmployeeNum implements EmployeeNum {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result nrc(String nrc),
-    @required Result employeeNum(String employeeNum),
-    @required Result farmerId(String farmerId),
-    @required Result nationalId(String nationalId),
+  TResult when<TResult extends Object>({
+    @required TResult nrc(String nrc),
+    @required TResult employeeNum(String employeeNum),
+    @required TResult farmerId(String farmerId),
+    @required TResult nationalId(String nationalId),
   }) {
     assert(nrc != null);
     assert(employeeNum != null);
@@ -295,12 +295,12 @@ class _$EmployeeNum implements EmployeeNum {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result nrc(String nrc),
-    Result employeeNum(String employeeNum),
-    Result farmerId(String farmerId),
-    Result nationalId(String nationalId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult nrc(String nrc),
+    TResult employeeNum(String employeeNum),
+    TResult farmerId(String farmerId),
+    TResult nationalId(String nationalId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (employeeNum != null) {
@@ -311,11 +311,11 @@ class _$EmployeeNum implements EmployeeNum {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result nrc(NRC value),
-    @required Result employeeNum(EmployeeNum value),
-    @required Result farmerId(FarmerId value),
-    @required Result nationalId(NationalId value),
+  TResult map<TResult extends Object>({
+    @required TResult nrc(NRC value),
+    @required TResult employeeNum(EmployeeNum value),
+    @required TResult farmerId(FarmerId value),
+    @required TResult nationalId(NationalId value),
   }) {
     assert(nrc != null);
     assert(employeeNum != null);
@@ -326,12 +326,12 @@ class _$EmployeeNum implements EmployeeNum {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result nrc(NRC value),
-    Result employeeNum(EmployeeNum value),
-    Result farmerId(FarmerId value),
-    Result nationalId(NationalId value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult nrc(NRC value),
+    TResult employeeNum(EmployeeNum value),
+    TResult farmerId(FarmerId value),
+    TResult nationalId(NationalId value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (employeeNum != null) {
@@ -405,11 +405,11 @@ class _$FarmerId implements FarmerId {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result nrc(String nrc),
-    @required Result employeeNum(String employeeNum),
-    @required Result farmerId(String farmerId),
-    @required Result nationalId(String nationalId),
+  TResult when<TResult extends Object>({
+    @required TResult nrc(String nrc),
+    @required TResult employeeNum(String employeeNum),
+    @required TResult farmerId(String farmerId),
+    @required TResult nationalId(String nationalId),
   }) {
     assert(nrc != null);
     assert(employeeNum != null);
@@ -420,12 +420,12 @@ class _$FarmerId implements FarmerId {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result nrc(String nrc),
-    Result employeeNum(String employeeNum),
-    Result farmerId(String farmerId),
-    Result nationalId(String nationalId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult nrc(String nrc),
+    TResult employeeNum(String employeeNum),
+    TResult farmerId(String farmerId),
+    TResult nationalId(String nationalId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (farmerId != null) {
@@ -436,11 +436,11 @@ class _$FarmerId implements FarmerId {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result nrc(NRC value),
-    @required Result employeeNum(EmployeeNum value),
-    @required Result farmerId(FarmerId value),
-    @required Result nationalId(NationalId value),
+  TResult map<TResult extends Object>({
+    @required TResult nrc(NRC value),
+    @required TResult employeeNum(EmployeeNum value),
+    @required TResult farmerId(FarmerId value),
+    @required TResult nationalId(NationalId value),
   }) {
     assert(nrc != null);
     assert(employeeNum != null);
@@ -451,12 +451,12 @@ class _$FarmerId implements FarmerId {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result nrc(NRC value),
-    Result employeeNum(EmployeeNum value),
-    Result farmerId(FarmerId value),
-    Result nationalId(NationalId value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult nrc(NRC value),
+    TResult employeeNum(EmployeeNum value),
+    TResult farmerId(FarmerId value),
+    TResult nationalId(NationalId value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (farmerId != null) {
@@ -532,11 +532,11 @@ class _$NationalId implements NationalId {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result nrc(String nrc),
-    @required Result employeeNum(String employeeNum),
-    @required Result farmerId(String farmerId),
-    @required Result nationalId(String nationalId),
+  TResult when<TResult extends Object>({
+    @required TResult nrc(String nrc),
+    @required TResult employeeNum(String employeeNum),
+    @required TResult farmerId(String farmerId),
+    @required TResult nationalId(String nationalId),
   }) {
     assert(nrc != null);
     assert(employeeNum != null);
@@ -547,12 +547,12 @@ class _$NationalId implements NationalId {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result nrc(String nrc),
-    Result employeeNum(String employeeNum),
-    Result farmerId(String farmerId),
-    Result nationalId(String nationalId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult nrc(String nrc),
+    TResult employeeNum(String employeeNum),
+    TResult farmerId(String farmerId),
+    TResult nationalId(String nationalId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (nationalId != null) {
@@ -563,11 +563,11 @@ class _$NationalId implements NationalId {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result nrc(NRC value),
-    @required Result employeeNum(EmployeeNum value),
-    @required Result farmerId(FarmerId value),
-    @required Result nationalId(NationalId value),
+  TResult map<TResult extends Object>({
+    @required TResult nrc(NRC value),
+    @required TResult employeeNum(EmployeeNum value),
+    @required TResult farmerId(FarmerId value),
+    @required TResult nationalId(NationalId value),
   }) {
     assert(nrc != null);
     assert(employeeNum != null);
@@ -578,12 +578,12 @@ class _$NationalId implements NationalId {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result nrc(NRC value),
-    Result employeeNum(EmployeeNum value),
-    Result farmerId(FarmerId value),
-    Result nationalId(NationalId value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult nrc(NRC value),
+    TResult employeeNum(EmployeeNum value),
+    TResult farmerId(FarmerId value),
+    TResult nationalId(NationalId value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (nationalId != null) {

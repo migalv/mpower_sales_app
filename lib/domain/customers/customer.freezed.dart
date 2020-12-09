@@ -18,7 +18,7 @@ class _$CustomerTearOff {
       {@required String id,
       @required String name,
       @required String lastName,
-      @required PhoneNumber phoneNumber,
+      PhoneNumber phoneNumber,
       int updatedAt,
       DateTime birthDate,
       String email,
@@ -39,7 +39,7 @@ class _$CustomerTearOff {
   Company company(
       {@required String id,
       @required String name,
-      @required PhoneNumber phoneNumber,
+      PhoneNumber phoneNumber,
       int updatedAt}) {
     return Company(
       id: id,
@@ -69,9 +69,9 @@ mixin _$Customer {
   int get updatedAt;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result person(
+        TResult person(
             String id,
             String name,
             String lastName,
@@ -81,12 +81,12 @@ mixin _$Customer {
             String email,
             PersonalId personalId),
     @required
-        Result company(
+        TResult company(
             String id, String name, PhoneNumber phoneNumber, int updatedAt),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result person(
+  TResult maybeWhen<TResult extends Object>({
+    TResult person(
         String id,
         String name,
         String lastName,
@@ -95,20 +95,20 @@ mixin _$Customer {
         DateTime birthDate,
         String email,
         PersonalId personalId),
-    Result company(
+    TResult company(
         String id, String name, PhoneNumber phoneNumber, int updatedAt),
-    @required Result orElse(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result person(Person value),
-    @required Result company(Company value),
+  TResult map<TResult extends Object>({
+    @required TResult person(Person value),
+    @required TResult company(Company value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result person(Person value),
-    Result company(Company value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult person(Person value),
+    TResult company(Company value),
+    @required TResult orElse(),
   });
 
   $CustomerCopyWith<Customer> get copyWith;
@@ -232,7 +232,7 @@ class _$Person extends Person {
       {@required this.id,
       @required this.name,
       @required this.lastName,
-      @required this.phoneNumber,
+      this.phoneNumber,
       this.updatedAt,
       this.birthDate,
       this.email,
@@ -240,7 +240,6 @@ class _$Person extends Person {
       : assert(id != null),
         assert(name != null),
         assert(lastName != null),
-        assert(phoneNumber != null),
         super._();
 
   @override
@@ -321,9 +320,9 @@ class _$Person extends Person {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result person(
+        TResult person(
             String id,
             String name,
             String lastName,
@@ -333,7 +332,7 @@ class _$Person extends Person {
             String email,
             PersonalId personalId),
     @required
-        Result company(
+        TResult company(
             String id, String name, PhoneNumber phoneNumber, int updatedAt),
   }) {
     assert(person != null);
@@ -344,8 +343,8 @@ class _$Person extends Person {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result person(
+  TResult maybeWhen<TResult extends Object>({
+    TResult person(
         String id,
         String name,
         String lastName,
@@ -354,9 +353,9 @@ class _$Person extends Person {
         DateTime birthDate,
         String email,
         PersonalId personalId),
-    Result company(
+    TResult company(
         String id, String name, PhoneNumber phoneNumber, int updatedAt),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (person != null) {
@@ -368,9 +367,9 @@ class _$Person extends Person {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result person(Person value),
-    @required Result company(Company value),
+  TResult map<TResult extends Object>({
+    @required TResult person(Person value),
+    @required TResult company(Company value),
   }) {
     assert(person != null);
     assert(company != null);
@@ -379,10 +378,10 @@ class _$Person extends Person {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result person(Person value),
-    Result company(Company value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult person(Person value),
+    TResult company(Company value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (person != null) {
@@ -398,7 +397,7 @@ abstract class Person extends Customer {
       {@required String id,
       @required String name,
       @required String lastName,
-      @required PhoneNumber phoneNumber,
+      PhoneNumber phoneNumber,
       int updatedAt,
       DateTime birthDate,
       String email,
@@ -479,11 +478,10 @@ class _$Company extends Company {
   _$Company(
       {@required this.id,
       @required this.name,
-      @required this.phoneNumber,
+      this.phoneNumber,
       this.updatedAt})
       : assert(id != null),
         assert(name != null),
-        assert(phoneNumber != null),
         super._();
 
   @override
@@ -525,9 +523,9 @@ class _$Company extends Company {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result person(
+        TResult person(
             String id,
             String name,
             String lastName,
@@ -537,7 +535,7 @@ class _$Company extends Company {
             String email,
             PersonalId personalId),
     @required
-        Result company(
+        TResult company(
             String id, String name, PhoneNumber phoneNumber, int updatedAt),
   }) {
     assert(person != null);
@@ -547,8 +545,8 @@ class _$Company extends Company {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result person(
+  TResult maybeWhen<TResult extends Object>({
+    TResult person(
         String id,
         String name,
         String lastName,
@@ -557,9 +555,9 @@ class _$Company extends Company {
         DateTime birthDate,
         String email,
         PersonalId personalId),
-    Result company(
+    TResult company(
         String id, String name, PhoneNumber phoneNumber, int updatedAt),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (company != null) {
@@ -570,9 +568,9 @@ class _$Company extends Company {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result person(Person value),
-    @required Result company(Company value),
+  TResult map<TResult extends Object>({
+    @required TResult person(Person value),
+    @required TResult company(Company value),
   }) {
     assert(person != null);
     assert(company != null);
@@ -581,10 +579,10 @@ class _$Company extends Company {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result person(Person value),
-    Result company(Company value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult person(Person value),
+    TResult company(Company value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (company != null) {
@@ -599,7 +597,7 @@ abstract class Company extends Customer {
   factory Company(
       {@required String id,
       @required String name,
-      @required PhoneNumber phoneNumber,
+      PhoneNumber phoneNumber,
       int updatedAt}) = _$Company;
 
   @override

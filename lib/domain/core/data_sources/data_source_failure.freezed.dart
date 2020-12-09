@@ -59,43 +59,43 @@ const $DataSourceFailure = _$DataSourceFailureTearOff();
 /// @nodoc
 mixin _$DataSourceFailure {
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result nullElement(),
-    @required Result elementNotFound(),
-    @required Result noElementsFor(String collection),
-    @required Result serverError(dynamic error),
-    @required Result insufficientPermissions(),
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult nullElement(),
+    @required TResult elementNotFound(),
+    @required TResult noElementsFor(String collection),
+    @required TResult serverError(dynamic error),
+    @required TResult insufficientPermissions(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result nullElement(),
-    Result elementNotFound(),
-    Result noElementsFor(String collection),
-    Result serverError(dynamic error),
-    Result insufficientPermissions(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult nullElement(),
+    TResult elementNotFound(),
+    TResult noElementsFor(String collection),
+    TResult serverError(dynamic error),
+    TResult insufficientPermissions(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unexpectedException(UnexpectedException value),
-    @required Result nullElement(NullElement value),
-    @required Result elementNotFound(ElementNotFound value),
-    @required Result noElementsFor(NoElementsForCollection value),
-    @required Result serverError(ServerError value),
-    @required Result insufficientPermissions(InsufficientPermissions value),
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult nullElement(NullElement value),
+    @required TResult elementNotFound(ElementNotFound value),
+    @required TResult noElementsFor(NoElementsForCollection value),
+    @required TResult serverError(ServerError value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unexpectedException(UnexpectedException value),
-    Result nullElement(NullElement value),
-    Result elementNotFound(ElementNotFound value),
-    Result noElementsFor(NoElementsForCollection value),
-    Result serverError(ServerError value),
-    Result insufficientPermissions(InsufficientPermissions value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult nullElement(NullElement value),
+    TResult elementNotFound(ElementNotFound value),
+    TResult noElementsFor(NoElementsForCollection value),
+    TResult serverError(ServerError value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult orElse(),
   });
 }
 
@@ -202,14 +202,14 @@ class _$UnexpectedException
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result nullElement(),
-    @required Result elementNotFound(),
-    @required Result noElementsFor(String collection),
-    @required Result serverError(dynamic error),
-    @required Result insufficientPermissions(),
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult nullElement(),
+    @required TResult elementNotFound(),
+    @required TResult noElementsFor(String collection),
+    @required TResult serverError(dynamic error),
+    @required TResult insufficientPermissions(),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
@@ -222,14 +222,14 @@ class _$UnexpectedException
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result nullElement(),
-    Result elementNotFound(),
-    Result noElementsFor(String collection),
-    Result serverError(dynamic error),
-    Result insufficientPermissions(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult nullElement(),
+    TResult elementNotFound(),
+    TResult noElementsFor(String collection),
+    TResult serverError(dynamic error),
+    TResult insufficientPermissions(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unexpectedException != null) {
@@ -240,13 +240,13 @@ class _$UnexpectedException
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unexpectedException(UnexpectedException value),
-    @required Result nullElement(NullElement value),
-    @required Result elementNotFound(ElementNotFound value),
-    @required Result noElementsFor(NoElementsForCollection value),
-    @required Result serverError(ServerError value),
-    @required Result insufficientPermissions(InsufficientPermissions value),
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult nullElement(NullElement value),
+    @required TResult elementNotFound(ElementNotFound value),
+    @required TResult noElementsFor(NoElementsForCollection value),
+    @required TResult serverError(ServerError value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
@@ -259,14 +259,14 @@ class _$UnexpectedException
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unexpectedException(UnexpectedException value),
-    Result nullElement(NullElement value),
-    Result elementNotFound(ElementNotFound value),
-    Result noElementsFor(NoElementsForCollection value),
-    Result serverError(ServerError value),
-    Result insufficientPermissions(InsufficientPermissions value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult nullElement(NullElement value),
+    TResult elementNotFound(ElementNotFound value),
+    TResult noElementsFor(NoElementsForCollection value),
+    TResult serverError(ServerError value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unexpectedException != null) {
@@ -331,14 +331,14 @@ class _$NullElement with DiagnosticableTreeMixin implements NullElement {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result nullElement(),
-    @required Result elementNotFound(),
-    @required Result noElementsFor(String collection),
-    @required Result serverError(dynamic error),
-    @required Result insufficientPermissions(),
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult nullElement(),
+    @required TResult elementNotFound(),
+    @required TResult noElementsFor(String collection),
+    @required TResult serverError(dynamic error),
+    @required TResult insufficientPermissions(),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
@@ -351,14 +351,14 @@ class _$NullElement with DiagnosticableTreeMixin implements NullElement {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result nullElement(),
-    Result elementNotFound(),
-    Result noElementsFor(String collection),
-    Result serverError(dynamic error),
-    Result insufficientPermissions(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult nullElement(),
+    TResult elementNotFound(),
+    TResult noElementsFor(String collection),
+    TResult serverError(dynamic error),
+    TResult insufficientPermissions(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (nullElement != null) {
@@ -369,13 +369,13 @@ class _$NullElement with DiagnosticableTreeMixin implements NullElement {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unexpectedException(UnexpectedException value),
-    @required Result nullElement(NullElement value),
-    @required Result elementNotFound(ElementNotFound value),
-    @required Result noElementsFor(NoElementsForCollection value),
-    @required Result serverError(ServerError value),
-    @required Result insufficientPermissions(InsufficientPermissions value),
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult nullElement(NullElement value),
+    @required TResult elementNotFound(ElementNotFound value),
+    @required TResult noElementsFor(NoElementsForCollection value),
+    @required TResult serverError(ServerError value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
@@ -388,14 +388,14 @@ class _$NullElement with DiagnosticableTreeMixin implements NullElement {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unexpectedException(UnexpectedException value),
-    Result nullElement(NullElement value),
-    Result elementNotFound(ElementNotFound value),
-    Result noElementsFor(NoElementsForCollection value),
-    Result serverError(ServerError value),
-    Result insufficientPermissions(InsufficientPermissions value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult nullElement(NullElement value),
+    TResult elementNotFound(ElementNotFound value),
+    TResult noElementsFor(NoElementsForCollection value),
+    TResult serverError(ServerError value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (nullElement != null) {
@@ -456,14 +456,14 @@ class _$ElementNotFound
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result nullElement(),
-    @required Result elementNotFound(),
-    @required Result noElementsFor(String collection),
-    @required Result serverError(dynamic error),
-    @required Result insufficientPermissions(),
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult nullElement(),
+    @required TResult elementNotFound(),
+    @required TResult noElementsFor(String collection),
+    @required TResult serverError(dynamic error),
+    @required TResult insufficientPermissions(),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
@@ -476,14 +476,14 @@ class _$ElementNotFound
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result nullElement(),
-    Result elementNotFound(),
-    Result noElementsFor(String collection),
-    Result serverError(dynamic error),
-    Result insufficientPermissions(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult nullElement(),
+    TResult elementNotFound(),
+    TResult noElementsFor(String collection),
+    TResult serverError(dynamic error),
+    TResult insufficientPermissions(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (elementNotFound != null) {
@@ -494,13 +494,13 @@ class _$ElementNotFound
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unexpectedException(UnexpectedException value),
-    @required Result nullElement(NullElement value),
-    @required Result elementNotFound(ElementNotFound value),
-    @required Result noElementsFor(NoElementsForCollection value),
-    @required Result serverError(ServerError value),
-    @required Result insufficientPermissions(InsufficientPermissions value),
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult nullElement(NullElement value),
+    @required TResult elementNotFound(ElementNotFound value),
+    @required TResult noElementsFor(NoElementsForCollection value),
+    @required TResult serverError(ServerError value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
@@ -513,14 +513,14 @@ class _$ElementNotFound
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unexpectedException(UnexpectedException value),
-    Result nullElement(NullElement value),
-    Result elementNotFound(ElementNotFound value),
-    Result noElementsFor(NoElementsForCollection value),
-    Result serverError(ServerError value),
-    Result insufficientPermissions(InsufficientPermissions value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult nullElement(NullElement value),
+    TResult elementNotFound(ElementNotFound value),
+    TResult noElementsFor(NoElementsForCollection value),
+    TResult serverError(ServerError value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (elementNotFound != null) {
@@ -607,14 +607,14 @@ class _$NoElementsForCollection
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result nullElement(),
-    @required Result elementNotFound(),
-    @required Result noElementsFor(String collection),
-    @required Result serverError(dynamic error),
-    @required Result insufficientPermissions(),
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult nullElement(),
+    @required TResult elementNotFound(),
+    @required TResult noElementsFor(String collection),
+    @required TResult serverError(dynamic error),
+    @required TResult insufficientPermissions(),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
@@ -627,14 +627,14 @@ class _$NoElementsForCollection
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result nullElement(),
-    Result elementNotFound(),
-    Result noElementsFor(String collection),
-    Result serverError(dynamic error),
-    Result insufficientPermissions(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult nullElement(),
+    TResult elementNotFound(),
+    TResult noElementsFor(String collection),
+    TResult serverError(dynamic error),
+    TResult insufficientPermissions(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (noElementsFor != null) {
@@ -645,13 +645,13 @@ class _$NoElementsForCollection
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unexpectedException(UnexpectedException value),
-    @required Result nullElement(NullElement value),
-    @required Result elementNotFound(ElementNotFound value),
-    @required Result noElementsFor(NoElementsForCollection value),
-    @required Result serverError(ServerError value),
-    @required Result insufficientPermissions(InsufficientPermissions value),
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult nullElement(NullElement value),
+    @required TResult elementNotFound(ElementNotFound value),
+    @required TResult noElementsFor(NoElementsForCollection value),
+    @required TResult serverError(ServerError value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
@@ -664,14 +664,14 @@ class _$NoElementsForCollection
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unexpectedException(UnexpectedException value),
-    Result nullElement(NullElement value),
-    Result elementNotFound(ElementNotFound value),
-    Result noElementsFor(NoElementsForCollection value),
-    Result serverError(ServerError value),
-    Result insufficientPermissions(InsufficientPermissions value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult nullElement(NullElement value),
+    TResult elementNotFound(ElementNotFound value),
+    TResult noElementsFor(NoElementsForCollection value),
+    TResult serverError(ServerError value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (noElementsFor != null) {
@@ -756,14 +756,14 @@ class _$ServerError with DiagnosticableTreeMixin implements ServerError {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result nullElement(),
-    @required Result elementNotFound(),
-    @required Result noElementsFor(String collection),
-    @required Result serverError(dynamic error),
-    @required Result insufficientPermissions(),
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult nullElement(),
+    @required TResult elementNotFound(),
+    @required TResult noElementsFor(String collection),
+    @required TResult serverError(dynamic error),
+    @required TResult insufficientPermissions(),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
@@ -776,14 +776,14 @@ class _$ServerError with DiagnosticableTreeMixin implements ServerError {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result nullElement(),
-    Result elementNotFound(),
-    Result noElementsFor(String collection),
-    Result serverError(dynamic error),
-    Result insufficientPermissions(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult nullElement(),
+    TResult elementNotFound(),
+    TResult noElementsFor(String collection),
+    TResult serverError(dynamic error),
+    TResult insufficientPermissions(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (serverError != null) {
@@ -794,13 +794,13 @@ class _$ServerError with DiagnosticableTreeMixin implements ServerError {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unexpectedException(UnexpectedException value),
-    @required Result nullElement(NullElement value),
-    @required Result elementNotFound(ElementNotFound value),
-    @required Result noElementsFor(NoElementsForCollection value),
-    @required Result serverError(ServerError value),
-    @required Result insufficientPermissions(InsufficientPermissions value),
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult nullElement(NullElement value),
+    @required TResult elementNotFound(ElementNotFound value),
+    @required TResult noElementsFor(NoElementsForCollection value),
+    @required TResult serverError(ServerError value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
@@ -813,14 +813,14 @@ class _$ServerError with DiagnosticableTreeMixin implements ServerError {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unexpectedException(UnexpectedException value),
-    Result nullElement(NullElement value),
-    Result elementNotFound(ElementNotFound value),
-    Result noElementsFor(NoElementsForCollection value),
-    Result serverError(ServerError value),
-    Result insufficientPermissions(InsufficientPermissions value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult nullElement(NullElement value),
+    TResult elementNotFound(ElementNotFound value),
+    TResult noElementsFor(NoElementsForCollection value),
+    TResult serverError(ServerError value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (serverError != null) {
@@ -885,14 +885,14 @@ class _$InsufficientPermissions
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unexpectedException(Exception exception, StackTrace stackTrace),
-    @required Result nullElement(),
-    @required Result elementNotFound(),
-    @required Result noElementsFor(String collection),
-    @required Result serverError(dynamic error),
-    @required Result insufficientPermissions(),
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult nullElement(),
+    @required TResult elementNotFound(),
+    @required TResult noElementsFor(String collection),
+    @required TResult serverError(dynamic error),
+    @required TResult insufficientPermissions(),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
@@ -905,14 +905,14 @@ class _$InsufficientPermissions
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unexpectedException(Exception exception, StackTrace stackTrace),
-    Result nullElement(),
-    Result elementNotFound(),
-    Result noElementsFor(String collection),
-    Result serverError(dynamic error),
-    Result insufficientPermissions(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult nullElement(),
+    TResult elementNotFound(),
+    TResult noElementsFor(String collection),
+    TResult serverError(dynamic error),
+    TResult insufficientPermissions(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (insufficientPermissions != null) {
@@ -923,13 +923,13 @@ class _$InsufficientPermissions
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unexpectedException(UnexpectedException value),
-    @required Result nullElement(NullElement value),
-    @required Result elementNotFound(ElementNotFound value),
-    @required Result noElementsFor(NoElementsForCollection value),
-    @required Result serverError(ServerError value),
-    @required Result insufficientPermissions(InsufficientPermissions value),
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult nullElement(NullElement value),
+    @required TResult elementNotFound(ElementNotFound value),
+    @required TResult noElementsFor(NoElementsForCollection value),
+    @required TResult serverError(ServerError value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
   }) {
     assert(unexpectedException != null);
     assert(nullElement != null);
@@ -942,14 +942,14 @@ class _$InsufficientPermissions
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unexpectedException(UnexpectedException value),
-    Result nullElement(NullElement value),
-    Result elementNotFound(ElementNotFound value),
-    Result noElementsFor(NoElementsForCollection value),
-    Result serverError(ServerError value),
-    Result insufficientPermissions(InsufficientPermissions value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult nullElement(NullElement value),
+    TResult elementNotFound(ElementNotFound value),
+    TResult noElementsFor(NoElementsForCollection value),
+    TResult serverError(ServerError value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (insufficientPermissions != null) {

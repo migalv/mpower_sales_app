@@ -20,9 +20,9 @@ class _$CustomerDTOTearOff {
   _CustomerDTO _private(
       {@JsonKey(ignore: true) String id,
       @required String name,
-      @required @PhoneNumberConverter() PhoneNumber phone,
-      @required CustomerType type,
       @required int updatedAt,
+      CustomerType type,
+      @PhoneNumberConverter() PhoneNumber phone,
       String surname,
       int dateOfBirth,
       String email,
@@ -33,9 +33,9 @@ class _$CustomerDTOTearOff {
     return _CustomerDTO(
       id: id,
       name: name,
-      phone: phone,
-      type: type,
       updatedAt: updatedAt,
+      type: type,
+      phone: phone,
       surname: surname,
       dateOfBirth: dateOfBirth,
       email: email,
@@ -61,12 +61,12 @@ mixin _$CustomerDTO {
   @JsonKey(ignore: true)
   String get id;
   String get name;
-  @PhoneNumberConverter()
-  PhoneNumber get phone;
-  CustomerType get type;
 
   /// Timestamp when this customer was last updated (Locally or Remotely)
   int get updatedAt;
+  CustomerType get type;
+  @PhoneNumberConverter()
+  PhoneNumber get phone;
   String get surname;
   int get dateOfBirth;
   String get email;
@@ -87,9 +87,9 @@ abstract class $CustomerDTOCopyWith<$Res> {
   $Res call(
       {@JsonKey(ignore: true) String id,
       String name,
-      @PhoneNumberConverter() PhoneNumber phone,
-      CustomerType type,
       int updatedAt,
+      CustomerType type,
+      @PhoneNumberConverter() PhoneNumber phone,
       String surname,
       int dateOfBirth,
       String email,
@@ -113,9 +113,9 @@ class _$CustomerDTOCopyWithImpl<$Res> implements $CustomerDTOCopyWith<$Res> {
   $Res call({
     Object id = freezed,
     Object name = freezed,
-    Object phone = freezed,
-    Object type = freezed,
     Object updatedAt = freezed,
+    Object type = freezed,
+    Object phone = freezed,
     Object surname = freezed,
     Object dateOfBirth = freezed,
     Object email = freezed,
@@ -127,9 +127,9 @@ class _$CustomerDTOCopyWithImpl<$Res> implements $CustomerDTOCopyWith<$Res> {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
-      phone: phone == freezed ? _value.phone : phone as PhoneNumber,
-      type: type == freezed ? _value.type : type as CustomerType,
       updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as int,
+      type: type == freezed ? _value.type : type as CustomerType,
+      phone: phone == freezed ? _value.phone : phone as PhoneNumber,
       surname: surname == freezed ? _value.surname : surname as String,
       dateOfBirth:
           dateOfBirth == freezed ? _value.dateOfBirth : dateOfBirth as int,
@@ -164,9 +164,9 @@ abstract class _$CustomerDTOCopyWith<$Res>
   $Res call(
       {@JsonKey(ignore: true) String id,
       String name,
-      @PhoneNumberConverter() PhoneNumber phone,
-      CustomerType type,
       int updatedAt,
+      CustomerType type,
+      @PhoneNumberConverter() PhoneNumber phone,
       String surname,
       int dateOfBirth,
       String email,
@@ -193,9 +193,9 @@ class __$CustomerDTOCopyWithImpl<$Res> extends _$CustomerDTOCopyWithImpl<$Res>
   $Res call({
     Object id = freezed,
     Object name = freezed,
-    Object phone = freezed,
-    Object type = freezed,
     Object updatedAt = freezed,
+    Object type = freezed,
+    Object phone = freezed,
     Object surname = freezed,
     Object dateOfBirth = freezed,
     Object email = freezed,
@@ -207,9 +207,9 @@ class __$CustomerDTOCopyWithImpl<$Res> extends _$CustomerDTOCopyWithImpl<$Res>
     return _then(_CustomerDTO(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
-      phone: phone == freezed ? _value.phone : phone as PhoneNumber,
-      type: type == freezed ? _value.type : type as CustomerType,
       updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as int,
+      type: type == freezed ? _value.type : type as CustomerType,
+      phone: phone == freezed ? _value.phone : phone as PhoneNumber,
       surname: surname == freezed ? _value.surname : surname as String,
       dateOfBirth:
           dateOfBirth == freezed ? _value.dateOfBirth : dateOfBirth as int,
@@ -231,9 +231,9 @@ class _$_CustomerDTO extends _CustomerDTO {
   const _$_CustomerDTO(
       {@JsonKey(ignore: true) this.id,
       @required this.name,
-      @required @PhoneNumberConverter() this.phone,
-      @required this.type,
       @required this.updatedAt,
+      this.type,
+      @PhoneNumberConverter() this.phone,
       this.surname,
       this.dateOfBirth,
       this.email,
@@ -242,8 +242,6 @@ class _$_CustomerDTO extends _CustomerDTO {
       this.farmerId,
       this.nationalId})
       : assert(name != null),
-        assert(phone != null),
-        assert(type != null),
         assert(updatedAt != null),
         super._();
 
@@ -256,14 +254,14 @@ class _$_CustomerDTO extends _CustomerDTO {
   @override
   final String name;
   @override
-  @PhoneNumberConverter()
-  final PhoneNumber phone;
-  @override
-  final CustomerType type;
-  @override
 
   /// Timestamp when this customer was last updated (Locally or Remotely)
   final int updatedAt;
+  @override
+  final CustomerType type;
+  @override
+  @PhoneNumberConverter()
+  final PhoneNumber phone;
   @override
   final String surname;
   @override
@@ -287,13 +285,13 @@ class _$_CustomerDTO extends _CustomerDTO {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.updatedAt, updatedAt) ||
                 const DeepCollectionEquality()
                     .equals(other.updatedAt, updatedAt)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.phone, phone) ||
+                const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.surname, surname) ||
                 const DeepCollectionEquality()
                     .equals(other.surname, surname)) &&
@@ -320,9 +318,9 @@ class _$_CustomerDTO extends _CustomerDTO {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(updatedAt) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(surname) ^
       const DeepCollectionEquality().hash(dateOfBirth) ^
       const DeepCollectionEquality().hash(email) ^
@@ -346,9 +344,9 @@ abstract class _CustomerDTO extends CustomerDTO {
   const factory _CustomerDTO(
       {@JsonKey(ignore: true) String id,
       @required String name,
-      @required @PhoneNumberConverter() PhoneNumber phone,
-      @required CustomerType type,
       @required int updatedAt,
+      CustomerType type,
+      @PhoneNumberConverter() PhoneNumber phone,
       String surname,
       int dateOfBirth,
       String email,
@@ -366,14 +364,14 @@ abstract class _CustomerDTO extends CustomerDTO {
   @override
   String get name;
   @override
-  @PhoneNumberConverter()
-  PhoneNumber get phone;
-  @override
-  CustomerType get type;
-  @override
 
   /// Timestamp when this customer was last updated (Locally or Remotely)
   int get updatedAt;
+  @override
+  CustomerType get type;
+  @override
+  @PhoneNumberConverter()
+  PhoneNumber get phone;
   @override
   String get surname;
   @override

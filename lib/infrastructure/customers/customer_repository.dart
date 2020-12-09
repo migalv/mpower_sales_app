@@ -48,7 +48,8 @@ class CustomerRepository implements ICustomerRepository {
               return const CustomerRepositoryFailure.insufficientPermissions();
             },
             orElse: () {
-              return const CustomerRepositoryFailure.unexpectedFailure();
+              print(l);
+              return CustomerRepositoryFailure.unexpectedFailure(failure: l);
             },
           ),
           id,

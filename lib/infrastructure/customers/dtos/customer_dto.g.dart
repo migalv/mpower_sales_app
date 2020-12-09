@@ -9,9 +9,9 @@ part of 'customer_dto.dart';
 _$_CustomerDTO _$_$_CustomerDTOFromJson(Map<String, dynamic> json) {
   return _$_CustomerDTO(
     name: json['name'] as String,
-    phone: const PhoneNumberConverter().fromJson(json['phone'] as String),
-    type: _$enumDecodeNullable(_$CustomerTypeEnumMap, json['type']),
     updatedAt: json['updated_at'] as int,
+    type: _$enumDecodeNullable(_$CustomerTypeEnumMap, json['type']),
+    phone: const PhoneNumberConverter().fromJson(json['phone'] as String),
     surname: json['surname'] as String,
     dateOfBirth: json['date_of_birth'] as int,
     email: json['email'] as String,
@@ -32,9 +32,9 @@ Map<String, dynamic> _$_$_CustomerDTOToJson(_$_CustomerDTO instance) {
   }
 
   writeNotNull('name', instance.name);
-  writeNotNull('phone', const PhoneNumberConverter().toJson(instance.phone));
-  writeNotNull('type', _$CustomerTypeEnumMap[instance.type]);
   writeNotNull('updated_at', instance.updatedAt);
+  writeNotNull('type', _$CustomerTypeEnumMap[instance.type]);
+  writeNotNull('phone', const PhoneNumberConverter().toJson(instance.phone));
   writeNotNull('surname', instance.surname);
   writeNotNull('date_of_birth', instance.dateOfBirth);
   writeNotNull('email', instance.email);

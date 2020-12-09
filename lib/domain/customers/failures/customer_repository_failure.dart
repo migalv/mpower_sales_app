@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 
 part 'customer_repository_failure.freezed.dart';
 
@@ -15,8 +16,8 @@ abstract class CustomerRepositoryFailure with _$CustomerRepositoryFailure {
       InsufficientPermissions;
 
   /// Failure when an unexpected failure is recieved
-  const factory CustomerRepositoryFailure.unexpectedFailure() =
-      UnexpectedFailure;
+  const factory CustomerRepositoryFailure.unexpectedFailure(
+      {DataSourceFailure failure}) = UnexpectedFailure;
 
   /// Failure when an invalid element is passed to the create function
   const factory CustomerRepositoryFailure.invalidElement() = InvalidElement;
