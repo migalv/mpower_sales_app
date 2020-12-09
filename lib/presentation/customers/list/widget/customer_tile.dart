@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/core/extensions/string_extensions.dart';
