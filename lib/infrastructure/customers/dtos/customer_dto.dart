@@ -113,13 +113,13 @@ extension CustomerDTOX on CustomerDTO {
     Customer customer;
     PersonalId personalId;
 
-    if (nrc != null) {
+    if (nrc != null && nrc.isNotEmpty) {
       personalId = PersonalId.nrc(nrc: nrc);
-    } else if (employeeNum != null) {
+    } else if (employeeNum != null && employeeNum.isNotEmpty) {
       personalId = PersonalId.employeeNum(employeeNum: employeeNum);
-    } else if (farmerId != null) {
+    } else if (farmerId != null && farmerId.isNotEmpty) {
       personalId = PersonalId.farmerId(farmerId: farmerId);
-    } else if (nationalId != null) {
+    } else if (nationalId != null && nationalId.isNotEmpty) {
       personalId = PersonalId.nationalId(nationalId: nationalId);
     }
 

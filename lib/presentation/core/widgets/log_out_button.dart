@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sales_app/application/auth/auth_bloc.dart';
 import 'package:sales_app/presentation/routes/app_router.gr.dart';
 
+/// Button when pressed it will log out the current user
 class LogOutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
