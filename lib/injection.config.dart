@@ -10,6 +10,7 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'application/auth/auth_bloc.dart';
 import 'infrastructure/customers/dtos/customer_dto.dart';
 import 'application/customers/list/customer_list_bloc.dart';
 import 'infrastructure/customers/data_sources/customer_local_data_source.dart';
@@ -27,11 +28,11 @@ import 'infrastructure/core/shared_preferences_injectable_module.dart';
 /// adds generated dependencies
 /// to the provided [GetIt] instance
 
-GetIt $initGetIt(
+Future<GetIt> $initGetIt(
   GetIt get, {
   String environment,
   EnvironmentFilter environmentFilter,
-}) {
+}) async {
   final gh = GetItHelper(get, environment, environmentFilter);
   final firebaseInjectableModule = _$FirebaseInjectableModule();
   final sharedPreferencesInjectableModule =
@@ -43,8 +44,10 @@ GetIt $initGetIt(
   gh.lazySingleton<IDataSource<CustomerDTO>>(
       () => CustomerRemoteDataSource(get<FirebaseFirestore>()));
   gh.factory<LoginBloc>(() => LoginBloc(get<IAuthRepository>()));
-  gh.factoryAsync<SharedPreferences>(
-      () => sharedPreferencesInjectableModule.sharedPreferences);
+  final sharedPreferences =
+      await sharedPreferencesInjectableModule.sharedPreferences;
+  gh.factory<SharedPreferences>(() => sharedPreferences);
+  gh.factory<AuthBloc>(() => AuthBloc(get<IAuthRepository>()));
   gh.lazySingleton<ILocalDataSource<CustomerDTO>>(
       () => CustomerLocalDataSource(get<SharedPreferences>()));
   gh.lazySingleton<ICustomerRepository>(() => CustomerRepository(

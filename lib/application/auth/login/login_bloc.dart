@@ -27,7 +27,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         yield const LoginState.signInInProgress();
 
         final result = await _authRepository.trySignIn(
-            email: event.email, password: event.password);
+          email: event.email,
+          password: event.password,
+        );
 
         yield* result.fold(
           (l) async* {

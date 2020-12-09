@@ -1,21 +1,33 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sales_app/application/auth/login/login_bloc.dart';
 import 'package:sales_app/domain/auth/auth_failure.dart';
 import 'package:sales_app/presentation/core/dialogs/error_dialog.dart';
+import 'package:sales_app/presentation/routes/app_router.gr.dart';
 import 'package:sales_app/presentation/themes/colors.dart';
 
-class LoginForm extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
+class LoginForm extends StatefulWidget {
+  static final _formKey = GlobalKey<FormState>();
+
+  @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
+
   final FocusNode _passwordFocusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
       state.maybeWhen(
-        signInSuccess: () {},
+        signInSuccess: () {
+          context.navigator.popAndPush(Routes.customerListPage);
+        },
         signInFailure: (AuthFailure failure) => _mapFailure(context, failure),
         recoverPasswordSuccess: () => showDialog(
           context: context,
@@ -47,7 +59,7 @@ class LoginForm extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
+          key: LoginForm._formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -83,7 +95,10 @@ class LoginForm extends StatelessWidget {
                 obscureText: true,
               ),
               if (signInInProgress)
-                const LinearProgressIndicator()
+                Container(
+                  margin: const EdgeInsets.fromLTRB(40.0, 12.0, 0.0, 0.0),
+                  child: const LinearProgressIndicator(),
+                )
               else
                 Container(),
               Center(
@@ -148,7 +163,7 @@ class LoginForm extends StatelessWidget {
     @required BuildContext context,
     @required String message,
   }) =>
-      Scaffold.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: errorColor,
         content: Text(message),
       ));
@@ -169,7 +184,7 @@ class LoginForm extends StatelessWidget {
       );
 
   void _validateAndSendForm(BuildContext context) {
-    if (_formKey.currentState.validate()) {
+    if (LoginForm._formKey.currentState.validate()) {
       context.read<LoginBloc>().add(
             LoginEvent.signInButtonPressed(
               email: _emailController.text,

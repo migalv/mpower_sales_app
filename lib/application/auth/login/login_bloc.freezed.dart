@@ -40,27 +40,27 @@ mixin _$LoginEvent {
   String get email;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result signInButtonPressed(String email, String password),
-    @required Result forgotPasswordButtonPressed(String email),
+  TResult when<TResult extends Object>({
+    @required TResult signInButtonPressed(String email, String password),
+    @required TResult forgotPasswordButtonPressed(String email),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result signInButtonPressed(String email, String password),
-    Result forgotPasswordButtonPressed(String email),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult signInButtonPressed(String email, String password),
+    TResult forgotPasswordButtonPressed(String email),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result signInButtonPressed(SignInButtonPressed value),
+  TResult map<TResult extends Object>({
+    @required TResult signInButtonPressed(SignInButtonPressed value),
     @required
-        Result forgotPasswordButtonPressed(ForgotPasswordButtonPressed value),
+        TResult forgotPasswordButtonPressed(ForgotPasswordButtonPressed value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result signInButtonPressed(SignInButtonPressed value),
-    Result forgotPasswordButtonPressed(ForgotPasswordButtonPressed value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult signInButtonPressed(SignInButtonPressed value),
+    TResult forgotPasswordButtonPressed(ForgotPasswordButtonPressed value),
+    @required TResult orElse(),
   });
 
   $LoginEventCopyWith<LoginEvent> get copyWith;
@@ -164,9 +164,9 @@ class _$SignInButtonPressed implements SignInButtonPressed {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result signInButtonPressed(String email, String password),
-    @required Result forgotPasswordButtonPressed(String email),
+  TResult when<TResult extends Object>({
+    @required TResult signInButtonPressed(String email, String password),
+    @required TResult forgotPasswordButtonPressed(String email),
   }) {
     assert(signInButtonPressed != null);
     assert(forgotPasswordButtonPressed != null);
@@ -175,10 +175,10 @@ class _$SignInButtonPressed implements SignInButtonPressed {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result signInButtonPressed(String email, String password),
-    Result forgotPasswordButtonPressed(String email),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult signInButtonPressed(String email, String password),
+    TResult forgotPasswordButtonPressed(String email),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (signInButtonPressed != null) {
@@ -189,10 +189,10 @@ class _$SignInButtonPressed implements SignInButtonPressed {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result signInButtonPressed(SignInButtonPressed value),
+  TResult map<TResult extends Object>({
+    @required TResult signInButtonPressed(SignInButtonPressed value),
     @required
-        Result forgotPasswordButtonPressed(ForgotPasswordButtonPressed value),
+        TResult forgotPasswordButtonPressed(ForgotPasswordButtonPressed value),
   }) {
     assert(signInButtonPressed != null);
     assert(forgotPasswordButtonPressed != null);
@@ -201,10 +201,10 @@ class _$SignInButtonPressed implements SignInButtonPressed {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result signInButtonPressed(SignInButtonPressed value),
-    Result forgotPasswordButtonPressed(ForgotPasswordButtonPressed value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult signInButtonPressed(SignInButtonPressed value),
+    TResult forgotPasswordButtonPressed(ForgotPasswordButtonPressed value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (signInButtonPressed != null) {
@@ -291,9 +291,9 @@ class _$ForgotPasswordButtonPressed implements ForgotPasswordButtonPressed {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result signInButtonPressed(String email, String password),
-    @required Result forgotPasswordButtonPressed(String email),
+  TResult when<TResult extends Object>({
+    @required TResult signInButtonPressed(String email, String password),
+    @required TResult forgotPasswordButtonPressed(String email),
   }) {
     assert(signInButtonPressed != null);
     assert(forgotPasswordButtonPressed != null);
@@ -302,10 +302,10 @@ class _$ForgotPasswordButtonPressed implements ForgotPasswordButtonPressed {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result signInButtonPressed(String email, String password),
-    Result forgotPasswordButtonPressed(String email),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult signInButtonPressed(String email, String password),
+    TResult forgotPasswordButtonPressed(String email),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (forgotPasswordButtonPressed != null) {
@@ -316,10 +316,10 @@ class _$ForgotPasswordButtonPressed implements ForgotPasswordButtonPressed {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result signInButtonPressed(SignInButtonPressed value),
+  TResult map<TResult extends Object>({
+    @required TResult signInButtonPressed(SignInButtonPressed value),
     @required
-        Result forgotPasswordButtonPressed(ForgotPasswordButtonPressed value),
+        TResult forgotPasswordButtonPressed(ForgotPasswordButtonPressed value),
   }) {
     assert(signInButtonPressed != null);
     assert(forgotPasswordButtonPressed != null);
@@ -328,10 +328,10 @@ class _$ForgotPasswordButtonPressed implements ForgotPasswordButtonPressed {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result signInButtonPressed(SignInButtonPressed value),
-    Result forgotPasswordButtonPressed(ForgotPasswordButtonPressed value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult signInButtonPressed(SignInButtonPressed value),
+    TResult forgotPasswordButtonPressed(ForgotPasswordButtonPressed value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (forgotPasswordButtonPressed != null) {
@@ -399,42 +399,42 @@ const $LoginState = _$LoginStateTearOff();
 /// @nodoc
 mixin _$LoginState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result signInInProgress(),
-    @required Result signInSuccess(),
-    @required Result signInFailure(AuthFailure failure),
-    @required Result recoverPasswordSuccess(),
-    @required Result recoverPasswordFailure(AuthFailure failure),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult signInInProgress(),
+    @required TResult signInSuccess(),
+    @required TResult signInFailure(AuthFailure failure),
+    @required TResult recoverPasswordSuccess(),
+    @required TResult recoverPasswordFailure(AuthFailure failure),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result signInInProgress(),
-    Result signInSuccess(),
-    Result signInFailure(AuthFailure failure),
-    Result recoverPasswordSuccess(),
-    Result recoverPasswordFailure(AuthFailure failure),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult signInInProgress(),
+    TResult signInSuccess(),
+    TResult signInFailure(AuthFailure failure),
+    TResult recoverPasswordSuccess(),
+    TResult recoverPasswordFailure(AuthFailure failure),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(LoginInitial value),
-    @required Result signInInProgress(LoginSignInInProgress value),
-    @required Result signInSuccess(LoginSignInSuccess value),
-    @required Result signInFailure(LoginSignInFailure value),
-    @required Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    @required Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(LoginInitial value),
+    @required TResult signInInProgress(LoginSignInInProgress value),
+    @required TResult signInSuccess(LoginSignInSuccess value),
+    @required TResult signInFailure(LoginSignInFailure value),
+    @required TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    @required TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(LoginInitial value),
-    Result signInInProgress(LoginSignInInProgress value),
-    Result signInSuccess(LoginSignInSuccess value),
-    Result signInFailure(LoginSignInFailure value),
-    Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(LoginInitial value),
+    TResult signInInProgress(LoginSignInInProgress value),
+    TResult signInSuccess(LoginSignInSuccess value),
+    TResult signInFailure(LoginSignInFailure value),
+    TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
+    @required TResult orElse(),
   });
 }
 
@@ -491,13 +491,13 @@ class _$LoginInitial implements LoginInitial {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result signInInProgress(),
-    @required Result signInSuccess(),
-    @required Result signInFailure(AuthFailure failure),
-    @required Result recoverPasswordSuccess(),
-    @required Result recoverPasswordFailure(AuthFailure failure),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult signInInProgress(),
+    @required TResult signInSuccess(),
+    @required TResult signInFailure(AuthFailure failure),
+    @required TResult recoverPasswordSuccess(),
+    @required TResult recoverPasswordFailure(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(signInInProgress != null);
@@ -510,14 +510,14 @@ class _$LoginInitial implements LoginInitial {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result signInInProgress(),
-    Result signInSuccess(),
-    Result signInFailure(AuthFailure failure),
-    Result recoverPasswordSuccess(),
-    Result recoverPasswordFailure(AuthFailure failure),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult signInInProgress(),
+    TResult signInSuccess(),
+    TResult signInFailure(AuthFailure failure),
+    TResult recoverPasswordSuccess(),
+    TResult recoverPasswordFailure(AuthFailure failure),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
@@ -528,13 +528,13 @@ class _$LoginInitial implements LoginInitial {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(LoginInitial value),
-    @required Result signInInProgress(LoginSignInInProgress value),
-    @required Result signInSuccess(LoginSignInSuccess value),
-    @required Result signInFailure(LoginSignInFailure value),
-    @required Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    @required Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(LoginInitial value),
+    @required TResult signInInProgress(LoginSignInInProgress value),
+    @required TResult signInSuccess(LoginSignInSuccess value),
+    @required TResult signInFailure(LoginSignInFailure value),
+    @required TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    @required TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
   }) {
     assert(initial != null);
     assert(signInInProgress != null);
@@ -547,14 +547,14 @@ class _$LoginInitial implements LoginInitial {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(LoginInitial value),
-    Result signInInProgress(LoginSignInInProgress value),
-    Result signInSuccess(LoginSignInSuccess value),
-    Result signInFailure(LoginSignInFailure value),
-    Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(LoginInitial value),
+    TResult signInInProgress(LoginSignInInProgress value),
+    TResult signInSuccess(LoginSignInSuccess value),
+    TResult signInFailure(LoginSignInFailure value),
+    TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
@@ -606,13 +606,13 @@ class _$LoginSignInInProgress implements LoginSignInInProgress {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result signInInProgress(),
-    @required Result signInSuccess(),
-    @required Result signInFailure(AuthFailure failure),
-    @required Result recoverPasswordSuccess(),
-    @required Result recoverPasswordFailure(AuthFailure failure),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult signInInProgress(),
+    @required TResult signInSuccess(),
+    @required TResult signInFailure(AuthFailure failure),
+    @required TResult recoverPasswordSuccess(),
+    @required TResult recoverPasswordFailure(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(signInInProgress != null);
@@ -625,14 +625,14 @@ class _$LoginSignInInProgress implements LoginSignInInProgress {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result signInInProgress(),
-    Result signInSuccess(),
-    Result signInFailure(AuthFailure failure),
-    Result recoverPasswordSuccess(),
-    Result recoverPasswordFailure(AuthFailure failure),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult signInInProgress(),
+    TResult signInSuccess(),
+    TResult signInFailure(AuthFailure failure),
+    TResult recoverPasswordSuccess(),
+    TResult recoverPasswordFailure(AuthFailure failure),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (signInInProgress != null) {
@@ -643,13 +643,13 @@ class _$LoginSignInInProgress implements LoginSignInInProgress {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(LoginInitial value),
-    @required Result signInInProgress(LoginSignInInProgress value),
-    @required Result signInSuccess(LoginSignInSuccess value),
-    @required Result signInFailure(LoginSignInFailure value),
-    @required Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    @required Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(LoginInitial value),
+    @required TResult signInInProgress(LoginSignInInProgress value),
+    @required TResult signInSuccess(LoginSignInSuccess value),
+    @required TResult signInFailure(LoginSignInFailure value),
+    @required TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    @required TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
   }) {
     assert(initial != null);
     assert(signInInProgress != null);
@@ -662,14 +662,14 @@ class _$LoginSignInInProgress implements LoginSignInInProgress {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(LoginInitial value),
-    Result signInInProgress(LoginSignInInProgress value),
-    Result signInSuccess(LoginSignInSuccess value),
-    Result signInFailure(LoginSignInFailure value),
-    Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(LoginInitial value),
+    TResult signInInProgress(LoginSignInInProgress value),
+    TResult signInSuccess(LoginSignInSuccess value),
+    TResult signInFailure(LoginSignInFailure value),
+    TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (signInInProgress != null) {
@@ -721,13 +721,13 @@ class _$LoginSignInSuccess implements LoginSignInSuccess {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result signInInProgress(),
-    @required Result signInSuccess(),
-    @required Result signInFailure(AuthFailure failure),
-    @required Result recoverPasswordSuccess(),
-    @required Result recoverPasswordFailure(AuthFailure failure),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult signInInProgress(),
+    @required TResult signInSuccess(),
+    @required TResult signInFailure(AuthFailure failure),
+    @required TResult recoverPasswordSuccess(),
+    @required TResult recoverPasswordFailure(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(signInInProgress != null);
@@ -740,14 +740,14 @@ class _$LoginSignInSuccess implements LoginSignInSuccess {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result signInInProgress(),
-    Result signInSuccess(),
-    Result signInFailure(AuthFailure failure),
-    Result recoverPasswordSuccess(),
-    Result recoverPasswordFailure(AuthFailure failure),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult signInInProgress(),
+    TResult signInSuccess(),
+    TResult signInFailure(AuthFailure failure),
+    TResult recoverPasswordSuccess(),
+    TResult recoverPasswordFailure(AuthFailure failure),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (signInSuccess != null) {
@@ -758,13 +758,13 @@ class _$LoginSignInSuccess implements LoginSignInSuccess {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(LoginInitial value),
-    @required Result signInInProgress(LoginSignInInProgress value),
-    @required Result signInSuccess(LoginSignInSuccess value),
-    @required Result signInFailure(LoginSignInFailure value),
-    @required Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    @required Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(LoginInitial value),
+    @required TResult signInInProgress(LoginSignInInProgress value),
+    @required TResult signInSuccess(LoginSignInSuccess value),
+    @required TResult signInFailure(LoginSignInFailure value),
+    @required TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    @required TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
   }) {
     assert(initial != null);
     assert(signInInProgress != null);
@@ -777,14 +777,14 @@ class _$LoginSignInSuccess implements LoginSignInSuccess {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(LoginInitial value),
-    Result signInInProgress(LoginSignInInProgress value),
-    Result signInSuccess(LoginSignInSuccess value),
-    Result signInFailure(LoginSignInFailure value),
-    Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(LoginInitial value),
+    TResult signInInProgress(LoginSignInInProgress value),
+    TResult signInSuccess(LoginSignInSuccess value),
+    TResult signInFailure(LoginSignInFailure value),
+    TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (signInSuccess != null) {
@@ -870,13 +870,13 @@ class _$LoginSignInFailure implements LoginSignInFailure {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result signInInProgress(),
-    @required Result signInSuccess(),
-    @required Result signInFailure(AuthFailure failure),
-    @required Result recoverPasswordSuccess(),
-    @required Result recoverPasswordFailure(AuthFailure failure),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult signInInProgress(),
+    @required TResult signInSuccess(),
+    @required TResult signInFailure(AuthFailure failure),
+    @required TResult recoverPasswordSuccess(),
+    @required TResult recoverPasswordFailure(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(signInInProgress != null);
@@ -889,14 +889,14 @@ class _$LoginSignInFailure implements LoginSignInFailure {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result signInInProgress(),
-    Result signInSuccess(),
-    Result signInFailure(AuthFailure failure),
-    Result recoverPasswordSuccess(),
-    Result recoverPasswordFailure(AuthFailure failure),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult signInInProgress(),
+    TResult signInSuccess(),
+    TResult signInFailure(AuthFailure failure),
+    TResult recoverPasswordSuccess(),
+    TResult recoverPasswordFailure(AuthFailure failure),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (signInFailure != null) {
@@ -907,13 +907,13 @@ class _$LoginSignInFailure implements LoginSignInFailure {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(LoginInitial value),
-    @required Result signInInProgress(LoginSignInInProgress value),
-    @required Result signInSuccess(LoginSignInSuccess value),
-    @required Result signInFailure(LoginSignInFailure value),
-    @required Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    @required Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(LoginInitial value),
+    @required TResult signInInProgress(LoginSignInInProgress value),
+    @required TResult signInSuccess(LoginSignInSuccess value),
+    @required TResult signInFailure(LoginSignInFailure value),
+    @required TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    @required TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
   }) {
     assert(initial != null);
     assert(signInInProgress != null);
@@ -926,14 +926,14 @@ class _$LoginSignInFailure implements LoginSignInFailure {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(LoginInitial value),
-    Result signInInProgress(LoginSignInInProgress value),
-    Result signInSuccess(LoginSignInSuccess value),
-    Result signInFailure(LoginSignInFailure value),
-    Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(LoginInitial value),
+    TResult signInInProgress(LoginSignInInProgress value),
+    TResult signInSuccess(LoginSignInSuccess value),
+    TResult signInFailure(LoginSignInFailure value),
+    TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (signInFailure != null) {
@@ -991,13 +991,13 @@ class _$LoginRecoverPasswordSuccess implements LoginRecoverPasswordSuccess {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result signInInProgress(),
-    @required Result signInSuccess(),
-    @required Result signInFailure(AuthFailure failure),
-    @required Result recoverPasswordSuccess(),
-    @required Result recoverPasswordFailure(AuthFailure failure),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult signInInProgress(),
+    @required TResult signInSuccess(),
+    @required TResult signInFailure(AuthFailure failure),
+    @required TResult recoverPasswordSuccess(),
+    @required TResult recoverPasswordFailure(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(signInInProgress != null);
@@ -1010,14 +1010,14 @@ class _$LoginRecoverPasswordSuccess implements LoginRecoverPasswordSuccess {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result signInInProgress(),
-    Result signInSuccess(),
-    Result signInFailure(AuthFailure failure),
-    Result recoverPasswordSuccess(),
-    Result recoverPasswordFailure(AuthFailure failure),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult signInInProgress(),
+    TResult signInSuccess(),
+    TResult signInFailure(AuthFailure failure),
+    TResult recoverPasswordSuccess(),
+    TResult recoverPasswordFailure(AuthFailure failure),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (recoverPasswordSuccess != null) {
@@ -1028,13 +1028,13 @@ class _$LoginRecoverPasswordSuccess implements LoginRecoverPasswordSuccess {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(LoginInitial value),
-    @required Result signInInProgress(LoginSignInInProgress value),
-    @required Result signInSuccess(LoginSignInSuccess value),
-    @required Result signInFailure(LoginSignInFailure value),
-    @required Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    @required Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(LoginInitial value),
+    @required TResult signInInProgress(LoginSignInInProgress value),
+    @required TResult signInSuccess(LoginSignInSuccess value),
+    @required TResult signInFailure(LoginSignInFailure value),
+    @required TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    @required TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
   }) {
     assert(initial != null);
     assert(signInInProgress != null);
@@ -1047,14 +1047,14 @@ class _$LoginRecoverPasswordSuccess implements LoginRecoverPasswordSuccess {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(LoginInitial value),
-    Result signInInProgress(LoginSignInInProgress value),
-    Result signInSuccess(LoginSignInSuccess value),
-    Result signInFailure(LoginSignInFailure value),
-    Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(LoginInitial value),
+    TResult signInInProgress(LoginSignInInProgress value),
+    TResult signInSuccess(LoginSignInSuccess value),
+    TResult signInFailure(LoginSignInFailure value),
+    TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (recoverPasswordSuccess != null) {
@@ -1143,13 +1143,13 @@ class _$LoginRecoverPasswordFailure implements LoginRecoverPasswordFailure {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result signInInProgress(),
-    @required Result signInSuccess(),
-    @required Result signInFailure(AuthFailure failure),
-    @required Result recoverPasswordSuccess(),
-    @required Result recoverPasswordFailure(AuthFailure failure),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult signInInProgress(),
+    @required TResult signInSuccess(),
+    @required TResult signInFailure(AuthFailure failure),
+    @required TResult recoverPasswordSuccess(),
+    @required TResult recoverPasswordFailure(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(signInInProgress != null);
@@ -1162,14 +1162,14 @@ class _$LoginRecoverPasswordFailure implements LoginRecoverPasswordFailure {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result signInInProgress(),
-    Result signInSuccess(),
-    Result signInFailure(AuthFailure failure),
-    Result recoverPasswordSuccess(),
-    Result recoverPasswordFailure(AuthFailure failure),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult signInInProgress(),
+    TResult signInSuccess(),
+    TResult signInFailure(AuthFailure failure),
+    TResult recoverPasswordSuccess(),
+    TResult recoverPasswordFailure(AuthFailure failure),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (recoverPasswordFailure != null) {
@@ -1180,13 +1180,13 @@ class _$LoginRecoverPasswordFailure implements LoginRecoverPasswordFailure {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(LoginInitial value),
-    @required Result signInInProgress(LoginSignInInProgress value),
-    @required Result signInSuccess(LoginSignInSuccess value),
-    @required Result signInFailure(LoginSignInFailure value),
-    @required Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    @required Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(LoginInitial value),
+    @required TResult signInInProgress(LoginSignInInProgress value),
+    @required TResult signInSuccess(LoginSignInSuccess value),
+    @required TResult signInFailure(LoginSignInFailure value),
+    @required TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    @required TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
   }) {
     assert(initial != null);
     assert(signInInProgress != null);
@@ -1199,14 +1199,14 @@ class _$LoginRecoverPasswordFailure implements LoginRecoverPasswordFailure {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(LoginInitial value),
-    Result signInInProgress(LoginSignInInProgress value),
-    Result signInSuccess(LoginSignInSuccess value),
-    Result signInFailure(LoginSignInFailure value),
-    Result recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
-    Result recoverPasswordFailure(LoginRecoverPasswordFailure value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(LoginInitial value),
+    TResult signInInProgress(LoginSignInInProgress value),
+    TResult signInSuccess(LoginSignInSuccess value),
+    TResult signInFailure(LoginSignInFailure value),
+    TResult recoverPasswordSuccess(LoginRecoverPasswordSuccess value),
+    TResult recoverPasswordFailure(LoginRecoverPasswordFailure value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (recoverPasswordFailure != null) {

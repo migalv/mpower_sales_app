@@ -5,7 +5,12 @@ import 'package:sales_app/application/auth/login/login_bloc.dart';
 import 'package:sales_app/injection.dart';
 import 'package:sales_app/presentation/login/widgets/login_form.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override

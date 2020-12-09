@@ -60,45 +60,45 @@ const $AuthFailure = _$AuthFailureTearOff();
 /// @nodoc
 mixin _$AuthFailure {
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unknownError(Exception exception, StackTrace stackTrace,
+        TResult unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
-    @required Result emailNotExists(),
-    @required Result wrongPassword(),
-    @required Result invalidEmail(),
-    @required Result userDisabled(),
-    @required Result noServerResponse(),
+    @required TResult emailNotExists(),
+    @required TResult wrongPassword(),
+    @required TResult invalidEmail(),
+    @required TResult userDisabled(),
+    @required TResult noServerResponse(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unknownError(Exception exception, StackTrace stackTrace,
+  TResult maybeWhen<TResult extends Object>({
+    TResult unknownError(Exception exception, StackTrace stackTrace,
         String message, int errorCode),
-    Result emailNotExists(),
-    Result wrongPassword(),
-    Result invalidEmail(),
-    Result userDisabled(),
-    Result noServerResponse(),
-    @required Result orElse(),
+    TResult emailNotExists(),
+    TResult wrongPassword(),
+    TResult invalidEmail(),
+    TResult userDisabled(),
+    TResult noServerResponse(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unknownError(UnknownError value),
-    @required Result emailNotExists(EmailNotExists value),
-    @required Result wrongPassword(WrongPassword value),
-    @required Result invalidEmail(InvalidEmail value),
-    @required Result userDisabled(UserDisabled value),
-    @required Result noServerResponse(NoServerResponse value),
+  TResult map<TResult extends Object>({
+    @required TResult unknownError(UnknownError value),
+    @required TResult emailNotExists(EmailNotExists value),
+    @required TResult wrongPassword(WrongPassword value),
+    @required TResult invalidEmail(InvalidEmail value),
+    @required TResult userDisabled(UserDisabled value),
+    @required TResult noServerResponse(NoServerResponse value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unknownError(UnknownError value),
-    Result emailNotExists(EmailNotExists value),
-    Result wrongPassword(WrongPassword value),
-    Result invalidEmail(InvalidEmail value),
-    Result userDisabled(UserDisabled value),
-    Result noServerResponse(NoServerResponse value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unknownError(UnknownError value),
+    TResult emailNotExists(EmailNotExists value),
+    TResult wrongPassword(WrongPassword value),
+    TResult invalidEmail(InvalidEmail value),
+    TResult userDisabled(UserDisabled value),
+    TResult noServerResponse(NoServerResponse value),
+    @required TResult orElse(),
   });
 }
 
@@ -214,15 +214,15 @@ class _$UnknownError implements UnknownError {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unknownError(Exception exception, StackTrace stackTrace,
+        TResult unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
-    @required Result emailNotExists(),
-    @required Result wrongPassword(),
-    @required Result invalidEmail(),
-    @required Result userDisabled(),
-    @required Result noServerResponse(),
+    @required TResult emailNotExists(),
+    @required TResult wrongPassword(),
+    @required TResult invalidEmail(),
+    @required TResult userDisabled(),
+    @required TResult noServerResponse(),
   }) {
     assert(unknownError != null);
     assert(emailNotExists != null);
@@ -235,15 +235,15 @@ class _$UnknownError implements UnknownError {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unknownError(Exception exception, StackTrace stackTrace,
+  TResult maybeWhen<TResult extends Object>({
+    TResult unknownError(Exception exception, StackTrace stackTrace,
         String message, int errorCode),
-    Result emailNotExists(),
-    Result wrongPassword(),
-    Result invalidEmail(),
-    Result userDisabled(),
-    Result noServerResponse(),
-    @required Result orElse(),
+    TResult emailNotExists(),
+    TResult wrongPassword(),
+    TResult invalidEmail(),
+    TResult userDisabled(),
+    TResult noServerResponse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unknownError != null) {
@@ -254,13 +254,13 @@ class _$UnknownError implements UnknownError {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unknownError(UnknownError value),
-    @required Result emailNotExists(EmailNotExists value),
-    @required Result wrongPassword(WrongPassword value),
-    @required Result invalidEmail(InvalidEmail value),
-    @required Result userDisabled(UserDisabled value),
-    @required Result noServerResponse(NoServerResponse value),
+  TResult map<TResult extends Object>({
+    @required TResult unknownError(UnknownError value),
+    @required TResult emailNotExists(EmailNotExists value),
+    @required TResult wrongPassword(WrongPassword value),
+    @required TResult invalidEmail(InvalidEmail value),
+    @required TResult userDisabled(UserDisabled value),
+    @required TResult noServerResponse(NoServerResponse value),
   }) {
     assert(unknownError != null);
     assert(emailNotExists != null);
@@ -273,14 +273,14 @@ class _$UnknownError implements UnknownError {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unknownError(UnknownError value),
-    Result emailNotExists(EmailNotExists value),
-    Result wrongPassword(WrongPassword value),
-    Result invalidEmail(InvalidEmail value),
-    Result userDisabled(UserDisabled value),
-    Result noServerResponse(NoServerResponse value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unknownError(UnknownError value),
+    TResult emailNotExists(EmailNotExists value),
+    TResult wrongPassword(WrongPassword value),
+    TResult invalidEmail(InvalidEmail value),
+    TResult userDisabled(UserDisabled value),
+    TResult noServerResponse(NoServerResponse value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unknownError != null) {
@@ -341,15 +341,15 @@ class _$EmailNotExists implements EmailNotExists {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unknownError(Exception exception, StackTrace stackTrace,
+        TResult unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
-    @required Result emailNotExists(),
-    @required Result wrongPassword(),
-    @required Result invalidEmail(),
-    @required Result userDisabled(),
-    @required Result noServerResponse(),
+    @required TResult emailNotExists(),
+    @required TResult wrongPassword(),
+    @required TResult invalidEmail(),
+    @required TResult userDisabled(),
+    @required TResult noServerResponse(),
   }) {
     assert(unknownError != null);
     assert(emailNotExists != null);
@@ -362,15 +362,15 @@ class _$EmailNotExists implements EmailNotExists {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unknownError(Exception exception, StackTrace stackTrace,
+  TResult maybeWhen<TResult extends Object>({
+    TResult unknownError(Exception exception, StackTrace stackTrace,
         String message, int errorCode),
-    Result emailNotExists(),
-    Result wrongPassword(),
-    Result invalidEmail(),
-    Result userDisabled(),
-    Result noServerResponse(),
-    @required Result orElse(),
+    TResult emailNotExists(),
+    TResult wrongPassword(),
+    TResult invalidEmail(),
+    TResult userDisabled(),
+    TResult noServerResponse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (emailNotExists != null) {
@@ -381,13 +381,13 @@ class _$EmailNotExists implements EmailNotExists {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unknownError(UnknownError value),
-    @required Result emailNotExists(EmailNotExists value),
-    @required Result wrongPassword(WrongPassword value),
-    @required Result invalidEmail(InvalidEmail value),
-    @required Result userDisabled(UserDisabled value),
-    @required Result noServerResponse(NoServerResponse value),
+  TResult map<TResult extends Object>({
+    @required TResult unknownError(UnknownError value),
+    @required TResult emailNotExists(EmailNotExists value),
+    @required TResult wrongPassword(WrongPassword value),
+    @required TResult invalidEmail(InvalidEmail value),
+    @required TResult userDisabled(UserDisabled value),
+    @required TResult noServerResponse(NoServerResponse value),
   }) {
     assert(unknownError != null);
     assert(emailNotExists != null);
@@ -400,14 +400,14 @@ class _$EmailNotExists implements EmailNotExists {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unknownError(UnknownError value),
-    Result emailNotExists(EmailNotExists value),
-    Result wrongPassword(WrongPassword value),
-    Result invalidEmail(InvalidEmail value),
-    Result userDisabled(UserDisabled value),
-    Result noServerResponse(NoServerResponse value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unknownError(UnknownError value),
+    TResult emailNotExists(EmailNotExists value),
+    TResult wrongPassword(WrongPassword value),
+    TResult invalidEmail(InvalidEmail value),
+    TResult userDisabled(UserDisabled value),
+    TResult noServerResponse(NoServerResponse value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (emailNotExists != null) {
@@ -458,15 +458,15 @@ class _$WrongPassword implements WrongPassword {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unknownError(Exception exception, StackTrace stackTrace,
+        TResult unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
-    @required Result emailNotExists(),
-    @required Result wrongPassword(),
-    @required Result invalidEmail(),
-    @required Result userDisabled(),
-    @required Result noServerResponse(),
+    @required TResult emailNotExists(),
+    @required TResult wrongPassword(),
+    @required TResult invalidEmail(),
+    @required TResult userDisabled(),
+    @required TResult noServerResponse(),
   }) {
     assert(unknownError != null);
     assert(emailNotExists != null);
@@ -479,15 +479,15 @@ class _$WrongPassword implements WrongPassword {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unknownError(Exception exception, StackTrace stackTrace,
+  TResult maybeWhen<TResult extends Object>({
+    TResult unknownError(Exception exception, StackTrace stackTrace,
         String message, int errorCode),
-    Result emailNotExists(),
-    Result wrongPassword(),
-    Result invalidEmail(),
-    Result userDisabled(),
-    Result noServerResponse(),
-    @required Result orElse(),
+    TResult emailNotExists(),
+    TResult wrongPassword(),
+    TResult invalidEmail(),
+    TResult userDisabled(),
+    TResult noServerResponse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (wrongPassword != null) {
@@ -498,13 +498,13 @@ class _$WrongPassword implements WrongPassword {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unknownError(UnknownError value),
-    @required Result emailNotExists(EmailNotExists value),
-    @required Result wrongPassword(WrongPassword value),
-    @required Result invalidEmail(InvalidEmail value),
-    @required Result userDisabled(UserDisabled value),
-    @required Result noServerResponse(NoServerResponse value),
+  TResult map<TResult extends Object>({
+    @required TResult unknownError(UnknownError value),
+    @required TResult emailNotExists(EmailNotExists value),
+    @required TResult wrongPassword(WrongPassword value),
+    @required TResult invalidEmail(InvalidEmail value),
+    @required TResult userDisabled(UserDisabled value),
+    @required TResult noServerResponse(NoServerResponse value),
   }) {
     assert(unknownError != null);
     assert(emailNotExists != null);
@@ -517,14 +517,14 @@ class _$WrongPassword implements WrongPassword {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unknownError(UnknownError value),
-    Result emailNotExists(EmailNotExists value),
-    Result wrongPassword(WrongPassword value),
-    Result invalidEmail(InvalidEmail value),
-    Result userDisabled(UserDisabled value),
-    Result noServerResponse(NoServerResponse value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unknownError(UnknownError value),
+    TResult emailNotExists(EmailNotExists value),
+    TResult wrongPassword(WrongPassword value),
+    TResult invalidEmail(InvalidEmail value),
+    TResult userDisabled(UserDisabled value),
+    TResult noServerResponse(NoServerResponse value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (wrongPassword != null) {
@@ -575,15 +575,15 @@ class _$InvalidEmail implements InvalidEmail {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unknownError(Exception exception, StackTrace stackTrace,
+        TResult unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
-    @required Result emailNotExists(),
-    @required Result wrongPassword(),
-    @required Result invalidEmail(),
-    @required Result userDisabled(),
-    @required Result noServerResponse(),
+    @required TResult emailNotExists(),
+    @required TResult wrongPassword(),
+    @required TResult invalidEmail(),
+    @required TResult userDisabled(),
+    @required TResult noServerResponse(),
   }) {
     assert(unknownError != null);
     assert(emailNotExists != null);
@@ -596,15 +596,15 @@ class _$InvalidEmail implements InvalidEmail {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unknownError(Exception exception, StackTrace stackTrace,
+  TResult maybeWhen<TResult extends Object>({
+    TResult unknownError(Exception exception, StackTrace stackTrace,
         String message, int errorCode),
-    Result emailNotExists(),
-    Result wrongPassword(),
-    Result invalidEmail(),
-    Result userDisabled(),
-    Result noServerResponse(),
-    @required Result orElse(),
+    TResult emailNotExists(),
+    TResult wrongPassword(),
+    TResult invalidEmail(),
+    TResult userDisabled(),
+    TResult noServerResponse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (invalidEmail != null) {
@@ -615,13 +615,13 @@ class _$InvalidEmail implements InvalidEmail {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unknownError(UnknownError value),
-    @required Result emailNotExists(EmailNotExists value),
-    @required Result wrongPassword(WrongPassword value),
-    @required Result invalidEmail(InvalidEmail value),
-    @required Result userDisabled(UserDisabled value),
-    @required Result noServerResponse(NoServerResponse value),
+  TResult map<TResult extends Object>({
+    @required TResult unknownError(UnknownError value),
+    @required TResult emailNotExists(EmailNotExists value),
+    @required TResult wrongPassword(WrongPassword value),
+    @required TResult invalidEmail(InvalidEmail value),
+    @required TResult userDisabled(UserDisabled value),
+    @required TResult noServerResponse(NoServerResponse value),
   }) {
     assert(unknownError != null);
     assert(emailNotExists != null);
@@ -634,14 +634,14 @@ class _$InvalidEmail implements InvalidEmail {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unknownError(UnknownError value),
-    Result emailNotExists(EmailNotExists value),
-    Result wrongPassword(WrongPassword value),
-    Result invalidEmail(InvalidEmail value),
-    Result userDisabled(UserDisabled value),
-    Result noServerResponse(NoServerResponse value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unknownError(UnknownError value),
+    TResult emailNotExists(EmailNotExists value),
+    TResult wrongPassword(WrongPassword value),
+    TResult invalidEmail(InvalidEmail value),
+    TResult userDisabled(UserDisabled value),
+    TResult noServerResponse(NoServerResponse value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (invalidEmail != null) {
@@ -692,15 +692,15 @@ class _$UserDisabled implements UserDisabled {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unknownError(Exception exception, StackTrace stackTrace,
+        TResult unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
-    @required Result emailNotExists(),
-    @required Result wrongPassword(),
-    @required Result invalidEmail(),
-    @required Result userDisabled(),
-    @required Result noServerResponse(),
+    @required TResult emailNotExists(),
+    @required TResult wrongPassword(),
+    @required TResult invalidEmail(),
+    @required TResult userDisabled(),
+    @required TResult noServerResponse(),
   }) {
     assert(unknownError != null);
     assert(emailNotExists != null);
@@ -713,15 +713,15 @@ class _$UserDisabled implements UserDisabled {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unknownError(Exception exception, StackTrace stackTrace,
+  TResult maybeWhen<TResult extends Object>({
+    TResult unknownError(Exception exception, StackTrace stackTrace,
         String message, int errorCode),
-    Result emailNotExists(),
-    Result wrongPassword(),
-    Result invalidEmail(),
-    Result userDisabled(),
-    Result noServerResponse(),
-    @required Result orElse(),
+    TResult emailNotExists(),
+    TResult wrongPassword(),
+    TResult invalidEmail(),
+    TResult userDisabled(),
+    TResult noServerResponse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (userDisabled != null) {
@@ -732,13 +732,13 @@ class _$UserDisabled implements UserDisabled {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unknownError(UnknownError value),
-    @required Result emailNotExists(EmailNotExists value),
-    @required Result wrongPassword(WrongPassword value),
-    @required Result invalidEmail(InvalidEmail value),
-    @required Result userDisabled(UserDisabled value),
-    @required Result noServerResponse(NoServerResponse value),
+  TResult map<TResult extends Object>({
+    @required TResult unknownError(UnknownError value),
+    @required TResult emailNotExists(EmailNotExists value),
+    @required TResult wrongPassword(WrongPassword value),
+    @required TResult invalidEmail(InvalidEmail value),
+    @required TResult userDisabled(UserDisabled value),
+    @required TResult noServerResponse(NoServerResponse value),
   }) {
     assert(unknownError != null);
     assert(emailNotExists != null);
@@ -751,14 +751,14 @@ class _$UserDisabled implements UserDisabled {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unknownError(UnknownError value),
-    Result emailNotExists(EmailNotExists value),
-    Result wrongPassword(WrongPassword value),
-    Result invalidEmail(InvalidEmail value),
-    Result userDisabled(UserDisabled value),
-    Result noServerResponse(NoServerResponse value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unknownError(UnknownError value),
+    TResult emailNotExists(EmailNotExists value),
+    TResult wrongPassword(WrongPassword value),
+    TResult invalidEmail(InvalidEmail value),
+    TResult userDisabled(UserDisabled value),
+    TResult noServerResponse(NoServerResponse value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (userDisabled != null) {
@@ -810,15 +810,15 @@ class _$NoServerResponse implements NoServerResponse {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result unknownError(Exception exception, StackTrace stackTrace,
+        TResult unknownError(Exception exception, StackTrace stackTrace,
             String message, int errorCode),
-    @required Result emailNotExists(),
-    @required Result wrongPassword(),
-    @required Result invalidEmail(),
-    @required Result userDisabled(),
-    @required Result noServerResponse(),
+    @required TResult emailNotExists(),
+    @required TResult wrongPassword(),
+    @required TResult invalidEmail(),
+    @required TResult userDisabled(),
+    @required TResult noServerResponse(),
   }) {
     assert(unknownError != null);
     assert(emailNotExists != null);
@@ -831,15 +831,15 @@ class _$NoServerResponse implements NoServerResponse {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result unknownError(Exception exception, StackTrace stackTrace,
+  TResult maybeWhen<TResult extends Object>({
+    TResult unknownError(Exception exception, StackTrace stackTrace,
         String message, int errorCode),
-    Result emailNotExists(),
-    Result wrongPassword(),
-    Result invalidEmail(),
-    Result userDisabled(),
-    Result noServerResponse(),
-    @required Result orElse(),
+    TResult emailNotExists(),
+    TResult wrongPassword(),
+    TResult invalidEmail(),
+    TResult userDisabled(),
+    TResult noServerResponse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (noServerResponse != null) {
@@ -850,13 +850,13 @@ class _$NoServerResponse implements NoServerResponse {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result unknownError(UnknownError value),
-    @required Result emailNotExists(EmailNotExists value),
-    @required Result wrongPassword(WrongPassword value),
-    @required Result invalidEmail(InvalidEmail value),
-    @required Result userDisabled(UserDisabled value),
-    @required Result noServerResponse(NoServerResponse value),
+  TResult map<TResult extends Object>({
+    @required TResult unknownError(UnknownError value),
+    @required TResult emailNotExists(EmailNotExists value),
+    @required TResult wrongPassword(WrongPassword value),
+    @required TResult invalidEmail(InvalidEmail value),
+    @required TResult userDisabled(UserDisabled value),
+    @required TResult noServerResponse(NoServerResponse value),
   }) {
     assert(unknownError != null);
     assert(emailNotExists != null);
@@ -869,14 +869,14 @@ class _$NoServerResponse implements NoServerResponse {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result unknownError(UnknownError value),
-    Result emailNotExists(EmailNotExists value),
-    Result wrongPassword(WrongPassword value),
-    Result invalidEmail(InvalidEmail value),
-    Result userDisabled(UserDisabled value),
-    Result noServerResponse(NoServerResponse value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult unknownError(UnknownError value),
+    TResult emailNotExists(EmailNotExists value),
+    TResult wrongPassword(WrongPassword value),
+    TResult invalidEmail(InvalidEmail value),
+    TResult userDisabled(UserDisabled value),
+    TResult noServerResponse(NoServerResponse value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (noServerResponse != null) {
