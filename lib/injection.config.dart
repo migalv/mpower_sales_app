@@ -11,6 +11,7 @@ import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'application/auth/auth_bloc.dart';
+import 'application/customers/creation/customer_creation_bloc.dart';
 import 'infrastructure/customers/dtos/customer_dto.dart';
 import 'application/customers/list/customer_list_bloc.dart';
 import 'infrastructure/customers/data_sources/customer_local_data_source.dart';
@@ -53,6 +54,8 @@ Future<GetIt> $initGetIt(
   gh.lazySingleton<ICustomerRepository>(() => CustomerRepository(
       localDataSource: get<ILocalDataSource<CustomerDTO>>(),
       remoteDataSource: get<IDataSource<CustomerDTO>>()));
+  gh.factory<CustomerCreationBloc>(
+      () => CustomerCreationBloc(get<ICustomerRepository>()));
   gh.factory<CustomerListBloc>(
       () => CustomerListBloc(get<ICustomerRepository>()));
   return get;

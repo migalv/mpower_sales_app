@@ -60,7 +60,7 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
         return CustomerDTO._private(
           id: p.id,
           name: p.name,
-          surname: p.lastName,
+          surname: p.surname,
           phone: p.phoneNumber,
           dateOfBirth: p.birthDate?.millisecondsSinceEpoch,
           nrc: nrc,
@@ -135,7 +135,7 @@ extension CustomerDTOX on CustomerDTO {
         customer = Customer.person(
           id: id,
           name: name,
-          lastName: surname,
+          surname: surname,
           phoneNumber: phone,
           birthDate: brithDateFromMiliseconds,
           personalId: personalId,

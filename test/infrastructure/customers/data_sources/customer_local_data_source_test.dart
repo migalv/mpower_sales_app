@@ -293,7 +293,7 @@ Future<void> main() async {
 Customer basicCustomer = Customer.person(
   id: "0",
   name: "Basic",
-  lastName: "Customer",
+  surname: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   updatedAt: 0,
 );
@@ -301,7 +301,7 @@ Customer basicCustomer = Customer.person(
 Customer notInDataSource = Customer.person(
   id: "adsd",
   name: "Not In",
-  lastName: "Data Source",
+  surname: "Data Source",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   updatedAt: 0,
 );

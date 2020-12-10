@@ -14,13 +14,13 @@ abstract class Customer implements _$Customer, IEntity {
   /// Creates a customer that is a real person
   factory Customer.person({
     /// The unique identifier for the entity (mainly used for databases)
-    @required String id,
+    String id,
 
     /// The name of the customer
     @required String name,
 
-    /// The last name of the customer
-    @required String lastName,
+    /// The last name of the customer (also called surname)
+    @required String surname,
 
     /// The phone number of the customer
     PhoneNumber phoneNumber,
@@ -40,7 +40,7 @@ abstract class Customer implements _$Customer, IEntity {
 
   /// Creates a customer that is a company (society/business)
   factory Customer.company({
-    @required String id,
+    String id,
     @required String name,
     PhoneNumber phoneNumber,
     int updatedAt,

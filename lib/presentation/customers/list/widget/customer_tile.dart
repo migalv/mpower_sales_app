@@ -60,8 +60,8 @@ class CustomerTile extends StatelessWidget {
               nameInitials = person.name.firstLetterInCaps;
             }
 
-            if (person.lastName?.isNotEmpty ?? false) {
-              nameInitials += person.lastName.firstLetterInCaps;
+            if (person.surname?.isNotEmpty ?? false) {
+              nameInitials += person.surname.firstLetterInCaps;
             }
 
             return ListTile(

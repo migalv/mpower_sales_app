@@ -270,7 +270,7 @@ void main() {
 Customer basicCustomer = Customer.person(
   id: "0",
   name: "Basic",
-  lastName: "Customer",
+  surname: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   updatedAt: 0,
 );
@@ -285,7 +285,7 @@ Customer companyCustomer = Customer.company(
 Customer birthDateCustomer = Customer.person(
   id: "2",
   name: "Birthdate",
-  lastName: "Customer",
+  surname: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   birthDate: DateTime.fromMillisecondsSinceEpoch(1606311725000),
   updatedAt: 0,
@@ -294,7 +294,7 @@ Customer birthDateCustomer = Customer.person(
 Customer nrcCustomer = Customer.person(
   id: "3",
   name: "NRC",
-  lastName: "Customer",
+  surname: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   personalId: const PersonalId.nrc(nrc: "1234567/90"),
   updatedAt: 0,
@@ -303,7 +303,7 @@ Customer nrcCustomer = Customer.person(
 Customer employeeNumCustomer = Customer.person(
   id: "4",
   name: "EmployeeNum",
-  lastName: "Customer",
+  surname: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   personalId: const PersonalId.employeeNum(employeeNum: "1234567090"),
   updatedAt: 0,
@@ -312,7 +312,7 @@ Customer employeeNumCustomer = Customer.person(
 Customer farmerIdCustomer = Customer.person(
   id: "5",
   name: "FarmerId",
-  lastName: "Customer",
+  surname: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   personalId: const PersonalId.farmerId(farmerId: "1234567090"),
   updatedAt: 0,
@@ -321,7 +321,7 @@ Customer farmerIdCustomer = Customer.person(
 Customer nationalIdCustomer = Customer.person(
   id: "6",
   name: "NationalId",
-  lastName: "Customer",
+  surname: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   personalId: const PersonalId.nationalId(nationalId: "1234567090"),
   updatedAt: 0,
@@ -330,7 +330,7 @@ Customer nationalIdCustomer = Customer.person(
 Customer completeCustomer = Customer.person(
   id: "7",
   name: "Complete",
-  lastName: "Customer",
+  surname: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   birthDate: DateTime.fromMillisecondsSinceEpoch(1606311725000),
   personalId: const PersonalId.nrc(nrc: "1234567/90"),
