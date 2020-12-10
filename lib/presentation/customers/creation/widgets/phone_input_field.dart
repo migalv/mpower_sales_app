@@ -9,8 +9,6 @@ class PhoneInputField extends StatelessWidget {
   final TextEditingController codeController;
   final TextEditingController phoneController;
   final _numberRegExp = RegExp('^[0-9/]*\$');
-  final FocusNode focusNode;
-  final FocusNode _phoneFieldFocusNode = FocusNode();
 
   final _phoneMaskFormatter = MaskTextInputFormatter(
     mask: '### ## ## ##',
@@ -21,7 +19,6 @@ class PhoneInputField extends StatelessWidget {
     Key key,
     this.codeController,
     this.phoneController,
-    this.focusNode,
   }) : super(key: key);
 
   @override
@@ -48,7 +45,6 @@ class PhoneInputField extends StatelessWidget {
               },
               maxLength: 3,
               keyboardType: TextInputType.number,
-              focusNode: focusNode,
               textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -75,7 +71,6 @@ class PhoneInputField extends StatelessWidget {
                 return null;
               },
               textInputAction: TextInputAction.done,
-              focusNode: _phoneFieldFocusNode,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                   border: OutlineInputBorder(),

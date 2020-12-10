@@ -5,14 +5,12 @@ class TextInputField extends StatelessWidget {
   final TextEditingController controller;
   final String Function(String) validator;
   final _lettersRegExp = RegExp('[a-zA-Z]\$');
-  final FocusNode focusNode;
 
   TextInputField({
     Key key,
     this.label,
     this.controller,
     this.validator,
-    this.focusNode,
   }) : super(key: key);
 
   @override
@@ -28,7 +26,6 @@ class TextInputField extends StatelessWidget {
           return validator(value);
         },
         textInputAction: TextInputAction.next,
-        focusNode: focusNode,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           labelText: label,
