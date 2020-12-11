@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number.dart';
+import 'package:sales_app/infrastructure/core/firestore_unique_id_generator.dart';
 import 'package:sales_app/infrastructure/customers/data_sources/customer_local_data_source.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +15,7 @@ import '../../../fixtures/fixture_reader.dart';
 
 Future<void> main() async {
   CustomerLocalDataSource localDataSource;
+  MockFirestoreInstance mockFirestore;
 
   Map<String, dynamic> sharedPrefCustomers;
   Map<String, dynamic> jsonCustomers;
@@ -24,13 +27,17 @@ Future<void> main() async {
     jsonCustomers = sharedPrefCustomers[CustomerLocalDataSource.key]
         as Map<String, dynamic>;
 
+    mockFirestore = MockFirestoreInstance();
     SharedPreferences.setMockInitialValues({});
     sharedPreferences = await SharedPreferences.getInstance();
 
     sharedPreferences.setString(
         CustomerLocalDataSource.key, jsonEncode(jsonCustomers));
 
-    localDataSource = CustomerLocalDataSource(sharedPreferences);
+    localDataSource = CustomerLocalDataSource(
+      sharedPreferences,
+      FirestoreUniqueIdGenerator(mockFirestore),
+    );
   });
 
   group('save', () {
@@ -38,7 +45,7 @@ Future<void> main() async {
       'should correctly save a new Customer in the SharedPreferences',
       () async {
         // arrange
-        final CustomerDTO dto = CustomerDTO.fromDomain(basicCustomer);
+        final CustomerDTO dto = CustomerDTO.fromDomain(newCustomer);
         // act
         final result = await localDataSource.save(dto);
         // assert
@@ -293,7 +300,7 @@ Future<void> main() async {
 Customer basicCustomer = Customer.person(
   id: "0",
   name: "Basic",
-  lastName: "Customer",
+  surname: "Customer",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   updatedAt: 0,
 );
@@ -301,7 +308,12 @@ Customer basicCustomer = Customer.person(
 Customer notInDataSource = Customer.person(
   id: "adsd",
   name: "Not In",
-  lastName: "Data Source",
+  surname: "Data Source",
   phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
   updatedAt: 0,
+);
+
+Customer newCustomer = Customer.person(
+  name: "New",
+  surname: "Customer",
 );

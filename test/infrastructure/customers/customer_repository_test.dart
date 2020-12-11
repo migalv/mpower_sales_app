@@ -137,7 +137,7 @@ void main() {
     final Customer tCustomer = Customer.person(
       id: "1",
       name: "Test",
-      lastName: "Customer",
+      surname: "Customer",
       phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
       updatedAt: 0,
     );

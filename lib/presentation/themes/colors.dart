@@ -124,3 +124,5 @@ const black60 = Color(0x99000000);
 const black70 = Color(0xB3000000);
 
 const errorColor = Color(0xFFB00020);
+
+final tipCardBackgroundColor = Colors.blue.shade50;

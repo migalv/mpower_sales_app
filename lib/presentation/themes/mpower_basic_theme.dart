@@ -23,9 +23,28 @@ class MPowerBasicTheme {
   // );
 
   ThemeData get themeData => base.copyWith(
-        accentColor: primaryMain,
         primaryColor: primaryMain,
-        buttonColor: primaryMain,
+        accentColor: primaryMain,
+        highlightColor: primaryMain.withOpacity(0.25),
+        floatingActionButtonTheme: base.floatingActionButtonTheme.copyWith(
+          backgroundColor: primaryMain,
+          splashColor: primaryMain.withOpacity(0.25),
+        ),
+        colorScheme: ColorScheme(
+          primary: primaryMain,
+          primaryVariant: primaryMain,
+          secondary: ThemeData.light().colorScheme.secondary,
+          secondaryVariant: ThemeData.light().colorScheme.secondaryVariant,
+          background: ThemeData.light().colorScheme.background,
+          surface: ThemeData.light().colorScheme.surface,
+          error: ThemeData.light().errorColor,
+          onPrimary: ThemeData.light().colorScheme.onPrimary,
+          onSecondary: ThemeData.light().colorScheme.onSecondary,
+          onBackground: ThemeData.light().colorScheme.onBackground,
+          onSurface: ThemeData.light().colorScheme.onSurface,
+          onError: ThemeData.light().colorScheme.onError,
+          brightness: ThemeData.light().colorScheme.brightness,
+        ),
         // buttonTheme: _buildMPowerButtonTheme(base.buttonTheme),
         // primaryTextTheme: _buildMPowerTextTheme(base.primaryTextTheme),
         // textTheme: _buildMPowerTextTheme(base.textTheme),

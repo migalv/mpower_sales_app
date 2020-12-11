@@ -4,7 +4,10 @@ import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 part 'customer_repository_failure.freezed.dart';
 
 @freezed
-abstract class CustomerRepositoryFailure with _$CustomerRepositoryFailure {
+abstract class CustomerRepositoryFailure
+    implements _$CustomerRepositoryFailure {
+  const CustomerRepositoryFailure._();
+
   /// Failure when an unexpected exception is thrown in the CustomerRepository
   const factory CustomerRepositoryFailure.unexpectedException({
     @required Exception exception,
@@ -21,4 +24,22 @@ abstract class CustomerRepositoryFailure with _$CustomerRepositoryFailure {
 
   /// Failure when an invalid element is passed to the create function
   const factory CustomerRepositoryFailure.invalidElement() = InvalidElement;
+
+  /// Returns a list with the default error messages for each failure
+  List<String> get defaultErrorMessages {
+    return map(
+      unexpectedException: (failure) => [
+        "UnexpectedException Failure occured",
+        "Exception: ${failure.exception}",
+        "StackTrace: ${failure.stackTrace}",
+      ],
+      insufficientPermissions: (failure) => [
+        "InsufficientPermissions Failure occured",
+        "Check for permissions",
+      ],
+      unexpectedFailure: (failure) =>
+          ["UnexpectedFailure Failure occured", "$failure"],
+      invalidElement: (failure) => ["InvalidElement Failure occured"],
+    );
+  }
 }

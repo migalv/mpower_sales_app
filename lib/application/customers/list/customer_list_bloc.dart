@@ -23,18 +23,22 @@ class CustomerListBloc extends Bloc<CustomerListEvent, CustomerListState> {
   Stream<CustomerListState> mapEventToState(
     CustomerListEvent event,
   ) async* {
-    yield* event.map(loadStarted: (e) async* {
-      yield const CustomerListState.loadInProgress();
-      yield* _customerRepository.customersStream.map((event) {
-        return event.fold(
-          (failure) {
-            return CustomerListState.loadFailure(failure);
-          },
-          (customers) {
-            return CustomerListState.loadSuccess(customers);
+    yield* event.map(
+      loadStarted: (e) async* {
+        yield const CustomerListState.loadInProgress();
+        yield* _customerRepository.customersStream.map(
+          (event) {
+            return event.fold(
+              (failure) {
+                return CustomerListState.loadFailure(failure);
+              },
+              (customers) {
+                return CustomerListState.loadSuccess(customers);
+              },
+            );
           },
         );
-      });
-    });
+      },
+    );
   }
 }

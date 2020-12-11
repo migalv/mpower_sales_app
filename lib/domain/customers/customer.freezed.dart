@@ -15,9 +15,9 @@ class _$CustomerTearOff {
 
 // ignore: unused_element
   Person person(
-      {@required String id,
+      {String id,
       @required String name,
-      @required String lastName,
+      @required String surname,
       PhoneNumber phoneNumber,
       int updatedAt,
       DateTime birthDate,
@@ -26,7 +26,7 @@ class _$CustomerTearOff {
     return Person(
       id: id,
       name: name,
-      lastName: lastName,
+      surname: surname,
       phoneNumber: phoneNumber,
       updatedAt: updatedAt,
       birthDate: birthDate,
@@ -37,7 +37,7 @@ class _$CustomerTearOff {
 
 // ignore: unused_element
   Company company(
-      {@required String id,
+      {String id,
       @required String name,
       PhoneNumber phoneNumber,
       int updatedAt}) {
@@ -74,7 +74,7 @@ mixin _$Customer {
         TResult person(
             String id,
             String name,
-            String lastName,
+            String surname,
             PhoneNumber phoneNumber,
             int updatedAt,
             DateTime birthDate,
@@ -89,7 +89,7 @@ mixin _$Customer {
     TResult person(
         String id,
         String name,
-        String lastName,
+        String surname,
         PhoneNumber phoneNumber,
         int updatedAt,
         DateTime birthDate,
@@ -167,7 +167,7 @@ abstract class $PersonCopyWith<$Res> implements $CustomerCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      String lastName,
+      String surname,
       PhoneNumber phoneNumber,
       int updatedAt,
       DateTime birthDate,
@@ -192,7 +192,7 @@ class _$PersonCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
   $Res call({
     Object id = freezed,
     Object name = freezed,
-    Object lastName = freezed,
+    Object surname = freezed,
     Object phoneNumber = freezed,
     Object updatedAt = freezed,
     Object birthDate = freezed,
@@ -202,7 +202,7 @@ class _$PersonCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
     return _then(Person(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
-      lastName: lastName == freezed ? _value.lastName : lastName as String,
+      surname: surname == freezed ? _value.surname : surname as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber as PhoneNumber,
@@ -229,17 +229,16 @@ class _$PersonCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
 /// @nodoc
 class _$Person extends Person {
   _$Person(
-      {@required this.id,
+      {this.id,
       @required this.name,
-      @required this.lastName,
+      @required this.surname,
       this.phoneNumber,
       this.updatedAt,
       this.birthDate,
       this.email,
       this.personalId})
-      : assert(id != null),
-        assert(name != null),
-        assert(lastName != null),
+      : assert(name != null),
+        assert(surname != null),
         super._();
 
   @override
@@ -252,8 +251,8 @@ class _$Person extends Person {
   final String name;
   @override
 
-  /// The last name of the customer
-  final String lastName;
+  /// The last name of the customer (also called surname)
+  final String surname;
   @override
 
   /// The phone number of the customer
@@ -283,9 +282,9 @@ class _$Person extends Person {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.lastName, lastName) ||
+            (identical(other.surname, surname) ||
                 const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
+                    .equals(other.surname, surname)) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 const DeepCollectionEquality()
                     .equals(other.phoneNumber, phoneNumber)) &&
@@ -307,7 +306,7 @@ class _$Person extends Person {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(surname) ^
       const DeepCollectionEquality().hash(phoneNumber) ^
       const DeepCollectionEquality().hash(updatedAt) ^
       const DeepCollectionEquality().hash(birthDate) ^
@@ -325,7 +324,7 @@ class _$Person extends Person {
         TResult person(
             String id,
             String name,
-            String lastName,
+            String surname,
             PhoneNumber phoneNumber,
             int updatedAt,
             DateTime birthDate,
@@ -337,7 +336,7 @@ class _$Person extends Person {
   }) {
     assert(person != null);
     assert(company != null);
-    return person(id, name, lastName, phoneNumber, updatedAt, birthDate, email,
+    return person(id, name, surname, phoneNumber, updatedAt, birthDate, email,
         personalId);
   }
 
@@ -347,7 +346,7 @@ class _$Person extends Person {
     TResult person(
         String id,
         String name,
-        String lastName,
+        String surname,
         PhoneNumber phoneNumber,
         int updatedAt,
         DateTime birthDate,
@@ -359,8 +358,8 @@ class _$Person extends Person {
   }) {
     assert(orElse != null);
     if (person != null) {
-      return person(id, name, lastName, phoneNumber, updatedAt, birthDate,
-          email, personalId);
+      return person(id, name, surname, phoneNumber, updatedAt, birthDate, email,
+          personalId);
     }
     return orElse();
   }
@@ -394,9 +393,9 @@ class _$Person extends Person {
 abstract class Person extends Customer {
   Person._() : super._();
   factory Person(
-      {@required String id,
+      {String id,
       @required String name,
-      @required String lastName,
+      @required String surname,
       PhoneNumber phoneNumber,
       int updatedAt,
       DateTime birthDate,
@@ -412,8 +411,8 @@ abstract class Person extends Customer {
   /// The name of the customer
   String get name;
 
-  /// The last name of the customer
-  String get lastName;
+  /// The last name of the customer (also called surname)
+  String get surname;
   @override
 
   /// The phone number of the customer
@@ -475,13 +474,8 @@ class _$CompanyCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
 
 /// @nodoc
 class _$Company extends Company {
-  _$Company(
-      {@required this.id,
-      @required this.name,
-      this.phoneNumber,
-      this.updatedAt})
-      : assert(id != null),
-        assert(name != null),
+  _$Company({this.id, @required this.name, this.phoneNumber, this.updatedAt})
+      : assert(name != null),
         super._();
 
   @override
@@ -528,7 +522,7 @@ class _$Company extends Company {
         TResult person(
             String id,
             String name,
-            String lastName,
+            String surname,
             PhoneNumber phoneNumber,
             int updatedAt,
             DateTime birthDate,
@@ -549,7 +543,7 @@ class _$Company extends Company {
     TResult person(
         String id,
         String name,
-        String lastName,
+        String surname,
         PhoneNumber phoneNumber,
         int updatedAt,
         DateTime birthDate,
@@ -595,7 +589,7 @@ class _$Company extends Company {
 abstract class Company extends Customer {
   Company._() : super._();
   factory Company(
-      {@required String id,
+      {String id,
       @required String name,
       PhoneNumber phoneNumber,
       int updatedAt}) = _$Company;

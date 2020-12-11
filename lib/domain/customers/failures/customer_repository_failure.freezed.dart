@@ -130,11 +130,12 @@ class _$UnexpectedExceptionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$UnexpectedException implements UnexpectedException {
+class _$UnexpectedException extends UnexpectedException {
   const _$UnexpectedException(
       {@required this.exception, @required this.stackTrace})
       : assert(exception != null),
-        assert(stackTrace != null);
+        assert(stackTrace != null),
+        super._();
 
   @override
   final Exception exception;
@@ -232,7 +233,8 @@ class _$UnexpectedException implements UnexpectedException {
   }
 }
 
-abstract class UnexpectedException implements CustomerRepositoryFailure {
+abstract class UnexpectedException extends CustomerRepositoryFailure {
+  const UnexpectedException._() : super._();
   const factory UnexpectedException(
       {@required Exception exception,
       @required StackTrace stackTrace}) = _$UnexpectedException;
@@ -262,8 +264,8 @@ class _$InsufficientPermissionsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$InsufficientPermissions implements InsufficientPermissions {
-  const _$InsufficientPermissions();
+class _$InsufficientPermissions extends InsufficientPermissions {
+  const _$InsufficientPermissions() : super._();
 
   @override
   String toString() {
@@ -342,7 +344,8 @@ class _$InsufficientPermissions implements InsufficientPermissions {
   }
 }
 
-abstract class InsufficientPermissions implements CustomerRepositoryFailure {
+abstract class InsufficientPermissions extends CustomerRepositoryFailure {
+  const InsufficientPermissions._() : super._();
   const factory InsufficientPermissions() = _$InsufficientPermissions;
 }
 
@@ -389,8 +392,8 @@ class _$UnexpectedFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$UnexpectedFailure implements UnexpectedFailure {
-  const _$UnexpectedFailure({this.failure});
+class _$UnexpectedFailure extends UnexpectedFailure {
+  const _$UnexpectedFailure({this.failure}) : super._();
 
   @override
   final DataSourceFailure failure;
@@ -480,7 +483,8 @@ class _$UnexpectedFailure implements UnexpectedFailure {
   }
 }
 
-abstract class UnexpectedFailure implements CustomerRepositoryFailure {
+abstract class UnexpectedFailure extends CustomerRepositoryFailure {
+  const UnexpectedFailure._() : super._();
   const factory UnexpectedFailure({DataSourceFailure failure}) =
       _$UnexpectedFailure;
 
@@ -508,8 +512,8 @@ class _$InvalidElementCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$InvalidElement implements InvalidElement {
-  const _$InvalidElement();
+class _$InvalidElement extends InvalidElement {
+  const _$InvalidElement() : super._();
 
   @override
   String toString() {
@@ -588,6 +592,7 @@ class _$InvalidElement implements InvalidElement {
   }
 }
 
-abstract class InvalidElement implements CustomerRepositoryFailure {
+abstract class InvalidElement extends CustomerRepositoryFailure {
+  const InvalidElement._() : super._();
   const factory InvalidElement() = _$InvalidElement;
 }

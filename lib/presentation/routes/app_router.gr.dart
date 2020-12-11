@@ -9,6 +9,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../customers/creation/customer_creation_page.dart';
 import '../customers/list/customer_list_page.dart';
 import '../login/login_page.dart';
 import '../splash/splash_page.dart';
@@ -17,10 +18,12 @@ class Routes {
   static const String splashPage = '/';
   static const String loginPage = '/login-page';
   static const String customerListPage = '/customer-list-page';
+  static const String customerCreationPage = '/customer-creation-page';
   static const all = <String>{
     splashPage,
     loginPage,
     customerListPage,
+    customerCreationPage,
   };
 }
 
@@ -31,6 +34,7 @@ class AppRouter extends RouterBase {
     RouteDef(Routes.splashPage, page: SplashPage),
     RouteDef(Routes.loginPage, page: LoginPage),
     RouteDef(Routes.customerListPage, page: CustomerListPage),
+    RouteDef(Routes.customerCreationPage, page: CustomerCreationPage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -53,6 +57,12 @@ class AppRouter extends RouterBase {
         settings: data,
       );
     },
+    CustomerCreationPage: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => CustomerCreationPage(),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -67,4 +77,7 @@ extension AppRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<dynamic> pushCustomerListPage() =>
       push<dynamic>(Routes.customerListPage);
+
+  Future<dynamic> pushCustomerCreationPage() =>
+      push<dynamic>(Routes.customerCreationPage);
 }
