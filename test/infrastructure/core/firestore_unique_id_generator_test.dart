@@ -40,6 +40,32 @@ void main() {
     );
 
     test(
+      '''should generate a diferent unique id each time it's called''',
+      () async {
+        // act
+        uniqueIdGenerator.initialize();
+        final result1 = uniqueIdGenerator.uniqueId;
+        final result2 = uniqueIdGenerator.uniqueId;
+        final result3 = uniqueIdGenerator.uniqueId;
+        final result4 = uniqueIdGenerator.uniqueId;
+        final result5 = uniqueIdGenerator.uniqueId;
+        final results = [
+          result1,
+          result2,
+          result3,
+          result4,
+          result5,
+        ];
+        // assert
+        expect(result1, isNot(contains(List.from(results)..remove(result1))));
+        expect(result2, isNot(contains(List.from(results)..remove(result2))));
+        expect(result3, isNot(contains(List.from(results)..remove(result3))));
+        expect(result4, isNot(contains(List.from(results)..remove(result4))));
+        expect(result5, isNot(contains(List.from(results)..remove(result5))));
+      },
+    );
+
+    test(
       'should throw an UninitializedGenerator exception when generator not initialized',
       () async {
         // assert
@@ -76,6 +102,32 @@ void main() {
         // assert
         expect(result, isNot(null));
         expect(result, isA<String>());
+      },
+    );
+
+    test(
+      '''should generate a different unique id each time it's called''',
+      () async {
+        // act
+        uniqueIdGenerator.initialize();
+        final result1 = uniqueIdGenerator.getUniqueIdFromSeed("seed");
+        final result2 = uniqueIdGenerator.getUniqueIdFromSeed("seed");
+        final result3 = uniqueIdGenerator.getUniqueIdFromSeed("seed");
+        final result4 = uniqueIdGenerator.getUniqueIdFromSeed("seed");
+        final result5 = uniqueIdGenerator.getUniqueIdFromSeed("seed");
+        final results = [
+          result1,
+          result2,
+          result3,
+          result4,
+          result5,
+        ];
+        // assert
+        expect(result1, isNot(contains(List.from(results)..remove(result1))));
+        expect(result2, isNot(contains(List.from(results)..remove(result2))));
+        expect(result3, isNot(contains(List.from(results)..remove(result3))));
+        expect(result4, isNot(contains(List.from(results)..remove(result4))));
+        expect(result5, isNot(contains(List.from(results)..remove(result5))));
       },
     );
 
