@@ -5,6 +5,7 @@ import 'package:sales_app/domain/customers/personal_id/personal_id.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number_converter.dart';
 import 'package:sales_app/domain/i_entity.dart';
+import 'package:sales_app/domain/teams/team.dart';
 
 part 'customer_dto.freezed.dart';
 part 'customer_dto.g.dart';
@@ -30,7 +31,27 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
     String employeeNum,
     String farmerId,
     String nationalId,
+
+    /// If not null represents the id of the team for which this customers was created
+    // ignore: unused_element
+    String teamId,
+
+    /// If not null represents the name of the team for which this customers was created
+    // ignore: unused_element
+    String teamName,
   }) = _CustomerDTO;
+
+  /// Creates a customer for a specified team
+  ///
+  /// Used when a new customer is created from the app
+  factory CustomerDTO.create({
+    @required Customer customer,
+    @required Team forTeam,
+  }) =>
+      CustomerDTO.fromDomain(customer).copyWith(
+        teamId: forTeam.id,
+        teamName: forTeam.name,
+      );
 
   /// Transforms a Customer Entity into a CustomerDTO
   factory CustomerDTO.fromDomain(Customer customer) {

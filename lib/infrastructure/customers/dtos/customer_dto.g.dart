@@ -19,6 +19,8 @@ _$_CustomerDTO _$_$_CustomerDTOFromJson(Map<String, dynamic> json) {
     employeeNum: json['employee_num'] as String,
     farmerId: json['farmer_id'] as String,
     nationalId: json['national_id'] as String,
+    teamId: json['team_id'] as String,
+    teamName: json['team_name'] as String,
   );
 }
 
@@ -42,6 +44,8 @@ Map<String, dynamic> _$_$_CustomerDTOToJson(_$_CustomerDTO instance) {
   writeNotNull('employee_num', instance.employeeNum);
   writeNotNull('farmer_id', instance.farmerId);
   writeNotNull('national_id', instance.nationalId);
+  writeNotNull('team_id', instance.teamId);
+  writeNotNull('team_name', instance.teamName);
   return val;
 }
 

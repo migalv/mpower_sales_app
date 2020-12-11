@@ -5,6 +5,8 @@ part 'team.freezed.dart';
 part 'team.g.dart';
 
 @freezed
+
+/// This represents a team (group of users)
 abstract class Team with _$Team implements IEntity {
   const factory Team({
     @required String id,

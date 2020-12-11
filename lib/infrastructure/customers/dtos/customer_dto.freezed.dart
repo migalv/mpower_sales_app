@@ -29,7 +29,9 @@ class _$CustomerDTOTearOff {
       String nrc,
       String employeeNum,
       String farmerId,
-      String nationalId}) {
+      String nationalId,
+      String teamId,
+      String teamName}) {
     return _CustomerDTO(
       id: id,
       name: name,
@@ -43,6 +45,8 @@ class _$CustomerDTOTearOff {
       employeeNum: employeeNum,
       farmerId: farmerId,
       nationalId: nationalId,
+      teamId: teamId,
+      teamName: teamName,
     );
   }
 
@@ -75,6 +79,14 @@ mixin _$CustomerDTO {
   String get farmerId;
   String get nationalId;
 
+  /// If not null represents the id of the team for which this customers was created
+// ignore: unused_element
+  String get teamId;
+
+  /// If not null represents the name of the team for which this customers was created
+// ignore: unused_element
+  String get teamName;
+
   Map<String, dynamic> toJson();
   $CustomerDTOCopyWith<CustomerDTO> get copyWith;
 }
@@ -96,7 +108,9 @@ abstract class $CustomerDTOCopyWith<$Res> {
       String nrc,
       String employeeNum,
       String farmerId,
-      String nationalId});
+      String nationalId,
+      String teamId,
+      String teamName});
 
   $PhoneNumberCopyWith<$Res> get phone;
 }
@@ -123,6 +137,8 @@ class _$CustomerDTOCopyWithImpl<$Res> implements $CustomerDTOCopyWith<$Res> {
     Object employeeNum = freezed,
     Object farmerId = freezed,
     Object nationalId = freezed,
+    Object teamId = freezed,
+    Object teamName = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -140,6 +156,8 @@ class _$CustomerDTOCopyWithImpl<$Res> implements $CustomerDTOCopyWith<$Res> {
       farmerId: farmerId == freezed ? _value.farmerId : farmerId as String,
       nationalId:
           nationalId == freezed ? _value.nationalId : nationalId as String,
+      teamId: teamId == freezed ? _value.teamId : teamId as String,
+      teamName: teamName == freezed ? _value.teamName : teamName as String,
     ));
   }
 
@@ -173,7 +191,9 @@ abstract class _$CustomerDTOCopyWith<$Res>
       String nrc,
       String employeeNum,
       String farmerId,
-      String nationalId});
+      String nationalId,
+      String teamId,
+      String teamName});
 
   @override
   $PhoneNumberCopyWith<$Res> get phone;
@@ -203,6 +223,8 @@ class __$CustomerDTOCopyWithImpl<$Res> extends _$CustomerDTOCopyWithImpl<$Res>
     Object employeeNum = freezed,
     Object farmerId = freezed,
     Object nationalId = freezed,
+    Object teamId = freezed,
+    Object teamName = freezed,
   }) {
     return _then(_CustomerDTO(
       id: id == freezed ? _value.id : id as String,
@@ -220,6 +242,8 @@ class __$CustomerDTOCopyWithImpl<$Res> extends _$CustomerDTOCopyWithImpl<$Res>
       farmerId: farmerId == freezed ? _value.farmerId : farmerId as String,
       nationalId:
           nationalId == freezed ? _value.nationalId : nationalId as String,
+      teamId: teamId == freezed ? _value.teamId : teamId as String,
+      teamName: teamName == freezed ? _value.teamName : teamName as String,
     ));
   }
 }
@@ -240,7 +264,9 @@ class _$_CustomerDTO extends _CustomerDTO {
       this.nrc,
       this.employeeNum,
       this.farmerId,
-      this.nationalId})
+      this.nationalId,
+      this.teamId,
+      this.teamName})
       : assert(name != null),
         assert(updatedAt != null),
         super._();
@@ -276,6 +302,16 @@ class _$_CustomerDTO extends _CustomerDTO {
   final String farmerId;
   @override
   final String nationalId;
+  @override
+
+  /// If not null represents the id of the team for which this customers was created
+// ignore: unused_element
+  final String teamId;
+  @override
+
+  /// If not null represents the name of the team for which this customers was created
+// ignore: unused_element
+  final String teamName;
 
   @override
   bool operator ==(dynamic other) {
@@ -310,7 +346,12 @@ class _$_CustomerDTO extends _CustomerDTO {
                     .equals(other.farmerId, farmerId)) &&
             (identical(other.nationalId, nationalId) ||
                 const DeepCollectionEquality()
-                    .equals(other.nationalId, nationalId)));
+                    .equals(other.nationalId, nationalId)) &&
+            (identical(other.teamId, teamId) ||
+                const DeepCollectionEquality().equals(other.teamId, teamId)) &&
+            (identical(other.teamName, teamName) ||
+                const DeepCollectionEquality()
+                    .equals(other.teamName, teamName)));
   }
 
   @override
@@ -327,7 +368,9 @@ class _$_CustomerDTO extends _CustomerDTO {
       const DeepCollectionEquality().hash(nrc) ^
       const DeepCollectionEquality().hash(employeeNum) ^
       const DeepCollectionEquality().hash(farmerId) ^
-      const DeepCollectionEquality().hash(nationalId);
+      const DeepCollectionEquality().hash(nationalId) ^
+      const DeepCollectionEquality().hash(teamId) ^
+      const DeepCollectionEquality().hash(teamName);
 
   @override
   _$CustomerDTOCopyWith<_CustomerDTO> get copyWith =>
@@ -353,7 +396,9 @@ abstract class _CustomerDTO extends CustomerDTO {
       String nrc,
       String employeeNum,
       String farmerId,
-      String nationalId}) = _$_CustomerDTO;
+      String nationalId,
+      String teamId,
+      String teamName}) = _$_CustomerDTO;
 
   factory _CustomerDTO.fromJson(Map<String, dynamic> json) =
       _$_CustomerDTO.fromJson;
@@ -386,6 +431,16 @@ abstract class _CustomerDTO extends CustomerDTO {
   String get farmerId;
   @override
   String get nationalId;
+  @override
+
+  /// If not null represents the id of the team for which this customers was created
+// ignore: unused_element
+  String get teamId;
+  @override
+
+  /// If not null represents the name of the team for which this customers was created
+// ignore: unused_element
+  String get teamName;
   @override
   _$CustomerDTOCopyWith<_CustomerDTO> get copyWith;
 }
