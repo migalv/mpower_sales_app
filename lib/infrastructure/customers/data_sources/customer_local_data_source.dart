@@ -6,12 +6,14 @@ import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:sales_app/domain/core/data_sources/i_local_data_source.dart';
+import 'package:sales_app/domain/core/i_unique_id_generator.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @LazySingleton(as: ILocalDataSource)
 class CustomerLocalDataSource implements ILocalDataSource<CustomerDTO> {
   final SharedPreferences _sharedPreferences;
+  final IUniqueIdGenerator _uniqueIdGenerator;
 
   /// Stream updated everytime we save or remove a Customer from SharedPreferences
   ValueStream<Map<String, CustomerDTO>> get _stream => _streamController.stream;
@@ -21,7 +23,12 @@ class CustomerLocalDataSource implements ILocalDataSource<CustomerDTO> {
   static const String key = "customers";
 
   /// Data source that uses SharedPreferences to store customers locally
-  CustomerLocalDataSource(this._sharedPreferences) {
+  CustomerLocalDataSource(
+    this._sharedPreferences,
+
+    /// Unique id generator used to create the unique ids for the LocalDataSource
+    this._uniqueIdGenerator,
+  ) {
     final String string = _sharedPreferences.getString(key);
 
     Map<String, dynamic> json = {};
@@ -37,6 +44,17 @@ class CustomerLocalDataSource implements ILocalDataSource<CustomerDTO> {
               id: id, json: json as Map<String, dynamic>),
         ),
       );
+    }
+
+    final List<String> ids = customerDTOs.keys.toList();
+
+    switch (_uniqueIdGenerator.currentStatus) {
+      case GeneratorStatus.uninitialized:
+        _uniqueIdGenerator.initialize(reservedIds: ids);
+        break;
+      case GeneratorStatus.initialized:
+        _uniqueIdGenerator.addAsReserved(ids);
+        break;
     }
 
     _streamController.add(customerDTOs);
@@ -101,13 +119,18 @@ class CustomerLocalDataSource implements ILocalDataSource<CustomerDTO> {
   }
 
   @override
-  Future<Either<DataSourceFailure, Unit>> save(CustomerDTO dto) async {
-    if (dto == null) {
+  Future<Either<DataSourceFailure, Unit>> save(CustomerDTO newDTO) async {
+    if (newDTO == null) {
       const failure = DataSourceFailure.nullElement();
       return const Left(failure);
     }
     try {
       Map<String, dynamic> json = {};
+      CustomerDTO dto = newDTO;
+
+      if (newDTO.id == null) {
+        dto = newDTO.copyWith(id: _uniqueIdGenerator.getUniqueIdFromSeed(key));
+      }
 
       final String string = _sharedPreferences.getString(key);
 
