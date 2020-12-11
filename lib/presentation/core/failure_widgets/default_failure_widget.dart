@@ -4,14 +4,14 @@ import 'package:sales_app/presentation/core/software_team_contact_info.dart';
 /// This Widget is used when a failure occurs in a list
 ///
 /// It will show an icon & a message to represent the ocurred failure
-class ListFailureWidget extends StatelessWidget {
+class DefaultFailureWidget extends StatelessWidget {
   final List<String> messages;
   final Widget icon;
 
-  const ListFailureWidget({
+  const DefaultFailureWidget({
     Key key,
     @required this.messages,
-    this.icon,
+    this.icon = const Icon(Icons.info),
   }) : super(key: key);
 
   @override

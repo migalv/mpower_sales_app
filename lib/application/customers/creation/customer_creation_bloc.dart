@@ -26,9 +26,14 @@ class CustomerCreationBloc
     CustomerCreationEvent event,
   ) async* {
     yield* event.when(
-      saveButtonPressed:
-          (customerName, customerSurname, countryCode, phoneNumber) async* {
+      saveButtonPressed: (
+        customerName,
+        customerSurname,
+        countryCode,
+        phoneNumber,
+      ) async* {
         yield const CustomerCreationState.creationInProgress();
+
         final Customer newCustomer = Customer.person(
           name: customerName,
           surname: customerSurname,

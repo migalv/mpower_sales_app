@@ -63,7 +63,8 @@ class PhoneInputField extends StatelessWidget {
             child: TextFormField(
               controller: phoneController,
               validator: (value) {
-                if (value.isNotEmpty && !_numberRegExp.hasMatch(value)) {
+                value = _phoneMaskFormatter.unmaskText(value);
+                if (value.isEmpty && !_numberRegExp.hasMatch(value)) {
                   return 'Enter a valid phone number';
                 } else if (value.length < 9) {
                   return 'Minimum length is 9';
@@ -73,9 +74,10 @@ class PhoneInputField extends StatelessWidget {
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Phone",
-                  hintText: "62894841598"),
+                border: OutlineInputBorder(),
+                labelText: "Phone",
+                hintText: "628 94 84 15 98",
+              ),
               inputFormatters: [_phoneMaskFormatter],
             ),
           ),
