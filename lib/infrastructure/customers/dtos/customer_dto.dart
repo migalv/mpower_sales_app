@@ -48,13 +48,13 @@ abstract class CustomerDTO implements _$CustomerDTO, IEntity {
     @required Customer customer,
     @required Team forTeam,
   }) =>
-      CustomerDTO.fromDomain(customer).copyWith(
+      CustomerDTO._fromDomain(customer).copyWith(
         teamId: forTeam.id,
         teamName: forTeam.name,
       );
 
   /// Transforms a Customer Entity into a CustomerDTO
-  factory CustomerDTO.fromDomain(Customer customer) {
+  factory CustomerDTO._fromDomain(Customer customer) {
     if (customer == null) return null;
     CustomerType customerType;
 

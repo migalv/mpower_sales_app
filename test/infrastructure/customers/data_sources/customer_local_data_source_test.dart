@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number.dart';
+import 'package:sales_app/domain/teams/team.dart';
 import 'package:sales_app/infrastructure/core/firestore_unique_id_generator.dart';
 import 'package:sales_app/infrastructure/customers/data_sources/customer_local_data_source.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
@@ -21,6 +22,11 @@ Future<void> main() async {
   Map<String, dynamic> jsonCustomers;
 
   SharedPreferences sharedPreferences;
+
+  const Team tTeam = Team(
+    id: "team1",
+    name: "Test team",
+  );
 
   setUp(() async {
     sharedPrefCustomers = jsonFixtureAsMap('customers/customers.json');
@@ -45,7 +51,8 @@ Future<void> main() async {
       'should correctly save a new Customer in the SharedPreferences',
       () async {
         // arrange
-        final CustomerDTO dto = CustomerDTO.fromDomain(newCustomer);
+        final CustomerDTO dto =
+            CustomerDTO.create(customer: newCustomer, forTeam: tTeam);
         // act
         final result = await localDataSource.save(dto);
         // assert
@@ -56,7 +63,8 @@ Future<void> main() async {
       'should correctly override an existing (same id) Customer in the SharedPreferences',
       () async {
         // arrange
-        final CustomerDTO dto = CustomerDTO.fromDomain(basicCustomer);
+        final CustomerDTO dto =
+            CustomerDTO.create(customer: basicCustomer, forTeam: tTeam);
 
         final CustomerDTO updatedCustomer = dto.copyWith(name: "New name");
         await localDataSource.save(dto);
@@ -89,12 +97,13 @@ Future<void> main() async {
       'should return a Customer that matches the given id',
       () async {
         // arrange
-        final dto = CustomerDTO.fromDomain(basicCustomer);
+        final CustomerDTO dto =
+            CustomerDTO.create(customer: basicCustomer, forTeam: tTeam);
         final desiredId = dto.id;
         // act
         final result = await localDataSource.getElementWithId(desiredId);
         // assert
-        expect(result, right(dto));
+        expect(result.getOrElse(() => null), dto);
       },
     );
 
@@ -138,7 +147,7 @@ Future<void> main() async {
       'should remove the element that matches the given id from the Data Source',
       () async {
         // act
-        final dto = CustomerDTO.fromDomain(basicCustomer);
+        final dto = CustomerDTO.create(customer: basicCustomer, forTeam: tTeam);
         final result = await localDataSource.removeWithId(dto.id);
         final after = await localDataSource.getElementWithId(dto.id);
 
@@ -239,7 +248,7 @@ Future<void> main() async {
       'should emit every time an save or remove is performed on the local storage',
       () async {
         // arrange
-        final dto = CustomerDTO.fromDomain(basicCustomer);
+        final dto = CustomerDTO.create(customer: basicCustomer, forTeam: tTeam);
 
         final Map<String, CustomerDTO> initialCustomers =
             (await localDataSource.getAll()).getOrElse(() => null);

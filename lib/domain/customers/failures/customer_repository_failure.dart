@@ -19,11 +19,17 @@ abstract class CustomerRepositoryFailure
       InsufficientPermissions;
 
   /// Failure when an unexpected failure is recieved
-  const factory CustomerRepositoryFailure.unexpectedFailure(
-      {DataSourceFailure failure}) = UnexpectedFailure;
+  const factory CustomerRepositoryFailure.unexpectedFailure({
+    @required DataSourceFailure failure,
+  }) = UnexpectedFailure;
 
   /// Failure when an invalid element is passed to the create function
   const factory CustomerRepositoryFailure.invalidElement() = InvalidElement;
+
+  /// Failure when a failure occurred when uploading Customers to the server
+  const factory CustomerRepositoryFailure.uploadFailure({
+    String errorMessage,
+  }) = UploadFailure;
 
   /// Returns a list with the default error messages for each failure
   List<String> get defaultErrorMessages {
@@ -39,6 +45,8 @@ abstract class CustomerRepositoryFailure
       ],
       unexpectedFailure: (failure) =>
           ["UnexpectedFailure Failure occured", "$failure"],
+      uploadFailure: (failure) =>
+          ["A Failure ocurred while uploading Customers"],
       invalidElement: (failure) => ["InvalidElement Failure occured"],
     );
   }

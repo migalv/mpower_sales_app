@@ -63,7 +63,9 @@ Future<GetIt> $initGetIt(
       get<SharedPreferences>(), get<IUniqueIdGenerator>()));
   gh.lazySingleton<ICustomerRepository>(() => CustomerRepository(
         localDataSource: get<ILocalDataSource<CustomerDTO>>(),
-      remoteDataSource: get<IDataSource<CustomerDTO>>()));
+        remoteDataSource: get<IDataSource<CustomerDTO>>(),
+        uploadService: get<IUploadService<CustomerDTO>>(),
+      ));
   gh.factory<CustomerCreationBloc>(
       () => CustomerCreationBloc(get<ICustomerRepository>()));
   gh.factory<CustomerListBloc>(

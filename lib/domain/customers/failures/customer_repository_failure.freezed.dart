@@ -28,7 +28,7 @@ class _$CustomerRepositoryFailureTearOff {
   }
 
 // ignore: unused_element
-  UnexpectedFailure unexpectedFailure({DataSourceFailure failure}) {
+  UnexpectedFailure unexpectedFailure({@required DataSourceFailure failure}) {
     return UnexpectedFailure(
       failure: failure,
     );
@@ -37,6 +37,13 @@ class _$CustomerRepositoryFailureTearOff {
 // ignore: unused_element
   InvalidElement invalidElement() {
     return const InvalidElement();
+  }
+
+// ignore: unused_element
+  UploadFailure uploadFailure({String errorMessage}) {
+    return UploadFailure(
+      errorMessage: errorMessage,
+    );
   }
 }
 
@@ -53,6 +60,7 @@ mixin _$CustomerRepositoryFailure {
     @required TResult insufficientPermissions(),
     @required TResult unexpectedFailure(DataSourceFailure failure),
     @required TResult invalidElement(),
+    @required TResult uploadFailure(String errorMessage),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -60,6 +68,7 @@ mixin _$CustomerRepositoryFailure {
     TResult insufficientPermissions(),
     TResult unexpectedFailure(DataSourceFailure failure),
     TResult invalidElement(),
+    TResult uploadFailure(String errorMessage),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -68,6 +77,7 @@ mixin _$CustomerRepositoryFailure {
     @required TResult insufficientPermissions(InsufficientPermissions value),
     @required TResult unexpectedFailure(UnexpectedFailure value),
     @required TResult invalidElement(InvalidElement value),
+    @required TResult uploadFailure(UploadFailure value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -75,6 +85,7 @@ mixin _$CustomerRepositoryFailure {
     TResult insufficientPermissions(InsufficientPermissions value),
     TResult unexpectedFailure(UnexpectedFailure value),
     TResult invalidElement(InvalidElement value),
+    TResult uploadFailure(UploadFailure value),
     @required TResult orElse(),
   });
 }
@@ -177,11 +188,13 @@ class _$UnexpectedException extends UnexpectedException {
     @required TResult insufficientPermissions(),
     @required TResult unexpectedFailure(DataSourceFailure failure),
     @required TResult invalidElement(),
+    @required TResult uploadFailure(String errorMessage),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
     assert(unexpectedFailure != null);
     assert(invalidElement != null);
+    assert(uploadFailure != null);
     return unexpectedException(exception, stackTrace);
   }
 
@@ -192,6 +205,7 @@ class _$UnexpectedException extends UnexpectedException {
     TResult insufficientPermissions(),
     TResult unexpectedFailure(DataSourceFailure failure),
     TResult invalidElement(),
+    TResult uploadFailure(String errorMessage),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -208,11 +222,13 @@ class _$UnexpectedException extends UnexpectedException {
     @required TResult insufficientPermissions(InsufficientPermissions value),
     @required TResult unexpectedFailure(UnexpectedFailure value),
     @required TResult invalidElement(InvalidElement value),
+    @required TResult uploadFailure(UploadFailure value),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
     assert(unexpectedFailure != null);
     assert(invalidElement != null);
+    assert(uploadFailure != null);
     return unexpectedException(this);
   }
 
@@ -223,6 +239,7 @@ class _$UnexpectedException extends UnexpectedException {
     TResult insufficientPermissions(InsufficientPermissions value),
     TResult unexpectedFailure(UnexpectedFailure value),
     TResult invalidElement(InvalidElement value),
+    TResult uploadFailure(UploadFailure value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -288,11 +305,13 @@ class _$InsufficientPermissions extends InsufficientPermissions {
     @required TResult insufficientPermissions(),
     @required TResult unexpectedFailure(DataSourceFailure failure),
     @required TResult invalidElement(),
+    @required TResult uploadFailure(String errorMessage),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
     assert(unexpectedFailure != null);
     assert(invalidElement != null);
+    assert(uploadFailure != null);
     return insufficientPermissions();
   }
 
@@ -303,6 +322,7 @@ class _$InsufficientPermissions extends InsufficientPermissions {
     TResult insufficientPermissions(),
     TResult unexpectedFailure(DataSourceFailure failure),
     TResult invalidElement(),
+    TResult uploadFailure(String errorMessage),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -319,11 +339,13 @@ class _$InsufficientPermissions extends InsufficientPermissions {
     @required TResult insufficientPermissions(InsufficientPermissions value),
     @required TResult unexpectedFailure(UnexpectedFailure value),
     @required TResult invalidElement(InvalidElement value),
+    @required TResult uploadFailure(UploadFailure value),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
     assert(unexpectedFailure != null);
     assert(invalidElement != null);
+    assert(uploadFailure != null);
     return insufficientPermissions(this);
   }
 
@@ -334,6 +356,7 @@ class _$InsufficientPermissions extends InsufficientPermissions {
     TResult insufficientPermissions(InsufficientPermissions value),
     TResult unexpectedFailure(UnexpectedFailure value),
     TResult invalidElement(InvalidElement value),
+    TResult uploadFailure(UploadFailure value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -393,7 +416,9 @@ class _$UnexpectedFailureCopyWithImpl<$Res>
 
 /// @nodoc
 class _$UnexpectedFailure extends UnexpectedFailure {
-  const _$UnexpectedFailure({this.failure}) : super._();
+  const _$UnexpectedFailure({@required this.failure})
+      : assert(failure != null),
+        super._();
 
   @override
   final DataSourceFailure failure;
@@ -427,11 +452,13 @@ class _$UnexpectedFailure extends UnexpectedFailure {
     @required TResult insufficientPermissions(),
     @required TResult unexpectedFailure(DataSourceFailure failure),
     @required TResult invalidElement(),
+    @required TResult uploadFailure(String errorMessage),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
     assert(unexpectedFailure != null);
     assert(invalidElement != null);
+    assert(uploadFailure != null);
     return unexpectedFailure(failure);
   }
 
@@ -442,6 +469,7 @@ class _$UnexpectedFailure extends UnexpectedFailure {
     TResult insufficientPermissions(),
     TResult unexpectedFailure(DataSourceFailure failure),
     TResult invalidElement(),
+    TResult uploadFailure(String errorMessage),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -458,11 +486,13 @@ class _$UnexpectedFailure extends UnexpectedFailure {
     @required TResult insufficientPermissions(InsufficientPermissions value),
     @required TResult unexpectedFailure(UnexpectedFailure value),
     @required TResult invalidElement(InvalidElement value),
+    @required TResult uploadFailure(UploadFailure value),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
     assert(unexpectedFailure != null);
     assert(invalidElement != null);
+    assert(uploadFailure != null);
     return unexpectedFailure(this);
   }
 
@@ -473,6 +503,7 @@ class _$UnexpectedFailure extends UnexpectedFailure {
     TResult insufficientPermissions(InsufficientPermissions value),
     TResult unexpectedFailure(UnexpectedFailure value),
     TResult invalidElement(InvalidElement value),
+    TResult uploadFailure(UploadFailure value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -485,7 +516,7 @@ class _$UnexpectedFailure extends UnexpectedFailure {
 
 abstract class UnexpectedFailure extends CustomerRepositoryFailure {
   const UnexpectedFailure._() : super._();
-  const factory UnexpectedFailure({DataSourceFailure failure}) =
+  const factory UnexpectedFailure({@required DataSourceFailure failure}) =
       _$UnexpectedFailure;
 
   DataSourceFailure get failure;
@@ -536,11 +567,13 @@ class _$InvalidElement extends InvalidElement {
     @required TResult insufficientPermissions(),
     @required TResult unexpectedFailure(DataSourceFailure failure),
     @required TResult invalidElement(),
+    @required TResult uploadFailure(String errorMessage),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
     assert(unexpectedFailure != null);
     assert(invalidElement != null);
+    assert(uploadFailure != null);
     return invalidElement();
   }
 
@@ -551,6 +584,7 @@ class _$InvalidElement extends InvalidElement {
     TResult insufficientPermissions(),
     TResult unexpectedFailure(DataSourceFailure failure),
     TResult invalidElement(),
+    TResult uploadFailure(String errorMessage),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -567,11 +601,13 @@ class _$InvalidElement extends InvalidElement {
     @required TResult insufficientPermissions(InsufficientPermissions value),
     @required TResult unexpectedFailure(UnexpectedFailure value),
     @required TResult invalidElement(InvalidElement value),
+    @required TResult uploadFailure(UploadFailure value),
   }) {
     assert(unexpectedException != null);
     assert(insufficientPermissions != null);
     assert(unexpectedFailure != null);
     assert(invalidElement != null);
+    assert(uploadFailure != null);
     return invalidElement(this);
   }
 
@@ -582,6 +618,7 @@ class _$InvalidElement extends InvalidElement {
     TResult insufficientPermissions(InsufficientPermissions value),
     TResult unexpectedFailure(UnexpectedFailure value),
     TResult invalidElement(InvalidElement value),
+    TResult uploadFailure(UploadFailure value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -595,4 +632,142 @@ class _$InvalidElement extends InvalidElement {
 abstract class InvalidElement extends CustomerRepositoryFailure {
   const InvalidElement._() : super._();
   const factory InvalidElement() = _$InvalidElement;
+}
+
+/// @nodoc
+abstract class $UploadFailureCopyWith<$Res> {
+  factory $UploadFailureCopyWith(
+          UploadFailure value, $Res Function(UploadFailure) then) =
+      _$UploadFailureCopyWithImpl<$Res>;
+  $Res call({String errorMessage});
+}
+
+/// @nodoc
+class _$UploadFailureCopyWithImpl<$Res>
+    extends _$CustomerRepositoryFailureCopyWithImpl<$Res>
+    implements $UploadFailureCopyWith<$Res> {
+  _$UploadFailureCopyWithImpl(
+      UploadFailure _value, $Res Function(UploadFailure) _then)
+      : super(_value, (v) => _then(v as UploadFailure));
+
+  @override
+  UploadFailure get _value => super._value as UploadFailure;
+
+  @override
+  $Res call({
+    Object errorMessage = freezed,
+  }) {
+    return _then(UploadFailure(
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$UploadFailure extends UploadFailure {
+  const _$UploadFailure({this.errorMessage}) : super._();
+
+  @override
+  final String errorMessage;
+
+  @override
+  String toString() {
+    return 'CustomerRepositoryFailure.uploadFailure(errorMessage: $errorMessage)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UploadFailure &&
+            (identical(other.errorMessage, errorMessage) ||
+                const DeepCollectionEquality()
+                    .equals(other.errorMessage, errorMessage)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+
+  @override
+  $UploadFailureCopyWith<UploadFailure> get copyWith =>
+      _$UploadFailureCopyWithImpl<UploadFailure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    @required TResult insufficientPermissions(),
+    @required TResult unexpectedFailure(DataSourceFailure failure),
+    @required TResult invalidElement(),
+    @required TResult uploadFailure(String errorMessage),
+  }) {
+    assert(unexpectedException != null);
+    assert(insufficientPermissions != null);
+    assert(unexpectedFailure != null);
+    assert(invalidElement != null);
+    assert(uploadFailure != null);
+    return uploadFailure(errorMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpectedException(Exception exception, StackTrace stackTrace),
+    TResult insufficientPermissions(),
+    TResult unexpectedFailure(DataSourceFailure failure),
+    TResult invalidElement(),
+    TResult uploadFailure(String errorMessage),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (uploadFailure != null) {
+      return uploadFailure(errorMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult unexpectedException(UnexpectedException value),
+    @required TResult insufficientPermissions(InsufficientPermissions value),
+    @required TResult unexpectedFailure(UnexpectedFailure value),
+    @required TResult invalidElement(InvalidElement value),
+    @required TResult uploadFailure(UploadFailure value),
+  }) {
+    assert(unexpectedException != null);
+    assert(insufficientPermissions != null);
+    assert(unexpectedFailure != null);
+    assert(invalidElement != null);
+    assert(uploadFailure != null);
+    return uploadFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpectedException(UnexpectedException value),
+    TResult insufficientPermissions(InsufficientPermissions value),
+    TResult unexpectedFailure(UnexpectedFailure value),
+    TResult invalidElement(InvalidElement value),
+    TResult uploadFailure(UploadFailure value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (uploadFailure != null) {
+      return uploadFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UploadFailure extends CustomerRepositoryFailure {
+  const UploadFailure._() : super._();
+  const factory UploadFailure({String errorMessage}) = _$UploadFailure;
+
+  String get errorMessage;
+  $UploadFailureCopyWith<UploadFailure> get copyWith;
 }

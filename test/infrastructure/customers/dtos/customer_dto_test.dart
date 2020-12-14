@@ -2,25 +2,28 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/domain/customers/personal_id/personal_id.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number.dart';
+import 'package:sales_app/domain/teams/team.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 
 import '../../../fixtures/fixture_reader.dart';
 
 void main() {
   Map<String, dynamic> correctCustomersJson;
+  const Team tTeam = Team(id: "team1", name: "Test team");
   setUp(() {
     correctCustomersJson =
         jsonFixtureAsMap('customers/customers.json')["customers"]
             as Map<String, dynamic>;
   });
 
-  group('fromDomain', () {
+  group('create', () {
     test(
       'should transform the most basic person Customer Entity into a valid JSON when using toJson',
       () async {
         // act
         final int index = CustomerIndex.basicCustomer.index;
-        final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
+        final customerDTO = CustomerDTO.create(
+            customer: correctCustomers[index], forTeam: tTeam);
         final result = customerDTO.toJson();
         // assert
         expect(result, equals(correctCustomersJson.values.toList()[index]));
@@ -32,7 +35,8 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.companyCustomer.index;
-        final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
+        final customerDTO = CustomerDTO.create(
+            customer: correctCustomers[index], forTeam: tTeam);
         final result = customerDTO.toJson();
         // assert
         expect(result, equals(correctCustomersJson.values.toList()[index]));
@@ -44,7 +48,8 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.birthDateCustomer.index;
-        final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
+        final customerDTO = CustomerDTO.create(
+            customer: correctCustomers[index], forTeam: tTeam);
         final result = customerDTO.toJson();
         // assert
         expect(result, equals(correctCustomersJson.values.toList()[index]));
@@ -56,7 +61,8 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.nrcCustomer.index;
-        final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
+        final customerDTO = CustomerDTO.create(
+            customer: correctCustomers[index], forTeam: tTeam);
         final result = customerDTO.toJson();
         // assert
         expect(result, equals(correctCustomersJson.values.toList()[index]));
@@ -68,7 +74,8 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.employeeNumCustomer.index;
-        final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
+        final customerDTO = CustomerDTO.create(
+            customer: correctCustomers[index], forTeam: tTeam);
         final result = customerDTO.toJson();
         // assert
         expect(result, equals(correctCustomersJson.values.toList()[index]));
@@ -80,7 +87,8 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.farmerIdCustomer.index;
-        final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
+        final customerDTO = CustomerDTO.create(
+            customer: correctCustomers[index], forTeam: tTeam);
         final result = customerDTO.toJson();
         // assert
         expect(result, equals(correctCustomersJson.values.toList()[index]));
@@ -92,7 +100,8 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.nationalIdCustomer.index;
-        final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
+        final customerDTO = CustomerDTO.create(
+            customer: correctCustomers[index], forTeam: tTeam);
         final result = customerDTO.toJson();
         // assert
         expect(result, equals(correctCustomersJson.values.toList()[index]));
@@ -104,7 +113,8 @@ void main() {
       () async {
         // act
         final int index = CustomerIndex.completeCustomer.index;
-        final customerDTO = CustomerDTO.fromDomain(correctCustomers[index]);
+        final customerDTO = CustomerDTO.create(
+            customer: correctCustomers[index], forTeam: tTeam);
         final result = customerDTO.toJson();
         // assert
         expect(result, equals(correctCustomersJson.values.toList()[index]));
@@ -115,8 +125,9 @@ void main() {
       'should transform a list of Customer Entities into a valid JSON list using toJson',
       () async {
         // act
-        final customerDTOs =
-            correctCustomers.map((c) => CustomerDTO.fromDomain(c)).toList();
+        final customerDTOs = correctCustomers
+            .map((c) => CustomerDTO.create(customer: c, forTeam: tTeam))
+            .toList();
         final result = customerDTOs.map((dto) => dto.toJson()).toList();
         // assert
         expect(result, equals(correctCustomersJson.values.toList()));

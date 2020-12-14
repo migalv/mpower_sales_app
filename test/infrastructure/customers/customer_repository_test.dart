@@ -4,9 +4,11 @@ import 'package:mockito/mockito.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:sales_app/domain/core/data_sources/i_data_source.dart';
 import 'package:sales_app/domain/core/data_sources/i_local_data_source.dart';
+import 'package:sales_app/domain/core/services/i_upload_service.dart';
 import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/domain/customers/failures/customer_repository_failure.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number.dart';
+import 'package:sales_app/domain/teams/team.dart';
 import 'package:sales_app/infrastructure/customers/customer_data_merger.dart';
 import 'package:sales_app/infrastructure/customers/customer_repository.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
@@ -18,9 +20,12 @@ class MockLocalDataSource extends Mock
 
 class MockRemoteDataSource extends Mock implements IDataSource<CustomerDTO> {}
 
+class MockUploadService extends Mock implements IUploadService<CustomerDTO> {}
+
 void main() {
   MockLocalDataSource mockLocalDataSource;
   MockRemoteDataSource mockRemoteDataSource;
+  MockUploadService mockUploadService;
   CustomerRepository customerRepository;
 
   final customersJson =
@@ -33,9 +38,11 @@ void main() {
   setUp(() {
     mockLocalDataSource = MockLocalDataSource();
     mockRemoteDataSource = MockRemoteDataSource();
+    mockUploadService = MockUploadService();
     customerRepository = CustomerRepository(
       localDataSource: mockLocalDataSource,
       remoteDataSource: mockRemoteDataSource,
+      uploadService: mockUploadService,
     );
   });
 
@@ -91,7 +98,8 @@ void main() {
         // act
         expectLater(
           customerRepository.customersStream,
-          emits(left(const CustomerRepositoryFailure.unexpectedFailure())),
+          emits(left(const CustomerRepositoryFailure.unexpectedFailure(
+              failure: DataSourceFailure.elementNotFound()))),
         );
       },
     );
@@ -108,7 +116,8 @@ void main() {
         // act
         expectLater(
           customerRepository.customersStream,
-          emits(left(const CustomerRepositoryFailure.unexpectedFailure())),
+          emits(left(const CustomerRepositoryFailure.unexpectedFailure(
+              failure: DataSourceFailure.elementNotFound()))),
         );
       },
     );
@@ -141,6 +150,10 @@ void main() {
       phoneNumber: const PhoneNumber(code: "34", number: "123456789"),
       updatedAt: 0,
     );
+    const Team tTeam = Team(
+      id: "team1",
+      name: "Test team",
+    );
     test(
       'should correctly save the given customer in the Local Data Source',
       () async {
@@ -148,10 +161,12 @@ void main() {
         when(mockLocalDataSource.save(any))
             .thenAnswer((_) async => const Right(unit));
         // act
-        final result = await customerRepository.create(tCustomer);
+        final result = await customerRepository.create(
+            customer: tCustomer, forTeam: tTeam);
         // assert
         expect(result, right(unit));
-        verify(mockLocalDataSource.save(CustomerDTO.fromDomain(tCustomer)));
+        verify(mockLocalDataSource
+            .save(CustomerDTO.create(customer: tCustomer, forTeam: tTeam)));
       },
     );
 
@@ -162,13 +177,16 @@ void main() {
         when(mockLocalDataSource.save(any)).thenAnswer((_) async =>
             const Left(DataSourceFailure.insufficientPermissions()));
         // act
-        final result = await customerRepository.create(tCustomer);
+        final result = await customerRepository.create(
+            customer: tCustomer, forTeam: tTeam);
         // assert
         expect(
           result,
-          left(const CustomerRepositoryFailure.unexpectedFailure()),
+          left(const CustomerRepositoryFailure.unexpectedFailure(
+              failure: DataSourceFailure.elementNotFound())),
         );
-        verify(mockLocalDataSource.save(CustomerDTO.fromDomain(tCustomer)));
+        verify(mockLocalDataSource
+            .save(CustomerDTO.create(customer: tCustomer, forTeam: tTeam)));
       },
     );
 
@@ -179,13 +197,15 @@ void main() {
         when(mockLocalDataSource.save(any)).thenAnswer(
             (_) async => const Left(DataSourceFailure.nullElement()));
         // act
-        final result = await customerRepository.create(null);
+        final result =
+            await customerRepository.create(customer: null, forTeam: tTeam);
         // assert
         expect(
           result,
           left(const CustomerRepositoryFailure.invalidElement()),
         );
-        verify(mockLocalDataSource.save(CustomerDTO.fromDomain(null)));
+        verify(mockLocalDataSource
+            .save(CustomerDTO.create(customer: null, forTeam: tTeam)));
       },
     );
   });

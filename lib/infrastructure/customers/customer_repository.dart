@@ -3,11 +3,13 @@ import 'package:meta/meta.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:sales_app/domain/core/data_sources/i_data_source.dart';
 import 'package:sales_app/domain/core/data_sources/i_local_data_source.dart';
+import 'package:sales_app/domain/core/services/i_upload_service.dart';
 import 'package:sales_app/domain/customers/customer.dart';
 import 'package:dartz/dartz.dart';
 import 'package:sales_app/domain/customers/failures/customer_repository_failure.dart';
 import 'package:sales_app/domain/customers/i_customer_repository.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sales_app/domain/teams/team.dart';
 import 'package:sales_app/infrastructure/customers/customer_data_merger.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 
@@ -21,13 +23,19 @@ class CustomerRepository implements ICustomerRepository {
   ILocalDataSource<CustomerDTO> _localDataSource;
   // ignore: prefer_final_fields
   IDataSource<CustomerDTO> _remoteDataSource;
+  // ignore: prefer_final_fields
+  IUploadService _uploadService;
 
   CustomerRepository({
     @required ILocalDataSource<CustomerDTO> localDataSource,
     @required IDataSource<CustomerDTO> remoteDataSource,
-  })  : assert(localDataSource != null && remoteDataSource != null),
+    @required IUploadService<CustomerDTO> uploadService,
+  })  : assert(localDataSource != null &&
+            remoteDataSource != null &&
+            uploadService != null),
         _localDataSource = localDataSource,
-        _remoteDataSource = remoteDataSource;
+        _remoteDataSource = remoteDataSource,
+        _uploadService = uploadService;
 
   @override
   Stream<Either<CustomerRepositoryFailure, List<Customer>>>
@@ -43,14 +51,7 @@ class CustomerRepository implements ICustomerRepository {
       localStream,
       (remote, local) {
         final fromRemote = remote.fold(
-          (l) => l.maybeWhen(
-            insufficientPermissions: () {
-              return const CustomerRepositoryFailure.insufficientPermissions();
-            },
-            orElse: () {
-              return CustomerRepositoryFailure.unexpectedFailure(failure: l);
-            },
-          ),
+          (failure) => _mapDataSourceFailure(failure),
           id,
         );
 
@@ -58,14 +59,7 @@ class CustomerRepository implements ICustomerRepository {
         if (fromRemote is CustomerRepositoryFailure) return Left(fromRemote);
 
         final fromLocal = local.fold(
-          (l) => l.maybeWhen(
-            insufficientPermissions: () {
-              return const CustomerRepositoryFailure.insufficientPermissions();
-            },
-            orElse: () {
-              return const CustomerRepositoryFailure.unexpectedFailure();
-            },
-          ),
+          (failure) => _mapDataSourceFailure(failure),
           id,
         );
 
@@ -93,33 +87,83 @@ class CustomerRepository implements ICustomerRepository {
   @override
 
   /// Saves the customer in the Local Data Source
-  Future<Either<CustomerRepositoryFailure, Unit>> create(
-    Customer customer,
-  ) async {
+  Future<Either<CustomerRepositoryFailure, Unit>> create({
+    @required Customer customer,
+    @required Team forTeam,
+  }) async {
+    if (customer == null || forTeam == null) {
+      return const Left(CustomerRepositoryFailure.invalidElement());
+    }
     try {
-      final CustomerDTO dto = CustomerDTO.fromDomain(customer);
+      final CustomerDTO dto =
+          CustomerDTO.create(customer: customer, forTeam: forTeam);
       final result = await _localDataSource.save(dto);
 
       return result.fold(
-        (failure) {
-          return failure.maybeMap(nullElement: (f) {
-            return const Left(CustomerRepositoryFailure.invalidElement());
-          }, orElse: () {
-            return const Left(CustomerRepositoryFailure.unexpectedFailure());
-          });
-        },
+        (failure) => Left(_mapDataSourceFailure(failure)),
         (r) => Right(r),
       );
     } on Exception catch (e, s) {
       final failure = CustomerRepositoryFailure.unexpectedException(
-          exception: e, stackTrace: s);
+        exception: e,
+        stackTrace: s,
+      );
       return Left(failure);
     }
   }
 
-  /// Uploads all the customers in the Local Data Source
-  // Future<Either<CustomerRepositoryFailure, Unit>> uploadCustomers() {
-  //   // TODO: implement create
-  //   throw UnimplementedError();
-  // }
+  /// Uploads all the customers saved in the Local Data Source
+  Future<Either<CustomerRepositoryFailure, Unit>> uploadCustomers() async {
+    final result = await _localDataSource.getAll();
+
+    return result.fold(
+      // If the local data source returned an error
+      (failure) => Left(_mapDataSourceFailure(failure)),
+      (localCustomers) async {
+        // We upload the local customers
+        final response =
+            await _uploadService.upload(localCustomers.values.toList());
+
+        return response.fold((failure) {
+          return failure.when(
+              // If the upload failed
+              uploadFailed: (uploadedCustomers, errorMessage) async {
+            // We remove only the uploaded customers
+            for (final uploadedCustomer in uploadedCustomers) {
+              await _localDataSource.removeWithId(uploadedCustomer.id);
+            }
+            return Left(CustomerRepositoryFailure.uploadFailure(
+                errorMessage: errorMessage));
+          }, uploadTimedout: (uploadedCustomers) async {
+            // We remove only the uploaded customers
+            for (final uploadedCustomer in uploadedCustomers) {
+              await _localDataSource.removeWithId(uploadedCustomer.id);
+            }
+            return const Left(CustomerRepositoryFailure.uploadFailure());
+          });
+        }, (r) async {
+          await _localDataSource.clear();
+          return const Right(unit);
+        });
+      },
+    );
+  }
+}
+
+CustomerRepositoryFailure _mapDataSourceFailure(
+  DataSourceFailure dataSourceFailure,
+) {
+  return dataSourceFailure.maybeWhen(
+    insufficientPermissions: () {
+      return const CustomerRepositoryFailure.insufficientPermissions();
+    },
+    nullElement: () {
+      return const CustomerRepositoryFailure.invalidElement();
+    },
+    orElse: () {
+      return CustomerRepositoryFailure.unexpectedFailure(
+        failure: dataSourceFailure,
+      );
+    },
+  );
 }
