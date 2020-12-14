@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number.dart';
-import 'package:sales_app/domain/teams/team.dart';
+import 'package:sales_app/domain/teams/team/team.dart';
 import 'package:sales_app/infrastructure/core/firestore_unique_id_generator.dart';
 import 'package:sales_app/infrastructure/customers/data_sources/customer_local_data_source.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';

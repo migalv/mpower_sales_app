@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/domain/customers/personal_id/personal_id.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number.dart';
-import 'package:sales_app/domain/teams/team.dart';
+import 'package:sales_app/domain/teams/team/team.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 
 import '../../../fixtures/fixture_reader.dart';

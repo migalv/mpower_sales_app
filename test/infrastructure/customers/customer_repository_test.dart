@@ -8,7 +8,7 @@ import 'package:sales_app/domain/core/services/i_upload_service.dart';
 import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/domain/customers/failures/customer_repository_failure.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number.dart';
-import 'package:sales_app/domain/teams/team.dart';
+import 'package:sales_app/domain/teams/team/team.dart';
 import 'package:sales_app/infrastructure/customers/customer_data_merger.dart';
 import 'package:sales_app/infrastructure/customers/customer_repository.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
@@ -182,8 +182,7 @@ void main() {
         // assert
         expect(
           result,
-          left(const CustomerRepositoryFailure.unexpectedFailure(
-              failure: DataSourceFailure.elementNotFound())),
+          left(const DataSourceFailure.insufficientPermissions()),
         );
         verify(mockLocalDataSource
             .save(CustomerDTO.create(customer: tCustomer, forTeam: tTeam)));

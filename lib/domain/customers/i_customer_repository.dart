@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 import 'package:sales_app/domain/customers/customer.dart';
 import 'package:sales_app/domain/customers/failures/customer_repository_failure.dart';
-import 'package:sales_app/domain/teams/team.dart';
+import 'package:sales_app/domain/teams/team/team.dart';
 
 /// Specifies a contract for a repository that handles Customers
 abstract class ICustomerRepository {

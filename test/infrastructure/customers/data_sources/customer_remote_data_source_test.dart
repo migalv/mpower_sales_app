@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sales_app/domain/core/data_sources/data_source_failure.dart';
 import 'package:sales_app/infrastructure/customers/data_sources/customer_remote_data_source.dart';
-import 'package:sales_app/infrastructure/core/firestore_helpers.dart';
+import 'package:sales_app/infrastructure/core/helpers/firestore_helpers.dart';
 import 'package:sales_app/infrastructure/customers/dtos/customer_dto.dart';
 
 import '../../../fixtures/fixture_reader.dart';

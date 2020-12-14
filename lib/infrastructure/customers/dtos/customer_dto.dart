@@ -5,7 +5,7 @@ import 'package:sales_app/domain/customers/personal_id/personal_id.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number.dart';
 import 'package:sales_app/domain/customers/phone_number/phone_number_converter.dart';
 import 'package:sales_app/domain/i_entity.dart';
-import 'package:sales_app/domain/teams/team.dart';
+import 'package:sales_app/domain/teams/team/team.dart';
 
 part 'customer_dto.freezed.dart';
 part 'customer_dto.g.dart';
