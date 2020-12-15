@@ -43,14 +43,7 @@ class CustomerRepository implements ICustomerRepository {
       localStream,
       (remote, local) {
         final fromRemote = remote.fold(
-          (l) => l.maybeWhen(
-            insufficientPermissions: () {
-              return const CustomerRepositoryFailure.insufficientPermissions();
-            },
-            orElse: () {
-              return CustomerRepositoryFailure.unexpectedFailure(failure: l);
-            },
-          ),
+          _mapDataSourceFailure,
           id,
         );
 
@@ -58,14 +51,7 @@ class CustomerRepository implements ICustomerRepository {
         if (fromRemote is CustomerRepositoryFailure) return Left(fromRemote);
 
         final fromLocal = local.fold(
-          (l) => l.maybeWhen(
-            insufficientPermissions: () {
-              return const CustomerRepositoryFailure.insufficientPermissions();
-            },
-            orElse: () {
-              return const CustomerRepositoryFailure.unexpectedFailure();
-            },
-          ),
+          _mapDataSourceFailure,
           id,
         );
 
@@ -101,13 +87,7 @@ class CustomerRepository implements ICustomerRepository {
       final result = await _localDataSource.save(dto);
 
       return result.fold(
-        (failure) {
-          return failure.maybeMap(nullElement: (f) {
-            return const Left(CustomerRepositoryFailure.invalidElement());
-          }, orElse: () {
-            return const Left(CustomerRepositoryFailure.unexpectedFailure());
-          });
-        },
+        (failure) => Left(_mapDataSourceFailure(failure)),
         (r) => Right(r),
       );
     } on Exception catch (e, s) {
@@ -122,4 +102,39 @@ class CustomerRepository implements ICustomerRepository {
   //   // TODO: implement create
   //   throw UnimplementedError();
   // }
+
+  /// Maps the given DataSource Failure to a CustomerRepository Failure
+  CustomerRepositoryFailure _mapDataSourceFailure(
+    DataSourceFailure dataSourceFailure,
+  ) {
+    return dataSourceFailure.when(
+      insufficientPermissions: () {
+        return const CustomerRepositoryFailure.insufficientPermissions();
+      },
+      nullElement: () {
+        return const CustomerRepositoryFailure.invalidElement();
+      },
+      elementNotFound: () {
+        return CustomerRepositoryFailure.unexpectedFailure(
+          failure: dataSourceFailure,
+        );
+      },
+      noElementsFor: (collection) {
+        return CustomerRepositoryFailure.unexpectedFailure(
+          failure: dataSourceFailure,
+        );
+      },
+      serverError: (error) {
+        return CustomerRepositoryFailure.unexpectedFailure(
+          failure: dataSourceFailure,
+        );
+      },
+      unexpectedException: (e, s) {
+        return CustomerRepositoryFailure.unexpectedException(
+          exception: e,
+          stackTrace: s,
+        );
+      },
+    );
+  }
 }
