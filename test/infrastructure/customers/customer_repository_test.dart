@@ -91,7 +91,11 @@ void main() {
         // act
         expectLater(
           customerRepository.customersStream,
-          emits(left(const CustomerRepositoryFailure.unexpectedFailure())),
+          emits(left(
+            const CustomerRepositoryFailure.unexpectedFailure(
+              failure: DataSourceFailure.elementNotFound(),
+            ),
+          )),
         );
       },
     );
@@ -108,7 +112,11 @@ void main() {
         // act
         expectLater(
           customerRepository.customersStream,
-          emits(left(const CustomerRepositoryFailure.unexpectedFailure())),
+          emits(left(
+            const CustomerRepositoryFailure.unexpectedFailure(
+              failure: DataSourceFailure.elementNotFound(),
+            ),
+          )),
         );
       },
     );
@@ -166,7 +174,7 @@ void main() {
         // assert
         expect(
           result,
-          left(const CustomerRepositoryFailure.unexpectedFailure()),
+          left(const CustomerRepositoryFailure.insufficientPermissions()),
         );
         verify(mockLocalDataSource.save(CustomerDTO.fromDomain(tCustomer)));
       },
