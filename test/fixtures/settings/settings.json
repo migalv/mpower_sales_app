@@ -1,0 +1,24 @@
+{
+    "document_types": {
+        "dni": {
+            "label": {
+                "en": "NDI",
+                "es": "DNI",
+                "fr": "",
+                "pt": ""
+            },
+            "name": "dni",
+            "required": true
+        },
+        "employee_num": {
+            "label": {
+                "en": "Employee number",
+                "es": "Número de empleado",
+                "fr": "Numero d'employé",
+                "pt": ""
+            },
+            "name": "employee_num",
+            "required": false
+        }
+    }
+}
