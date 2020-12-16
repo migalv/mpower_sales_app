@@ -10,6 +10,7 @@ abstract class TeamDTO with _$TeamDTO {
   const factory TeamDTO({
     @JsonKey(ignore: true) String id,
     @required String name,
+    @required String countryIso,
   }) = _TeamDTO;
 
   /// Transforms a JSON encoded Team into a TeamDTO
@@ -23,5 +24,5 @@ abstract class TeamDTO with _$TeamDTO {
 
 extension TeamDTOX on TeamDTO {
   /// Transforms a TeamDTO into a Team Entity
-  Team toDomain() => Team(id: id, name: name);
+  Team toDomain() => Team(id: id, name: name, countryIso: countryIso);
 }

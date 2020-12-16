@@ -10,6 +10,7 @@ abstract class Team implements _$Team, IEntity {
   const factory Team({
     @required String id,
     @required String name,
+    @required String countryIso,
   }) = _Team;
 
   const Team._();

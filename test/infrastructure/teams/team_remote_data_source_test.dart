@@ -60,7 +60,7 @@ void main() {
             .thenAnswer((_) async => optionOf(MockAuthUser()));
 
         for (int i = 0; i < 5; i++) {
-          final TeamDTO dto = TeamDTO(name: "Team $i");
+          final TeamDTO dto = TeamDTO(name: "Team $i", countryIso: "ESP");
           final json = dto.toJson();
           if (i % 2 == 0) {
             json["participants"] = [tUserId];
@@ -89,7 +89,7 @@ void main() {
             .thenAnswer((_) async => optionOf(MockAuthUser()));
 
         for (int i = 0; i < 5; i++) {
-          final TeamDTO dto = TeamDTO(name: "Team $i");
+          final TeamDTO dto = TeamDTO(name: "Team $i", countryIso: "ESP");
           final json = dto.toJson();
           if (i % 2 == 0) {
             json["participants"] = [tUserId];
@@ -141,7 +141,7 @@ void main() {
             .thenAnswer((_) async => optionOf(MockAuthUser()));
 
         for (int i = 0; i < 5; i++) {
-          final TeamDTO dto = TeamDTO(name: "Team $i");
+          final TeamDTO dto = TeamDTO(name: "Team $i", countryIso: "ESP");
           final json = dto.toJson();
           if (i % 2 == 0) {
             json["participants"] = [tUserId];
@@ -172,7 +172,7 @@ void main() {
             .thenAnswer((_) async => optionOf(MockAuthUser()));
 
         for (int i = 0; i < 5; i++) {
-          final TeamDTO dto = TeamDTO(name: "Team $i");
+          final TeamDTO dto = TeamDTO(name: "Team $i", countryIso: "ESP");
           final json = dto.toJson();
           if (i % 2 == 0) {
             json["participants"] = [tUserId];
@@ -187,7 +187,7 @@ void main() {
 
         teamDataSource.clear();
 
-        const dto = TeamDTO(name: "New added team");
+        const dto = TeamDTO(name: "New added team", countryIso: "ESP");
         final json = dto.toJson();
         json["participants"] = [tUserId];
 
