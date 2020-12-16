@@ -57,7 +57,7 @@ void main() {
         // We add the Spain doc (expected one)
         final DocumentReference doc =
             await mockFirestore.marketsCollection.add(spainDTO.toJson());
-        final expectedMarket = spainDTO.copyWith(id: doc.id);
+        final expectedMarket = spainDTO.copyWith(id: doc.id).toDomain();
 
         // We also add the French doc (we ignore this one)
         await mockFirestore.marketsCollection.add(franceDTO.toJson());
