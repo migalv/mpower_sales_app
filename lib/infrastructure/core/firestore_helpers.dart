@@ -7,4 +7,7 @@ extension FirestoreX on FirebaseFirestore {
 
   CollectionReference get teamsCollection =>
       collection(FirestoreCollectionKeys.teams);
+
+  CollectionReference get marketsCollection =>
+      collection(FirestoreCollectionKeys.markets);
 }
