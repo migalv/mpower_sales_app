@@ -2,19 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
+import 'package:sales_app/domain/markets/market.dart';
+import 'package:sales_app/domain/settings/document_type.dart';
+import 'package:sales_app/domain/settings/i_settings_repository.dart';
+import 'package:sales_app/domain/settings/settings_repository_failure.dart';
 import 'package:sales_app/infrastructure/core/firestore_helpers.dart';
-import 'package:sales_app/infrastructure/markets/market_dto.dart';
-import 'package:sales_app/infrastructure/settings/document_type_dto.dart';
-import 'package:sales_app/infrastructure/settings/settings_repository_failure.dart';
 
-@LazySingleton()
-class SettingsRepository {
+@LazySingleton(as: ISettingRepository)
+class SettingsRepository implements ISettingRepository {
   final FirebaseFirestore _firestore;
-  Map<String, DocumentTypeDTO> _documentTypes = {};
+  Map<String, DocumentType> _documentTypes = {};
 
   /// Repository that fetches & caches the settings from Firestore
   SettingsRepository(this._firestore);
 
+  @override
   Future<Either<SettingsRepositoryFailure, Unit>> fetch() async {
     try {
       for (final setting in Settings.values) {
@@ -31,9 +33,9 @@ class SettingsRepository {
         switch (setting) {
           case Settings.documentTypes:
             _documentTypes = snapshot.data().map((key, value) {
-              final dto =
-                  DocumentTypeDTO.fromJson(value as Map<String, dynamic>);
-              return MapEntry(dto.key, dto);
+              final documentType =
+                  DocumentType.fromJson(value as Map<String, dynamic>);
+              return MapEntry(documentType.key, documentType);
             });
             break;
         }
@@ -49,8 +51,9 @@ class SettingsRepository {
     return const Right(unit);
   }
 
-  Either<SettingsRepositoryFailure, List<DocumentTypeDTO>> getDocumentTypeFor({
-    @required MarketDTO market,
+  @override
+  Either<SettingsRepositoryFailure, List<DocumentType>> getDocumentTypeFor({
+    @required Market market,
   }) {
     assert(market != null);
 
@@ -58,10 +61,10 @@ class SettingsRepository {
       return const Left(SettingsRepositoryFailure.uninitializedSettings());
     }
 
-    final List<DocumentTypeDTO> dtos =
+    final List<DocumentType> documentTypes =
         market.documentMethods.map((key) => _documentTypes[key]).toList();
 
-    return Right(dtos);
+    return Right(documentTypes);
   }
 
   /// The id of the DocumentTypes document used in Firestore
