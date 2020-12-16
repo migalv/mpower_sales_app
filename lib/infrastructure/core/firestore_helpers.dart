@@ -10,4 +10,7 @@ extension FirestoreX on FirebaseFirestore {
 
   CollectionReference get marketsCollection =>
       collection(FirestoreCollectionKeys.markets);
+
+  CollectionReference get settingsCollection =>
+      collection(FirestoreCollectionKeys.settings);
 }
