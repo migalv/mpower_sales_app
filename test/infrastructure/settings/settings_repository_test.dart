@@ -1,11 +1,11 @@
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sales_app/infrastructure/markets/market_dto.dart';
-import 'package:sales_app/infrastructure/settings/document_type_dto.dart';
+import 'package:sales_app/domain/markets/market.dart';
+import 'package:sales_app/domain/settings/document_type.dart';
+import 'package:sales_app/domain/settings/settings_repository_failure.dart';
 import 'package:sales_app/infrastructure/settings/settings_repository.dart';
 import 'package:sales_app/infrastructure/core/firestore_helpers.dart';
-import 'package:sales_app/infrastructure/settings/settings_repository_failure.dart';
 
 import '../../fixtures/fixture_reader.dart';
 
@@ -16,7 +16,7 @@ void main() {
   final Map<String, dynamic> settings =
       jsonFixtureAsMap("settings/settings.json");
 
-  const tMarket = MarketDTO(
+  const tMarket = Market(
     name: "Spain",
     currency: "EUR",
     documentMethods: ["dni"],
@@ -63,7 +63,7 @@ void main() {
       () async {
         // arrange
         final expected = [
-          DocumentTypeDTO.fromJson(
+          DocumentType.fromJson(
             settings[SettingsRepository.documentTypesKey]["dni"]
                 as Map<String, dynamic>,
           ),
