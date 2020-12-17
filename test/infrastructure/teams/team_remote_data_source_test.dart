@@ -1,11 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sales_app/domain/auth/i_auth_repository.dart';
 import 'package:sales_app/domain/core/data_sources/cached_remote_data_source_failure.dart';
+import 'package:sales_app/domain/core/data_sources/i_cached_remote_data_source.dart';
+import 'package:sales_app/domain/profiles/profile.dart';
 import 'package:sales_app/domain/teams/team.dart';
 import 'package:sales_app/infrastructure/teams/team_dto.dart';
 import 'package:sales_app/infrastructure/teams/team_remote_data_source.dart';
@@ -13,24 +12,27 @@ import 'package:sales_app/infrastructure/core/firestore_helpers.dart';
 
 const String tUserId = "user_id";
 
-class MockAuthRepository extends Mock implements IAuthRepository {}
-
-class MockAuthUser extends Mock implements User {
-  @override
-  String get uid => tUserId;
-}
+class MockProfileRemoteDataSource extends Mock
+    implements ICachedRemoteDataSource<Profile> {}
 
 void main() {
   MockFirestoreInstance mockFirestore;
-  MockAuthRepository mockAuthRepository;
+  MockProfileRemoteDataSource mockProfileDS;
   TeamRemoteDataSource teamDataSource;
+
+  const Profile tProfile = Profile(
+    id: "id",
+    email: "email",
+    name: "Test",
+    teamIds: ["0", "2", "4", "6"],
+  );
 
   setUp(() {
     mockFirestore = MockFirestoreInstance();
-    mockAuthRepository = MockAuthRepository();
+    mockProfileDS = MockProfileRemoteDataSource();
     teamDataSource = TeamRemoteDataSource(
       mockFirestore,
-      mockAuthRepository,
+      mockProfileDS,
     );
   });
 
@@ -39,14 +41,14 @@ void main() {
       'should return an empty list if the user does not participate in any team',
       () async {
         // arrange
-        when(mockAuthRepository.signedInUser)
-            .thenAnswer((_) async => optionOf(MockAuthUser()));
+        when(mockProfileDS.get())
+            .thenAnswer((_) async => const Right(tProfile));
 
         // act
         final result = await teamDataSource.get();
 
         // assert
-        expect(result.getOrElse(() => null), []);
+        expect(result.fold(id, id), []);
       },
     );
 
@@ -56,17 +58,14 @@ void main() {
         // arrange
         final List<Team> expectedTeams = [];
 
-        when(mockAuthRepository.signedInUser)
-            .thenAnswer((_) async => optionOf(MockAuthUser()));
+        when(mockProfileDS.get())
+            .thenAnswer((_) async => const Right(tProfile));
 
         for (int i = 0; i < 5; i++) {
           final TeamDTO dto = TeamDTO(name: "Team $i", countryIso: "ESP");
-          final json = dto.toJson();
           if (i % 2 == 0) {
-            json["participants"] = [tUserId];
-            final DocumentReference doc =
-                await mockFirestore.teamsCollection.add(json);
-            expectedTeams.add(dto.copyWith(id: doc.id).toDomain());
+            await mockFirestore.teamsCollection.doc("$i").set(dto.toJson());
+            expectedTeams.add(dto.copyWith(id: "$i").toDomain());
           }
         }
 
@@ -75,7 +74,7 @@ void main() {
 
         // assert
         expect(result.getOrElse(() => null), expectedTeams);
-        verify(mockAuthRepository.signedInUser).called(1);
+        verify(mockProfileDS.get()).called(1);
       },
     );
 
@@ -85,17 +84,14 @@ void main() {
         // arrange
         final List<Team> expectedTeams = [];
 
-        when(mockAuthRepository.signedInUser)
-            .thenAnswer((_) async => optionOf(MockAuthUser()));
+        when(mockProfileDS.get())
+            .thenAnswer((_) async => const Right(tProfile));
 
         for (int i = 0; i < 5; i++) {
           final TeamDTO dto = TeamDTO(name: "Team $i", countryIso: "ESP");
-          final json = dto.toJson();
           if (i % 2 == 0) {
-            json["participants"] = [tUserId];
-            final DocumentReference doc =
-                await mockFirestore.teamsCollection.add(json);
-            expectedTeams.add(dto.copyWith(id: doc.id).toDomain());
+            await mockFirestore.teamsCollection.doc("$i").set(dto.toJson());
+            expectedTeams.add(dto.copyWith(id: "$i").toDomain());
           }
         }
 
@@ -109,15 +105,18 @@ void main() {
 
         // assert
         expect(result.getOrElse(() => null), expectedTeams);
-        verify(mockAuthRepository.signedInUser).called(1);
+        verify(mockProfileDS.get()).called(1);
       },
     );
     test(
       'should return InsufficientPermissions when no user is signed in',
       () async {
         // arrange
-        when(mockAuthRepository.signedInUser)
-            .thenAnswer((_) async => optionOf(null));
+        when(mockProfileDS.get()).thenAnswer((_) async {
+          return const Left(
+            CachedRemoteDataSourceFailure.insufficientPermissions(),
+          );
+        });
 
         // act
         final result = await teamDataSource.get();
@@ -126,7 +125,7 @@ void main() {
           result,
           const Left(CachedRemoteDataSourceFailure.insufficientPermissions()),
         );
-        verify(mockAuthRepository.signedInUser).called(1);
+        verify(mockProfileDS.get()).called(1);
       },
     );
   });
@@ -137,17 +136,14 @@ void main() {
         // arrange
         final List<Team> expectedTeams = [];
 
-        when(mockAuthRepository.signedInUser)
-            .thenAnswer((_) async => optionOf(MockAuthUser()));
+        when(mockProfileDS.get())
+            .thenAnswer((_) async => const Right(tProfile));
 
         for (int i = 0; i < 5; i++) {
           final TeamDTO dto = TeamDTO(name: "Team $i", countryIso: "ESP");
-          final json = dto.toJson();
           if (i % 2 == 0) {
-            json["participants"] = [tUserId];
-            final DocumentReference doc =
-                await mockFirestore.teamsCollection.add(json);
-            expectedTeams.add(dto.copyWith(id: doc.id).toDomain());
+            await mockFirestore.teamsCollection.doc("$i").set(dto.toJson());
+            expectedTeams.add(dto.copyWith(id: "$i").toDomain());
           }
         }
 
@@ -158,7 +154,7 @@ void main() {
 
         // assert
         expect(result.getOrElse(() => null), expectedTeams);
-        verify(mockAuthRepository.signedInUser).called(2);
+        verify(mockProfileDS.get()).called(2);
       },
     );
 
@@ -168,17 +164,14 @@ void main() {
         // arrange
         final List<Team> expectedTeams = [];
 
-        when(mockAuthRepository.signedInUser)
-            .thenAnswer((_) async => optionOf(MockAuthUser()));
+        when(mockProfileDS.get())
+            .thenAnswer((_) async => const Right(tProfile));
 
         for (int i = 0; i < 5; i++) {
           final TeamDTO dto = TeamDTO(name: "Team $i", countryIso: "ESP");
-          final json = dto.toJson();
           if (i % 2 == 0) {
-            json["participants"] = [tUserId];
-            final DocumentReference doc =
-                await mockFirestore.teamsCollection.add(json);
-            expectedTeams.add(dto.copyWith(id: doc.id).toDomain());
+            await mockFirestore.teamsCollection.doc("$i").set(dto.toJson());
+            expectedTeams.add(dto.copyWith(id: "$i").toDomain());
           }
         }
 
@@ -188,18 +181,15 @@ void main() {
         teamDataSource.clear();
 
         const dto = TeamDTO(name: "New added team", countryIso: "ESP");
-        final json = dto.toJson();
-        json["participants"] = [tUserId];
 
-        final DocumentReference doc =
-            await mockFirestore.teamsCollection.add(json);
-        expectedTeams.add(dto.copyWith(id: doc.id).toDomain());
+        await mockFirestore.teamsCollection.doc("6").set(dto.toJson());
+        expectedTeams.add(dto.copyWith(id: "6").toDomain());
 
         result = await teamDataSource.get();
 
         // assert
         expect(result.getOrElse(() => null), expectedTeams);
-        verify(mockAuthRepository.signedInUser).called(2);
+        verify(mockProfileDS.get()).called(2);
       },
     );
   });

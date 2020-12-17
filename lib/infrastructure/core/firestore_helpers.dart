@@ -13,4 +13,7 @@ extension FirestoreX on FirebaseFirestore {
 
   CollectionReference get settingsCollection =>
       collection(FirestoreCollectionKeys.settings);
+
+  CollectionReference get profilesCollection =>
+      collection(FirestoreCollectionKeys.profiles);
 }
