@@ -28,19 +28,19 @@ abstract class CachedRemoteDataSourceFailure
   List<String> get defaultErrorMessages {
     return map(
       unexpectedException: (failure) => [
-        "UnexpectedException Failure occured",
+        "$failure occured",
         "Exception: ${failure.exception}",
         "StackTrace: ${failure.stackTrace}",
       ],
       insufficientPermissions: (failure) => [
-        "InsufficientPermissions Failure occured",
+        "$failure occured",
         "Check for permissions",
       ],
       elementNotFound: (failure) => [
-        "ElementNotFound Failure occurred",
+        "$failure occurred",
         "Are looking for something that doesn't exists?"
       ],
-      serverError: (failure) => ["ServerError Failure ocurred"],
+      serverError: (failure) => ["$failure ocurred"],
     );
   }
 }

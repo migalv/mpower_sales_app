@@ -10,6 +10,7 @@ class SoftwareTeamContactInfo extends StatelessWidget {
     return Column(
       children: [
         Wrap(
+          alignment: WrapAlignment.center,
           children: [
             const Text("You can call this number: "),
             GestureDetector(
@@ -29,7 +30,9 @@ class SoftwareTeamContactInfo extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: 8.0),
         Wrap(
+          alignment: WrapAlignment.center,
           children: [
             const Text("or send a WhatsApp message to "),
             GestureDetector(

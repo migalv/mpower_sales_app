@@ -27,7 +27,7 @@ class FailureDialog extends StatelessWidget {
         icon: icon,
       ),
       actions: [
-        RaisedButton(
+        FlatButton(
           onPressed: () => Navigator.pop(context),
           child: const Text("Dismiss"),
         )

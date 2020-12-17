@@ -27,17 +27,17 @@ abstract class SettingsRepositoryFailure
   List<String> get defaultErrorMessages {
     return map(
       unexpectedException: (failure) => [
-        "UnexpectedException Failure occured",
+        "$failure occured",
         "Exception: ${failure.exception}",
         "StackTrace: ${failure.stackTrace}",
       ],
       uninitializedSettings: (failure) => [
-        "UninitializedSettings Failure occured",
+        "$failure occured",
         "Fetch the settings first...",
         "If this error is shown, please contact with the software team",
       ],
       settingNotExists: (failure) => [
-        "SettingNotExists Failure occurred",
+        "$failure occured",
         "Tried to fetch ${failure.settingKey} setting.",
         "This setting does not exist in the data base",
       ],

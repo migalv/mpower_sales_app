@@ -11,50 +11,62 @@ class DefaultFailureWidget extends StatelessWidget {
   const DefaultFailureWidget({
     Key key,
     @required this.messages,
-    this.icon = const Icon(Icons.info),
+    this.icon,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final double screenHeight = MediaQuery.of(context).size.height;
-    return Center(
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 16.0),
-        constraints: BoxConstraints(maxHeight: screenHeight / 2),
-        child: Column(
-          children: [
-            icon ?? Container(),
-            const Text("An error has ocurred"),
-            const SizedBox(height: 8.0),
-            const Text("Please try again"),
-            const SizedBox(height: 8.0),
-            const Text(
-              "If this error keeps happening please contact our software team",
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8.0),
-            SoftwareTeamContactInfo(),
-            const SizedBox(height: 8.0),
-            ExpansionTile(
-              title: const Text("More informations about this error here"),
-              children: messages
-                  .map(
-                    (m) => Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 4.0,
-                      ),
-                      child: Text(
-                        m,
-                        maxLines: 5,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16.0),
+      width: double.maxFinite,
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: icon ??
+                const Icon(
+                  Icons.info,
+                  size: 40.0,
+                ),
+          ),
+          const Text(
+            "An error has ocurred",
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8.0),
+          const Text(
+            "Please try again",
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8.0),
+          const Text(
+            "If this error keeps happening please contact our software team",
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8.0),
+          SoftwareTeamContactInfo(),
+          const SizedBox(height: 8.0),
+          ExpansionTile(
+            title: const Text("More informations about this error here"),
+            children: messages
+                .map(
+                  (m) => Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                      vertical: 4.0,
                     ),
-                  )
-                  .toList(),
-            ),
-          ],
-        ),
+                    child: Text(
+                      m,
+                      maxLines: 5,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ],
       ),
     );
   }

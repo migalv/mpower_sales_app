@@ -12,6 +12,7 @@ class LogOutButton extends StatelessWidget {
       listener: (context, state) {
         state.when(
           waiting: () {},
+          authenticationError: (_) {},
           authenticated: (user) {},
           unauthenticated: () {
             context.navigator.popAndPush(Routes.loginPage);
@@ -22,6 +23,7 @@ class LogOutButton extends StatelessWidget {
         Widget widget;
 
         state.when(
+          authenticationError: (_) {},
           waiting: () {
             widget = Center(
               child: Container(
