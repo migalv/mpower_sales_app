@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sales_app/domain/settings/document_type.dart';
 import 'package:sales_app/presentation/core/widgets/tip_card.dart';
 import 'package:sales_app/presentation/customers/creation/widgets/phone_input_field.dart';
 import 'package:sales_app/presentation/customers/creation/widgets/text_input_field.dart';
@@ -6,21 +7,25 @@ import 'package:sales_app/presentation/customers/creation/widgets/text_input_fie
 class CustomerCreationForm extends StatefulWidget {
   const CustomerCreationForm({
     Key key,
-    @required GlobalKey<FormState> formKey,
+    @required this.formKey,
     this.textFieldSeparation = 16.0,
     @required this.nameController,
     @required this.surnameController,
     @required this.countryCodeController,
     @required this.phoneNumberController,
-  })  : _formKey = formKey,
-        super(key: key);
+    this.documentTypesControllers = const {},
+    this.documentTypes = const [],
+  }) : super(key: key);
 
   final TextEditingController nameController;
   final TextEditingController surnameController;
   final TextEditingController countryCodeController;
   final TextEditingController phoneNumberController;
 
-  final GlobalKey<FormState> _formKey;
+  final Map<String, TextEditingController> documentTypesControllers;
+  final List<DocumentType> documentTypes;
+
+  final GlobalKey<FormState> formKey;
 
   final double textFieldSeparation;
 
@@ -32,7 +37,7 @@ class _CustomerCreationFormState extends State<CustomerCreationForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: widget._formKey,
+      key: widget.formKey,
       child: ListView(
         children: [
           const TipCard(
@@ -64,8 +69,29 @@ class _CustomerCreationFormState extends State<CustomerCreationForm> {
             codeController: widget.countryCodeController,
             phoneController: widget.phoneNumberController,
           ),
+          SizedBox(height: widget.textFieldSeparation),
+          if (widget.documentTypes.isNotEmpty)
+            Expanded(child: _buildDocumentTypeFields())
+          else
+            Container(),
         ],
       ),
+    );
+  }
+
+  Widget _buildDocumentTypeFields() {
+    List<Widget> textFields = [];
+
+    textFields = widget.documentTypes
+        .map((dt) => TextInputField(
+              controller: widget.documentTypesControllers[dt.key],
+              label: dt.languageLabel.en,
+            ))
+        .toList();
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: textFields,
     );
   }
 }

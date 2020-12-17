@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sales_app/application/customers/creation/customer_creation_bloc.dart';
+import 'package:sales_app/domain/settings/document_type.dart';
 import 'package:sales_app/injection.dart';
 import 'package:sales_app/presentation/core/dialogs/failure_dialog.dart';
+import 'package:sales_app/presentation/core/failure_widgets/default_failure_widget.dart';
 import 'package:sales_app/presentation/core/widgets/app_bar_loading_indicator.dart';
 import 'package:sales_app/presentation/customers/creation/widgets/customer_creation_form.dart';
 
@@ -23,17 +25,37 @@ class _CustomerCreationPageState extends State<CustomerCreationPage> {
   final _countryCodeController = TextEditingController();
   final _phoneNumberController = TextEditingController();
 
+  final _documentTypes = <DocumentType>[];
+  final Map<String, TextEditingController> _documentTypesContollers = {};
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CustomerCreationBloc>(
-      create: (context) => getIt<CustomerCreationBloc>(),
+      create: (context) => getIt<CustomerCreationBloc>()
+        ..add(const CustomerCreationEvent.loadRequested()),
       child: BlocConsumer<CustomerCreationBloc, CustomerCreationState>(
         listener: _blocListener,
         builder: (context, state) {
           bool isButtonLoading = false;
+          bool isFormLoading = false;
+          bool didLoadFail = false;
+          List<String> errorMessages;
 
           state.when(
-            initialStep: () {},
+            loadInProgress: () {
+              isButtonLoading = true;
+              isFormLoading = true;
+            },
+            loadFailed: (messages) {
+              errorMessages = messages;
+              didLoadFail = true;
+            },
+            initialStep: (documentTypes) {
+              _documentTypes.addAll(documentTypes);
+              for (final docType in documentTypes) {
+                _documentTypesContollers[docType.key] = TextEditingController();
+              }
+            },
             creationFailure: (failure) {},
             creationInProgress: () => isButtonLoading = true,
             creationSuccess: () {},
@@ -42,13 +64,19 @@ class _CustomerCreationPageState extends State<CustomerCreationPage> {
           return Scaffold(
             key: _scaffoldKey,
             appBar: _buildAppBar(isButtonLoading),
-            body: CustomerCreationForm(
-              formKey: _formKey,
-              nameController: _nameController,
-              surnameController: _surnameController,
-              countryCodeController: _countryCodeController,
-              phoneNumberController: _phoneNumberController,
-            ),
+            body: isFormLoading
+                ? const Center(child: CircularProgressIndicator())
+                : didLoadFail
+                    ? _buildFailureWidget(errorMessages)
+                    : CustomerCreationForm(
+                        formKey: _formKey,
+                        nameController: _nameController,
+                        surnameController: _surnameController,
+                        countryCodeController: _countryCodeController,
+                        phoneNumberController: _phoneNumberController,
+                        documentTypes: _documentTypes,
+                        documentTypesControllers: _documentTypesContollers,
+                      ),
           );
         },
       ),
@@ -57,7 +85,9 @@ class _CustomerCreationPageState extends State<CustomerCreationPage> {
 
   void _blocListener(BuildContext context, CustomerCreationState state) {
     state.when(
-      initialStep: () {},
+      loadFailed: (_) {},
+      loadInProgress: () {},
+      initialStep: (_) {},
       creationFailure: (failure) {
         showDialog(
           context: context,
@@ -110,6 +140,11 @@ class _CustomerCreationPageState extends State<CustomerCreationPage> {
     );
   }
 
+  Widget _buildFailureWidget(List<String> errorMessages) => Center(
+        child: DefaultFailureWidget(messages: errorMessages),
+      );
+
+  // METHODS
   void _saveForm() {
     if (_formKey.currentState.validate()) {
       final event = CustomerCreationEvent.saveButtonPressed(
