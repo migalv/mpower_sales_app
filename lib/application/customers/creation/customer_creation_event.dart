@@ -2,6 +2,11 @@ part of 'customer_creation_bloc.dart';
 
 @freezed
 abstract class CustomerCreationEvent with _$CustomerCreationEvent {
+  /// Will request the BLoC to load the needed data to create a customer
+  ///
+  /// Usually the first event to be sent to the bloc
+  const factory CustomerCreationEvent.loadRequested() = _LoadRequested;
+
   /// When the user taps on Create button
   ///
   /// We assume the data has been validated by the Form validator in the
